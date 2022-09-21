@@ -6,6 +6,8 @@
 
 ## General Info
 This browser based web application to ...
+
+This is Josh and I am excited
 	
 ## Technologies
 Technologies used for this project:
