@@ -8,6 +8,10 @@
 This browser based web application to ...
 
 This is Josh and I am excited
+
+Lucas is not excited for the merge conflicts :(
+
+Hi there, my name is Kelly and I like Christmas
 	
 ## Technologies
 Technologies used for this project:
