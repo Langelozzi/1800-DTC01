@@ -6,6 +6,7 @@
 
 ## General Info
 This browser based web application to ...
+
 Lucas is not excited for the merge conflicts :(
 
 Hi there, my name is Kelly and I like Christmas
