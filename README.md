@@ -6,6 +6,8 @@
 
 ## General Info
 This browser based web application to ...
+
+Hi there, my name is Kelly and I like Christmas
 	
 ## Technologies
 Technologies used for this project:
