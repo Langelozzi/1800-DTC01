@@ -6,6 +6,10 @@
     font-size: 56px;
 }
 
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
 .icon-button-label {
     display: block;
 }
