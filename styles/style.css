@@ -44,3 +44,16 @@
 p.lead {
     margin-bottom: 0px;
 }
+
+.material-icons {
+    vertical-align: middle !important;
+}
+
+hr {
+    display: block;
+}
+
+div span {
+    vertical-align: middle;
+    /* padding-bottom: 5px; */
+}

@@ -1,4 +1,4 @@
 function loadSkeleton() {
-    $('inbox-card-placeholder').load('/templates/inbox-card.html');
+    $('.inbox-card-placeholder').load('/templates/inbox-card.html');
 }
 loadSkeleton();
