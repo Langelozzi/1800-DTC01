@@ -22,7 +22,6 @@
 }
 
 .card {
-    margin-top: 20px;
     margin-bottom: 20px;
     box-shadow: 1px 1px 2px rgb(165, 164, 164);
     padding: 10px;
@@ -56,4 +55,10 @@ hr {
 div span {
     vertical-align: middle;
     /* padding-bottom: 5px; */
+}
+
+.card-list {
+    /* position: absolute; */
+    overflow-y: scroll;
+    height: 570px;
 }
