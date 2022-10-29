@@ -21,39 +21,27 @@
     <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    <!-- Firebase 8 Library -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
     <!-- Other libraries go here -->
     <!-- Google Icons (Material Design)-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
-
 </head>
 
 <body>
 
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
-
     <!--Top Navbar-->
-    <nav id="top-nav" class="navbar navbar-expand-lg navbar-light bg-info">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="https://i.pinimg.com/originals/cb/7d/48/cb7d48c589412612f5fd4a554e36a325.png" height="36">
-                Say it Forward</a>
-            <button class="btn">
-                <i class="material-icons md-48">account_circle</i>
-            </button>
-        </div>
-        </div>
-    </nav>
-
-
+    <nav id="navbarPlaceholder"></nav>
 
     <!--Homepage Content-->
-    <!-- <header style="padding-top:40%"></header> -->
-
     <div class="container">
         <br>
         <div class="card">
@@ -81,34 +69,10 @@
     </div>
 
     <!-- Sticky Bottom Nav -->
-    <div id="bottom-nav" class="navbar fixed-bottom py-1 bg-info">
-        <div class="container justify-content-around text-center">
-            <button class="btn">
-                <a href="inbox.html" class="btn btn-info">
-                    <i class="material-icons md-36">email</i>
-                    <label class="icon-button-label">Inbox</label>
-                </a>
-            </button>
-            <button id="add-btn" class="btn">
-                <a href="inbox.html" class="btn btn-info">
-                    <i class="material-icons md-56">add_circle</i>
-                    <label class="icon-button-label">New</label>
-                </a>
-            </button>
-            <button class="btn">
-                <a href="inbox.html" class="btn btn-info">
-                    <i class="material-icons md-36">settings</i>
-                    <label class="icon-button-label">Settings</label>
-                </a>
-            </button>
-        </div>
-    </div>
+    <nav id="footerPlaceholder"></nav>
 
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-
-    <!-- Link to scripts of your own -->
+    <!-- Link to JavaScript functions -->
+    <script src="./scripts/skeleton.js"></script>
     <!-- <script src="./scripts/script.js"></script> -->
 
 </body>
