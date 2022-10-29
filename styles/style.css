@@ -62,3 +62,15 @@ div span {
     overflow-y: scroll;
     height: 570px;
 }
+
+#send-section {
+    width: 100%;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+#send-section button {
+    box-shadow: 1px 1px 1px grey;
+    width: 80%;
+}
