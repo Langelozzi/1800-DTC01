@@ -3,5 +3,7 @@ function loadSkeleton() {
     $('#navbarPlaceholder').load('./text/nav.html');
     $('#navbar-back-btnPlaceholder').load('./text/nav-back-btn.html');
     $('#footerPlaceholder').load('./text/footer.html');
+    $('.browse-card-placeholder').load('/templates/browse-card.html');
+    
 }
 loadSkeleton();

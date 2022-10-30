@@ -14,6 +14,10 @@
     font-size: 48px;
 }
 
+.material-icons.md-24 {
+    font-size: 24px;
+}
+
 .icon-button-label {
     display: block;
     font-size: small;
@@ -74,3 +78,24 @@ div span {
     box-shadow: 1px 1px 1px grey;
     width: 80%;
 }
+
+.browse_content {
+    margin: 10px;
+}
+
+.search .form-control {
+    padding-left: 2.375rem;
+}
+
+.search .absolute_icon {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
