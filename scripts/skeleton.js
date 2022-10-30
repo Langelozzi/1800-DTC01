@@ -4,6 +4,6 @@ function loadSkeleton() {
     $('#navbar-back-btnPlaceholder').load('./text/nav-back-btn.html');
     $('#footerPlaceholder').load('./text/footer.html');
     $('.browse-card-placeholder').load('/templates/browse-card.html');
-    
+    $('.detail-card-placeholder').load('/templates/compliment-detail-card.html');
 }
 loadSkeleton();
