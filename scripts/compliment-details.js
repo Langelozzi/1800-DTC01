@@ -1,3 +1,24 @@
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+function chooseReceiver() {
+    const userIds = [1, 2, 3, 4, 5];
+
+    usersRef.get().then((querySnapshot) => {
+        let allUserIds = [];
+        querySnapshot.forEach((doc) => {
+            allUserIds.push(doc.id);
+        });
+
+        const possibleReceiverIds = allUserIds.filter((userId) => { userId != user.uid });
+        // change this with better algorithm that looks at how many compliments user received so far
+        let receiverIndex = getRandomInt(allUserIds.length);
+
+        return possibleReceiverIds[receiverIndex];
+    })
+}
+
 function createNewChainDocument(userId, messageId) {
     /**************** 
     Create new compliment chain document
@@ -44,15 +65,7 @@ function sendMessage(complimentId) {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // get random user id from firestore users collection
-            usersRef.get().then((querySnapshot) => {
-                let allUserIds = [];
-                querySnapshot.forEach((doc) => {
-                    allUserIds.push(doc.id);
-                });
-
-                // change this with calling the get random user
-                const receiverId = allUserIds.filter((userId) => { userId != user.uid })[0];
-
+            chooseReceiver().then((receiverId) => {
                 createNewMessageDocument(user.uid, receiverId, complimentId)
                     .then((newMessageRef) => {
                         createNewChainDocument(user.uid, newMessageRef.uid)
@@ -61,6 +74,7 @@ function sendMessage(complimentId) {
                         console.error("Error adding document: ", error);
                     });
             })
+
         } else {
             console.log("no user");
         }
