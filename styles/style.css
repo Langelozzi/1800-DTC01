@@ -71,6 +71,7 @@ div span {
     /* position: absolute; */
     overflow-y: scroll;
     height: 570px;
+    padding-top: 20px;
 }
 
 #send-section {
