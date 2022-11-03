@@ -4,7 +4,6 @@ function getRandomInt(max) {
 
 function chooseReceiver(userId) {
     const usersRef = db.collection("users");
-    const userIds = [1, 2, 3, 4, 5];
 
     return usersRef.get().then((querySnapshot) => {
         let allUserIds = [];
@@ -19,7 +18,7 @@ function chooseReceiver(userId) {
             const possibleReceiverIds = allUserIds.filter(id => id != userId);
 
             // change this with better algorithm that looks at how many compliments user received so far
-            let receiverIndex = getRandomInt(allUserIds.length);
+            let receiverIndex = getRandomInt(allUserIds.length - 1);
 
             return possibleReceiverIds[receiverIndex];
         }
@@ -27,9 +26,6 @@ function chooseReceiver(userId) {
 }
 
 function createNewChainDocument(userId, messageId) {
-    /**************** 
-    Create new compliment chain document
-    ****************/
     const chainsRef = db.collection("chains");
 
     // get current date
@@ -41,9 +37,10 @@ function createNewChainDocument(userId, messageId) {
         createdAt: currentDate
     }).then((newChainRef) => {
         // add one to users number of chains started and compliments sent
-        // db.collection("users").doc(userId).update({
-        //     chainsStarted: FieldValue.increment(1)
-        // });
+        db.collection("users").doc(userId).update({
+            chainsStarted: firebase.firestore.FieldValue.increment(1),
+            complimentsSent: firebase.firestore.FieldValue.increment(1)
+        });
     }).catch((error) => {
         console.error("Error adding document: ", error);
     });
@@ -73,7 +70,7 @@ function sendMessage(complimentId) {
             chooseReceiver(user.uid).then((receiverId) => {
                 createNewMessageDocument(user.uid, receiverId, complimentId)
                     .then((newMessageRef) => {
-                        createNewChainDocument(user.uid, newMessageRef.uid)
+                        createNewChainDocument(user.uid, newMessageRef.id)
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -88,7 +85,12 @@ function sendMessage(complimentId) {
 }
 
 function setUp() {
-    $('#send-btn').click(sendMessage);
+    // get compliment id from html or query param
+    const complimentId = "testComplimentId"
+
+    $('#send-btn').click(() => {
+        sendMessage(complimentId);
+    });
 }
 
 $(document).ready(setUp);
