@@ -2,20 +2,27 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-function chooseReceiver() {
+function chooseReceiver(userId) {
+    const usersRef = db.collection("users");
     const userIds = [1, 2, 3, 4, 5];
 
-    usersRef.get().then((querySnapshot) => {
+    return usersRef.get().then((querySnapshot) => {
         let allUserIds = [];
         querySnapshot.forEach((doc) => {
             allUserIds.push(doc.id);
         });
 
-        const possibleReceiverIds = allUserIds.filter((userId) => { userId != user.uid });
-        // change this with better algorithm that looks at how many compliments user received so far
-        let receiverIndex = getRandomInt(allUserIds.length);
+        if (allUserIds.length == 1) {
+            return allUserIds[0];
+        } else {
+            // remove sender's id from list
+            const possibleReceiverIds = allUserIds.filter(id => id != userId);
 
-        return possibleReceiverIds[receiverIndex];
+            // change this with better algorithm that looks at how many compliments user received so far
+            let receiverIndex = getRandomInt(allUserIds.length);
+
+            return possibleReceiverIds[receiverIndex];
+        }
     })
 }
 
@@ -59,13 +66,11 @@ function createNewMessageDocument(senderId, receiverId, complimentId) {
 }
 
 function sendMessage(complimentId) {
-    const usersRef = db.collection("users");
-
     // get current user from firebase auth
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // get random user id from firestore users collection
-            chooseReceiver().then((receiverId) => {
+            chooseReceiver(user.uid).then((receiverId) => {
                 createNewMessageDocument(user.uid, receiverId, complimentId)
                     .then((newMessageRef) => {
                         createNewChainDocument(user.uid, newMessageRef.uid)
