@@ -36,10 +36,9 @@ function createNewChainDocument(userId, messageId) {
         messages: [messageId],
         createdAt: currentDate
     }).then((newChainRef) => {
-        // add one to users number of chains started and compliments sent
+        // add one to users number of chains started
         db.collection("users").doc(userId).update({
-            chainsStarted: firebase.firestore.FieldValue.increment(1),
-            complimentsSent: firebase.firestore.FieldValue.increment(1)
+            chainsStarted: firebase.firestore.FieldValue.increment(1)
         });
     }).catch((error) => {
         console.error("Error adding document: ", error);
@@ -70,6 +69,11 @@ function sendMessage(complimentId) {
             chooseReceiver(user.uid).then((receiverId) => {
                 createNewMessageDocument(user.uid, receiverId, complimentId)
                     .then((newMessageRef) => {
+                        // add one to users number of compliments sent
+                        db.collection("users").doc(user.uid).update({
+                            complimentsSent: firebase.firestore.FieldValue.increment(1)
+                        });
+
                         createNewChainDocument(user.uid, newMessageRef.id)
                     })
                     .catch((error) => {
