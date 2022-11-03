@@ -33,11 +33,17 @@
 }
 
 #add-btn {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.footer-btn {
+    padding: 0px !important;
+    margin-bottom: -5px;
 }
 
 #bottom-nav {
     box-shadow: 0px 0px 7px rgb(139, 139, 139);
+    padding: 0px !important;
 }
 
 #top-nav {
@@ -98,4 +104,3 @@ div span {
     pointer-events: none;
     color: #aaa;
 }
-
