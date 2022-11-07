@@ -105,3 +105,42 @@ div span {
     pointer-events: none;
     color: #aaa;
 }
+
+.dropdown-toggle{
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-toggle:hover, .dropdown-toggle:focus {
+    background-color: gainsboro;
+}
+
+.btn-group {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 0;
+}
+
+.dropdown-content a {
+    background-color: white;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display:block;
+}

@@ -30,6 +30,7 @@
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
     <!-- Other libraries go here -->
+    <script src="./scripts/browse.js"></script>
     <!-- Google Icons (Material Design)-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -59,13 +60,15 @@
                     <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                     <div class="btn-group">
                         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
+                            aria-expanded="false" onclick="dropDown()">
                             Filter
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Action</button>
-                            <button class="dropdown-item" type="button">Another action</button>
-                            <button class="dropdown-item" type="button">Something else here</button>
+                        <div id="dropdownContent" class="dropdown-content">
+                            <a href="#">Filter 1</a>
+                            <a href="#">Filter 2</a>
+                            <a href="#">Filter 3</a>
+                        </div>
+
                         </div>
                     </div>
                 </form>
