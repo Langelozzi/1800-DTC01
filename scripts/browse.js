@@ -15,7 +15,6 @@ function loadComplimentCards() {
             clone.querySelector('.select-btn').setAttribute('href', `../compliment-details.html?complimentId=${complimentId}`);
 
             $('#browse-card-list').append(clone);
-            // $('#browse-card-list').appendTo($newCard);
         });
     });
 }
