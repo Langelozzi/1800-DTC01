@@ -74,7 +74,11 @@ function sendMessage(complimentId) {
                             complimentsSent: firebase.firestore.FieldValue.increment(1)
                         });
 
-                        createNewChainDocument(user.uid, newMessageRef.id)
+                        createNewChainDocument(user.uid, newMessageRef.id);
+
+                        db.collection("compliments").doc(complimentId).update({
+                            amountSent: firebase.firestore.FieldValue.increment(1)
+                        })
                     })
                     .catch((error) => {
                         console.error("Error adding document: ", error);
@@ -104,9 +108,9 @@ function setUp() {
 
     populateComplimentData(complimentId);
 
-    // $('#send-btn').click(() => {
-    //     sendMessage(complimentId);
-    // });
+    $('#send-btn').click(() => {
+        sendMessage(complimentId);
+    });
 }
 
 $(document).ready(setUp);
