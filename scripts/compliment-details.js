@@ -41,7 +41,7 @@ function createNewChainDocument(userId, messageId) {
             chainsStarted: firebase.firestore.FieldValue.increment(1)
         });
     }).catch((error) => {
-        console.error("Error adding document: ", error);
+        console.error("Error adding new chain document: ", error);
     });
 }
 
@@ -73,15 +73,16 @@ function sendMessage(complimentId) {
                         db.collection("users").doc(user.uid).update({
                             complimentsSent: firebase.firestore.FieldValue.increment(1)
                         });
+                        // add one to amountSent for that compliment
+                        db.collection("compliments").doc(complimentId).update({
+                            amountSent: firebase.firestore.FieldValue.increment(1)
+                        });
 
                         createNewChainDocument(user.uid, newMessageRef.id);
 
-                        db.collection("compliments").doc(complimentId).update({
-                            amountSent: firebase.firestore.FieldValue.increment(1)
-                        })
                     })
                     .catch((error) => {
-                        console.error("Error adding document: ", error);
+                        console.error("Error adding new message document: ", error);
                     });
             })
 
