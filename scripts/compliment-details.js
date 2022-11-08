@@ -88,13 +88,25 @@ function sendMessage(complimentId) {
 
 }
 
+function populateComplimentData(complimentId) {
+    db.collection('compliments').doc(complimentId).get().then((data) => {
+        const complimentData = data.data();
+
+        $('#compliment-text').html(`"${complimentData.compliment}"`);
+        $('#compliment-type').html(complimentData.type);
+    })
+}
+
 function setUp() {
     // get compliment id from html or query param
-    const complimentId = "testComplimentId"
+    const urlParams = new URLSearchParams(window.location.search);
+    const complimentId = urlParams.get('complimentId');
 
-    $('#send-btn').click(() => {
-        sendMessage(complimentId);
-    });
+    populateComplimentData(complimentId);
+
+    // $('#send-btn').click(() => {
+    //     sendMessage(complimentId);
+    // });
 }
 
 $(document).ready(setUp);
