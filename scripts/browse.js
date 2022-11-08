@@ -13,7 +13,6 @@ function loadComplimentCards() {
             clone.querySelector('.compliment-text').innerHTML = `"${complimentText}"`;
             clone.querySelector('.compliment-type').innerHTML = complimentType;
             clone.querySelector('.select-btn').setAttribute('href', `../compliment-details.html?complimentId=${complimentId}`);
-            console.log(clone);
 
             $('#browse-card-list').append(clone);
             // $('#browse-card-list').appendTo($newCard);
