@@ -93,32 +93,6 @@ function sendMessage(complimentId) {
 
 }
 
-function writeCompliments() {
-    //define a variable for the collection you want to create in Firestore to populate data
-    var complimentsRef = db.collection("compliments");
-
-    complimentsRef.add({
-        compliment: "",
-        type: "Character",
-    });
-    complimentsRef.add({
-        compliment: "You're all that and a super-size bag of chips!",
-        type: "Personality",
-    });
-    complimentsRef.add({
-        compliment: "How is it that you always look great, even in sweatpants?",
-        type: "Physical",
-    });
-    complimentsRef.add({
-        compliment: "This is tough, but you're tougher.",
-        type: "Encouragement",
-    });
-    complimentsRef.add({
-        compliment: "",
-        type: "Intellectual",
-    });
-}
-
 function populateComplimentData(complimentId) {
     db.collection('compliments').doc(complimentId).get().then((data) => {
         const complimentData = data.data();
