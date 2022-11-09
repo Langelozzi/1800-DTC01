@@ -18,6 +18,13 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
+    <!-- Firebase 8 Library -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+
     <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -37,17 +44,33 @@
     <!------------------------------>
 
     <!-- our own navbar goes here -->
-    <nav id="navbarPlaceholder"></nav>
+    <nav id="navbar-back-btnPlaceholder"></nav>
 
     <!--Homepage Content-->
     <!-- <header style="padding-top:40%"></header> -->
     <div class="container">
         <p style="text-align:center">Inbox</p>
 
-        <div class="card-list">
-            <div class="inbox-card-placeholder"></div>
+        <div id="inbox-card-list" class="card-list">
         </div>
     </div>
+
+    <!-- Inbox card template -->
+    <template id="inbox-card-template">
+        <div class="card p-4 mb-3">
+            <div class="compliment-container mx-auto">
+                <p class="lead" id="inbox-compliment-text"></p>
+            </div>
+            <hr>
+            <div>
+                <div class="float-left test">
+                    <span class="d-inline-block md-18 h5 m-1 mb-2">Sent at:
+                        <span class="d-inline-block md-18 h5 m-1 mb-2" id="inbox-send-at"></span></span>
+                    <button class="btn btn-primary float-end">Reply</button>
+                </div>
+            </div>
+        </div>
+    </template>
 
     <!-- Sticky Bottom Nav -->
     <nav id="footerPlaceholder"></nav>
