@@ -68,29 +68,43 @@
                             <a href="#">Filter 3</a>
                         </div>
 
-                        </div>
                     </div>
-                </form>
             </div>
-
-            <!-- Cards -->
-            <div class="card-list">
-                <div class="browse-card-placeholder"></div>
-                <div class="browse-card-placeholder"></div>
-                <div class="browse-card-placeholder"></div>
-            </div>
+            </form>
         </div>
 
+        <!-- Cards -->
+        <div id="browse-card-list" class="card-list">
 
+        </div>
+    </div>
 
-        <!-- Sticky Bottom Nav -->
-        <nav id="footerPlaceholder"></nav>
+    <!-- Card template -->
+    <template id="browse-card-template">
+        <div class="card p-4 mb-3">
+            <div class="compliment-container mx-auto">
+                <p class="compliment-text lead">"Lorem ipsum dolor sit amet consect adipisicing elit. Numquam sit
+                    quidem."</p>
+            </div>
+            <hr>
+            <div>
+                <div class="float-left test">
+                    <span class="d-inline-block h6 m-1 mb-2"> <b>Category:</b> </span>
+                    <span class="compliment-type d-inline-block h6 m-1 mb-2"> Lorem Ipsum </span>
+                    <a class="select-btn btn btn-primary float-end" href="">Select</a>
+                </div>
+            </div>
+        </div>
+    </template>
 
-        <!-- Link to JavaScript functions -->
-        <script src="./scripts/skeleton.js"></script>
-        <script src="./scripts/firebaseAPI_COMP1800_DTC-01.js"></script>
-        <script src="./scripts/browse.js"></script>
-        <!-- <script src="./scripts/script.js"></script> -->
+    <!-- Sticky Bottom Nav -->
+    <nav id="footerPlaceholder"></nav>
+
+    <!-- Link to JavaScript functions -->
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/firebaseAPI_COMP1800_DTC-01.js"></script>
+    <script src="./scripts/browse.js"></script>
+    <!-- <script src="./scripts/script.js"></script> -->
 
 </body>
 

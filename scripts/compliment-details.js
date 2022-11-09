@@ -41,7 +41,7 @@ function createNewChainDocument(userId, messageId) {
             chainsStarted: firebase.firestore.FieldValue.increment(1)
         });
     }).catch((error) => {
-        console.error("Error adding document: ", error);
+        console.error("Error adding new chain document: ", error);
     });
 }
 
@@ -73,11 +73,16 @@ function sendMessage(complimentId) {
                         db.collection("users").doc(user.uid).update({
                             complimentsSent: firebase.firestore.FieldValue.increment(1)
                         });
+                        // add one to amountSent for that compliment
+                        db.collection("compliments").doc(complimentId).update({
+                            amountSent: firebase.firestore.FieldValue.increment(1)
+                        });
 
-                        createNewChainDocument(user.uid, newMessageRef.id)
+                        createNewChainDocument(user.uid, newMessageRef.id);
+
                     })
                     .catch((error) => {
-                        console.error("Error adding document: ", error);
+                        console.error("Error adding new message document: ", error);
                     });
             })
 
@@ -93,33 +98,42 @@ function writeCompliments() {
     var complimentsRef = db.collection("compliments");
 
     complimentsRef.add({
-        complimentID: "CH01",
-        complimentContent: "",
-        complimentCategory: "character",
-        timesSent: 0,
-        timesReacted: 0,
+        compliment: "",
+        type: "Character",
     });
     complimentsRef.add({
-        complimentID: "PE01",
-        complimentContent: "You're all that and a super-size bag of chips!",
-        complimentCategory: "personality",
+        compliment: "You're all that and a super-size bag of chips!",
+        type: "Personality",
     });
     complimentsRef.add({
-        complimentID: "AP01",
-        complimentContent: "How is it that you always look great, even in sweatpants?",
-        complimentCategory: "appearance",
+        compliment: "How is it that you always look great, even in sweatpants?",
+        type: "Physical",
     });
     complimentsRef.add({
-        complimentID: "EN01",
-        complimentContent: "This is tough, but you're tougher.",
-        complimentCategory: "encouragement",
+        compliment: "This is tough, but you're tougher.",
+        type: "Encouragement",
+    });
+    complimentsRef.add({
+        compliment: "",
+        type: "Intellectual",
     });
 }
+
+function populateComplimentData(complimentId) {
+    db.collection('compliments').doc(complimentId).get().then((data) => {
+        const complimentData = data.data();
+
+        $('#compliment-text').html(`"${complimentData.compliment}"`);
+        $('#compliment-type').html(complimentData.type);
+    })
 }
 
 function setUp() {
     // get compliment id from html or query param
-    const complimentId = "testComplimentId"
+    const urlParams = new URLSearchParams(window.location.search);
+    const complimentId = urlParams.get('complimentId');
+
+    populateComplimentData(complimentId);
 
     $('#send-btn').click(() => {
         sendMessage(complimentId);
