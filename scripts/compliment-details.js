@@ -88,6 +88,35 @@ function sendMessage(complimentId) {
 
 }
 
+function writeCompliments() {
+    //define a variable for the collection you want to create in Firestore to populate data
+    var complimentsRef = db.collection("compliments");
+
+    complimentsRef.add({
+        complimentID: "CH01",
+        complimentContent: "",
+        complimentCategory: "character",
+        timesSent: 0,
+        timesReacted: 0,
+    });
+    complimentsRef.add({
+        complimentID: "PE01",
+        complimentContent: "You're all that and a super-size bag of chips!",
+        complimentCategory: "personality",
+    });
+    complimentsRef.add({
+        complimentID: "AP01",
+        complimentContent: "How is it that you always look great, even in sweatpants?",
+        complimentCategory: "appearance",
+    });
+    complimentsRef.add({
+        complimentID: "EN01",
+        complimentContent: "This is tough, but you're tougher.",
+        complimentCategory: "encouragement",
+    });
+}
+}
+
 function setUp() {
     // get compliment id from html or query param
     const complimentId = "testComplimentId"
