@@ -73,8 +73,28 @@
         <br>
 
         <div>
-            <button id="reply-emoji-btn" class="btn btn-primary">Reply with emoji</button>
+            <button id="reply-emoji-btn" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#emoji-selection-modal">Reply with emoji</button>
             <button id="pay-it-forward-btn" class="btn btn-success">Pay it forward</button>
+        </div>
+    </div>
+
+    <!-- Emoji selection modal -->
+    <div class="modal fade" id="emoji-selection-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="radio" class="btn-check" name="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Send</button>
+                </div>
+            </div>
         </div>
     </div>
 
