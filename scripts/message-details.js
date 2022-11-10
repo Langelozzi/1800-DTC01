@@ -34,6 +34,11 @@ function sendEmoji() {
                 .then((newMessageRef) => {
                     addMessageToChain(chainId, newMessageRef.id)
                         .then(() => {
+                            // add one to emojis amountSent field
+                            db.collection("emojis").doc(selectedEmojiId).update({
+                                amountSent: firebase.firestore.FieldValue.increment(1)
+                            });
+
                             // add the chain id to the message
                             db.collection("messages").doc(newMessageRef.id).update({
                                 chainId: chainId
