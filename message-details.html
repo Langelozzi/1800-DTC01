@@ -85,11 +85,38 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"> <strong> Select and send emoji </strong> </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="radio" class="btn-check" name="">
+                    <fieldset class="w-100">
+                        <input type="radio" class="btn-check" id="smile" name="emoji-selection" checked>
+                        <label class="btn btn-outline-primary" for="smile"> <span> &#128522; </span> </label>
+
+                        <input type="radio" class="btn-check" id="heart" name="emoji-selection">
+                        <label class="btn btn-outline-primary" for="heart"> <span> &#128147; </span> </label>
+
+                        <input type="radio" class="btn-check" id="big-smile" name="emoji-selection">
+                        <label class="btn btn-outline-primary" for="big-smile"> <span> &#128516; </span> </label>
+
+                        <input type="radio" class="btn-check" id="laughter" name="emoji-selection">
+                        <label class="btn btn-outline-primary" for="laughter"> <span> &#128518; </span> </label>
+
+                        <input type="radio" class="btn-check" id="heart-eyes" name="emoji-selection">
+                        <label class="btn btn-outline-primary" for="heart-eyes"> <span> &#128525; </span> </label>
+
+                        <input type="radio" class="btn-check" id="tongue-out" name="emoji-selection">
+                        <label class="btn btn-outline-primary" for="tongue-out"> <span> &#128523; </span> </label>
+
+                        <input type="radio" class="btn-check" id="satisfied" name="emoji-selection">
+                        <label class="btn btn-outline-primary" for="satisfied"> <span> &#128524; </span> </label>
+
+                        <input type="radio" class="btn-check" id="sunglasses" name="emoji-selection">
+                        <label class="btn btn-outline-primary" for="sunglasses"> <span> &#128526; </span> </label>
+
+                        <input type="radio" class="btn-check" id="clapping" name="emoji-selection">
+                        <label class="btn btn-outline-primary" for="clapping"> <span> &#128079; </span> </label>
+                    </fieldset>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success">Send</button>
