@@ -27,11 +27,12 @@ function chooseRandomNumberInRange(min, max) {
 
 function addQuoteOfTheDay() {
     const today = new Date().toLocaleDateString("en-US");
+    // NOTE: if any of these values in localStorage don't exist then they will be null
     const lastDateAccessed = localStorage.getItem("lastDateAccessed");
     const quoteText = localStorage.getItem("quoteOfTheDayText");
     const quoteAuthor = localStorage.getItem("quoteOfTheDayAuthor");
 
-    // if the lastDateAccess is today and we have quote data stored, then we don't need to get a new quote
+    // if the lastDateAccess is today and quote data is not null, then we don't need to get a new quote
     // Just use the one we have in localStorage
     if (lastDateAccessed == today && quoteText && quoteAuthor) {
         $("#quote-of-the-day").html(`"${quoteText}"`);
