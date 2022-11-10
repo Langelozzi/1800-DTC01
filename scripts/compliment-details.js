@@ -31,18 +31,11 @@ function createNewChainDocument(userId, messageId) {
     // get current date
     const currentDate = firebase.firestore.Timestamp.now();
 
-    chainsRef.add({
+    return chainsRef.add({
         starterId: userId,
         messages: [messageId],
         createdAt: currentDate
-    }).then((newChainRef) => {
-        // add one to users number of chains started
-        db.collection("users").doc(userId).update({
-            chainsStarted: firebase.firestore.FieldValue.increment(1)
-        });
-    }).catch((error) => {
-        console.error("Error adding new chain document: ", error);
-    });
+    })
 }
 
 function createNewMessageDocument(senderId, receiverId, complimentId) {
@@ -78,11 +71,24 @@ function sendMessage(complimentId) {
                             amountSent: firebase.firestore.FieldValue.increment(1)
                         });
 
-                        createNewChainDocument(user.uid, newMessageRef.id);
+                        createNewChainDocument(user.uid, newMessageRef.id)
+                            .then((newChainRef) => {
+                                // add one to users number of chains started
+                                db.collection("users").doc(user.uid).update({
+                                    chainsStarted: firebase.firestore.FieldValue.increment(1)
+                                });
+
+                                // add the chain id to the message
+                                db.collection("messages").doc(newMessageRef.id).update({
+                                    chainId: newChainRef.id
+                                });
+                            }).catch((error) => {
+                                console.error("Error adding new chain document: ", error);
+                            });;
 
                     })
                     .catch((error) => {
-                        console.error("Error adding new message document: ", error);
+                        console.error("Error adding new message (compliment) document: ", error);
                     });
             })
 
