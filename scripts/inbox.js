@@ -11,7 +11,7 @@ function populateInboxData() {
             messagesRef.get().then((data) => {
                 data.forEach(message => {
                     let messageData = message.data();
-
+                    let complimentType = messageData.complimentId
                     if (messageData.receiverId == userId) {
                         complimentRef.doc(messageData.complimentId).get().then((compliment) => {
                             let messageText = compliment.data().compliment;
@@ -22,6 +22,7 @@ function populateInboxData() {
 
                             clone.querySelector('#inbox-compliment-text').innerHTML = `"${messageText}"`;
                             clone.querySelector('#inbox-send-at').innerHTML = messageSentAtDate;
+                            clone.querySelector('#inbox-card').setAttribute('href', `../message-details.html?complimentId=${complimentType}`);
 
                             $('#inbox-card-list').append(clone);
                         })

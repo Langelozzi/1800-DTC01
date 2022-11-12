@@ -155,3 +155,8 @@ div span {
 #emoji-selection-modal fieldset label span {
     font-size: 50px;
 }
+
+#inbox-card {
+    text-decoration: none;
+    color: inherit;
+}
