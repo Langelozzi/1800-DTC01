@@ -111,8 +111,8 @@ div span {
     cursor: pointer;
 }
 
-.dropdown-toggle:hover,
-.dropdown-toggle:focus {
+.btn-group>.dropdown-toggle:hover,
+.btn-group>.dropdown-toggle:focus {
     background-color: gainsboro;
 }
 
@@ -120,6 +120,7 @@ div span {
     position: relative;
     display: inline-block;
 }
+
 
 .dropdown-content {
     display: none;
