@@ -18,9 +18,6 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
-    <!-- Jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
     <!-- Firebase 8 Library -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -28,63 +25,36 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <!-- Other libraries go here -->
     <!-- Google Icons (Material Design)-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
+
 </head>
 
 <body>
 
-    <!--Top Navbar-->
-    <nav id="navbarPlaceholder"></nav>
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+
+    <!-- our own navbar goes here -->
+    <nav id="navbar-back-btnPlaceholder"></nav>
 
     <!--Homepage Content-->
-    <div class="container">
-        <br>
-        <div class="card">
-            <div class="card-body">
-                <p class="lead">
-                <h1 class="display-6">Good morning, <span id="name-goes-here" style="vertical-align:top;"></span></h1>
-                <hr>
-                <i>
-                    <b>Quote of the day:</b>
-                    <span id="quote-of-the-day">
-                        <i>loading...</i>
-                    </span>
-                </i>
-                </p>
-                <p class="mb-0">
-                    <i>
-                        <span id="quote-author">
-                            <i>loading...</i>
-                        </span>
-                    </i>
-                </p>
-            </div>
-        </div>
-        <div class="card">
-            <p class="lead mb-4" style="text-align:center">
-                <b style="font-size:110%">Send a compliment by clicking the <b> New </b> button or via the
-                    button below!</b>
-            </p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <button onclick="window.location.href='browse.html'" type="button"
-                    class="btn btn-primary btn-lg px-4 gap-3 bg-info">New Compliment</button>
-            </div>
-        </div>
-    </div>
 
     <!-- Sticky Bottom Nav -->
     <nav id="footerPlaceholder"></nav>
 
-    <!-- Link to JavaScript functions -->
+    <!-- Link to Javascript functions -->
     <script src="./scripts/firebaseAPI_COMP1800_DTC-01.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/main.js"></script>
-    <!-- <script src="./scripts/write-compliments.js"></script> -->
+    <script src="./scripts/profile.js"></script>
     <!-- <script src="./scripts/script.js"></script> -->
 
 </body>

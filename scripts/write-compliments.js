@@ -23,7 +23,7 @@ function writeCompliments() {
         emojisReceived: 0,
     });
     complimentId.add({
-        compliment: "I bet you sweat glitter.",
+        compliment: "Wait, let me wear my sunglasses. You shine way too bright.",
         type: "personality",
         amountSent: 0,
         emojisReceived: 0,
@@ -86,7 +86,7 @@ function writeCompliments() {
         emojisReceived: 0,
     });
     complimentId.add({
-        compliment: "Sending some good vibes and happy thoughts your way.",
+        compliment: "Sending good vibes and happy thoughts your way.",
         type: "encouragement",
         amountSent: 0,
         emojisReceived: 0,
@@ -140,7 +140,7 @@ function writeCompliments() {
         emojisReceived: 0,
     });
     complimentId.add({
-        compliment: "Believe in yourself, because I believe in you!",
+        compliment: "Believe in yourself, because I believe in you internet stranger!",
         type: "encouragement",
         amountSent: 0,
         emojisReceived: 0,
@@ -152,7 +152,7 @@ function writeCompliments() {
         emojisReceived: 0,
     });
 
-    // ----------------------------------words of affirmation (x8)-----------------------------------
+    // ----------------------------------words of affirmation (x10)-----------------------------------
 
     complimentId.add({
         compliment: "This is tough, but you're tougher.",
@@ -202,8 +202,20 @@ function writeCompliments() {
         amountSent: 0,
         emojisReceived: 0,
     });
+    complimentId.add({
+        compliment: "People overestimate what they can do in a day, and underestimate what they can do in a year.",
+        type: "affirmation",
+        amountSent: 0,
+        emojisReceived: 0,
+    });
+    complimentId.add({
+        compliment: "You are worthy of respect and acceptance.",
+        type: "affirmation",
+        amountSent: 0,
+        emojisReceived: 0,
+    });
 
-    // ----------------------------------appearance compliments (x8)-----------------------------------
+    // ----------------------------------appearance compliments (x6)-----------------------------------
 
     complimentId.add({
         compliment: "How is it that you always look great, even in sweatpants?",
@@ -212,31 +224,19 @@ function writeCompliments() {
         emojisReceived: 0,
     });
     complimentId.add({
-        compliment: "Your smile is proof that the best things in life are free.",
+        compliment: "I like your style. Keep doing you!",
         type: "appearance",
         amountSent: 0,
         emojisReceived: 0,
     });
     complimentId.add({
-        compliment: "I don't have a favourite colour, It's pretty much whatever you are wearing.",
+        compliment: "You know what's awesome? Chocolate cake, oh and your style.",
         type: "appearance",
         amountSent: 0,
         emojisReceived: 0,
     });
     complimentId.add({
-        compliment: "Are you a beaver, because daaaaaamn!",
-        type: "appearance",
-        amountSent: 0,
-        emojisReceived: 0,
-    });
-    complimentId.add({
-        compliment: "You know what's awesome? Chocolate cake, oh and your face.",
-        type: "appearance",
-        amountSent: 0,
-        emojisReceived: 0,
-    });
-    complimentId.add({
-        compliment: "If you were a fruit, you would be a fine-apple.",
+        compliment: "You rock every outfit you wear. Yes, including that one.",
         type: "appearance",
         amountSent: 0,
         emojisReceived: 0,
@@ -248,7 +248,7 @@ function writeCompliments() {
         emojisReceived: 0,
     });
     complimentId.add({
-        compliment: "Polar bears and penguins should fear your cuteness.",
+        compliment: "You are beautiful.",
         type: "appearance",
         amountSent: 0,
         emojisReceived: 0,
