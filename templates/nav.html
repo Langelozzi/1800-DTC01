@@ -5,9 +5,15 @@
             <img src="../images/logo.png" height="30">
         </a>
 
-        <button class="btn">
-            <i class="material-icons md-48" style="color: #1d6fea">account_circle</i>
-        </button>
+        <div class="btn-group-nav">
+            <button type="button" class="btn dropdown-toggle" onclick="dropDownnav()">
+                <i class="material-icons md-48" style="color: #1d6fea">account_circle</i>
+            </button>
+            <div id="dropdownContentnav" class="dropdown-content">
+                <a href="../profile.html">Profile</a>
+                <a href="../settings.html">Settings</a>
+            </div>
+        </div>
 
     </div>
 </nav>
