@@ -91,7 +91,7 @@ i {
     margin-right: .7em;
 }
 
-/* ------dropdowns------ */
+/* ------dropdowns & popups------ */
 
 .dropdown-content,
 a {
@@ -113,6 +113,10 @@ a {
 .centered-card {
     width: fit-content;
     margin: auto;
+}
+
+.modal-content {
+    border-radius: 1.5em;
 }
 
 .card {
