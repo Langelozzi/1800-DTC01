@@ -1,44 +1,22 @@
 <div id="bottom-nav" class="navbar fixed-bottom">
     <div class="container justify-content-around text-center">
-        <button class="btn footer-btn">
-            <a href="main.html" class="btn footer-btn">
-                <i class="material-icons md-36">home</i>
+        <button class="btn footer-btn home">
+            <a href="main.html" class="btn footer-btn home">
+                <i class="material-icons md-48">home</i>
                 <label class="icon-button-label"></label>
             </a>
         </button>
-        <button id="add-btn" class="btn footer-btn">
-            <a href="browse.html" class="btn footer-btn">
+        <button id="add-btn" class="btn footer-btn circle">
+            <a href="browse.html" class="btn footer-btn circle">
                 <i class="material-icons md-56">add_circle</i>
                 <label class="icon-button-label"></label>
             </a>
         </button>
-        <button class="btn footer-btn">
-            <a href="inbox.html" class="btn footer-btn">
-                <i class="material-icons md-36">email</i>
+        <button class="btn footer-btn mail">
+            <a href="inbox.html" class="btn footer-btn mail">
+                <i class="material-icons md-48">email</i>
                 <label class="icon-button-label"></label>
             </a>
         </button>
     </div>
 </div>
-
-<script>
-    function highlightButton() {
-        document.getElementById("dropdownContentnav").classList.toggle("show");
-    }
-
-    //close dropdown menu
-    window.onclick = function (event) {
-        if (!event.target.matches('.dropdown-toggle')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains("show")) {
-                    openDropdown.classList.remove("show")
-                }
-            }
-        }
-    }
-
-    $(document).ready(setUp);
-</script>

@@ -30,14 +30,27 @@ body {
 
 .fixed-bottom {
     background-color: #1d6fea;
+    height: 80px;
 }
 
 .navbar-brand {
     font-weight: bolder;
 }
 
-i {
-    color: white;
+.footer-btn {
+    color: whitesmoke;
+    width: 33%;
+    background-color: #1d6fea;
+    border: 0px;
+    border-bottom-left-radius: 3em;
+    border-bottom-right-radius: 3em;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+button>.footer-btn {
+    width: 80px;
+    height: 70px;
 }
 
 .account>i {
@@ -130,14 +143,10 @@ a {
     margin-bottom: 15px;
 } */
 
-.footer-btn {
-    padding: 0px !important;
-    margin-bottom: 6px;
-    margin-top: 6px;
-}
+
 
 #bottom-nav {
-    box-shadow: 0px 0px 7px rgb(139, 139, 139);
+    /* box-shadow: 0px 0px 7px rgb(139, 139, 139); */
     padding: 0px !important;
 }
 
