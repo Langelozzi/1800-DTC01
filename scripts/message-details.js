@@ -57,7 +57,21 @@ function sendEmoji() {
     });
 }
 
+function populateInboxData(complimentId) {
+    db.collection('compliments').doc(complimentId).get().then((data) => {
+        const complimentData = data.data();
+
+        $('#compliment-text').html(`"${complimentData.compliment}"`);
+        $('#compliment-type').html(complimentData.type);
+    })
+}
+
 function setUp() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const complimentId = urlParams.get('complimentId');
+    
+    populateInboxData(complimentId);
+
     $('#send-emoji-btn').click(sendEmoji);
 }
 
