@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: whitesmoke;
+}
+
+/* ------material icons------ */
 .material-icons.md-36 {
     font-size: 36px;
 }
@@ -18,11 +23,79 @@
     font-size: 24px;
 }
 
+/* ------Navbar----- */
+.navbar {
+    background-color: white;
+}
+
+.fixed-bottom {
+    background-color: #1d6fea;
+}
+
+.navbar-brand {
+    font-weight: bolder;
+}
+
+i {
+    color: white;
+}
+
+.account>i {
+    color: #1d6fea;
+}
+
+/* ------Buttons------ */
+.new-comp-btn {
+    background-color: #fdbe00;
+    color: white;
+    font-weight: bold;
+    font-size: 1.7em;
+    border-radius: 2em;
+}
+
+.select-btn {
+    background-color: #fdbe00;
+    color: white;
+    font-weight: bold;
+    border-radius: 2em;
+}
+
+.reply-btn {
+    background-color: #1d6fea;
+    color: white;
+    font-weight: bold;
+    border-radius: 2em;
+}
+
+.sign-in-btn {
+    background-color: #1d6fea;
+    color: white;
+    font-weight: bold;
+    border-radius: 2em;
+}
+
+/* ------dropdowns------ */
+
+.dropdown-content,
+a {
+    border-radius: 1em;
+    background-color: white;
+}
+
 .icon-button-label {
     display: block;
     font-size: small;
     font-weight: bold;
     margin: 0px;
+}
+
+.arrow-card {
+    width: 100%;
+}
+
+.arrow-img-card {
+    width: fit-content;
+    margin: auto;
 }
 
 .card {
@@ -32,13 +105,14 @@
     border-radius: 20px;
 }
 
-#add-btn {
+/* #add-btn {
     margin-bottom: 15px;
-}
+} */
 
 .footer-btn {
     padding: 0px !important;
-    margin-bottom: -5px;
+    margin-bottom: 6px;
+    margin-top: 6px;
 }
 
 #bottom-nav {
