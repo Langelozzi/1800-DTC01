@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: whitesmoke;
+}
+
+/* ------material icons------ */
 .material-icons.md-36 {
     font-size: 36px;
 }
@@ -18,11 +23,113 @@
     font-size: 24px;
 }
 
+/* ------Navbar----- */
+.navbar {
+    background-color: white;
+}
+
+.fixed-bottom {
+    background-color: #1d6fea;
+    height: 80px;
+}
+
+.navbar-brand {
+    font-weight: bolder;
+}
+
+.footer-btn {
+    color: whitesmoke;
+    width: 33%;
+    background-color: #1d6fea;
+    border: 0px;
+    border-bottom-left-radius: 3em;
+    border-bottom-right-radius: 3em;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+button>.footer-btn {
+    width: 80px;
+    height: 70px;
+}
+
+.account>i {
+    color: #1d6fea;
+}
+
+/* ------Buttons------ */
+.new-comp-btn {
+    background-color: #fdbe00;
+    color: white;
+    font-weight: bold;
+    font-size: 1.7em;
+    border-radius: 2em;
+}
+
+.select-btn {
+    background-color: #fdbe00;
+    color: white;
+    font-weight: bold;
+    border-radius: 2em;
+}
+
+.reply-btn {
+    background-color: #1d6fea;
+    color: white;
+    font-weight: bold;
+    border-radius: 2em;
+}
+
+.sign-in-btn {
+    background-color: #1d6fea;
+    color: white;
+    font-weight: bold;
+    border-radius: 2em;
+}
+
+.message-select-btn {
+    background-color: #fdbe00;
+    color: white;
+    font-weight: bold;
+    font-size: 125%;
+    border-radius: 2em;
+}
+
+.message-reply-btn {
+    background-color: #1d6fea;
+    color: white;
+    font-weight: bold;
+    font-size: 125%;
+    border-radius: 2em;
+    margin-right: .7em;
+}
+
+/* ------dropdowns & popups------ */
+
+.dropdown-content,
+a {
+    border-radius: 1em;
+    background-color: white;
+}
+
 .icon-button-label {
     display: block;
     font-size: small;
     font-weight: bold;
     margin: 0px;
+}
+
+.center-card {
+    width: 100%;
+}
+
+.centered-card {
+    width: fit-content;
+    margin: auto;
+}
+
+.modal-content {
+    border-radius: 1.5em;
 }
 
 .card {
@@ -32,17 +139,14 @@
     border-radius: 20px;
 }
 
-#add-btn {
+/* #add-btn {
     margin-bottom: 15px;
-}
+} */
 
-.footer-btn {
-    padding: 0px !important;
-    margin-bottom: -5px;
-}
+
 
 #bottom-nav {
-    box-shadow: 0px 0px 7px rgb(139, 139, 139);
+    /* box-shadow: 0px 0px 7px rgb(139, 139, 139); */
     padding: 0px !important;
 }
 

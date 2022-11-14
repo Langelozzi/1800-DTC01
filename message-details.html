@@ -35,6 +35,12 @@
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
 
+    <style>
+        .mail {
+            color: #1d6fea;
+            background-color: whitesmoke;
+        }
+    </style>
 </head>
 
 <body>
@@ -51,7 +57,7 @@
 
     <!--Homepage Content-->
     <!-- <header style="padding-top:40%"></header> -->
-    
+
 
     <div class="container">
         <br>
@@ -59,7 +65,7 @@
         <!--Detail Card-->
         <div class="browse-card-template card p-4 mb-3">
             <div class="compliment-container mx-auto">
-                <p id="compliment-text" class="lead"> 
+                <p id="compliment-text" class="lead">
                 </p>
             </div>
             <hr>
@@ -72,68 +78,76 @@
         </div>
 
         <br>
-
+        <div class="center-card">
+            <div class="centered-card">
+                <button id="reply-emoji-btn" class="btn message-reply-btn" data-bs-toggle="modal"
+                    data-bs-target="#emoji-selection-modal">Reply
+                    with emoji</button>
+                <button id="pay-it-forward-btn" class="btn message-select-btn">Pay it
+                    forward</button>
+            </div>
+        </div>
         <div>
             <button id="reply-emoji-btn" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#emoji-selection-modal">Reply with emoji</button>
-            <a href ="sif-browse.html" id="pay-it-forward-btn" class="btn btn-success">Pay it forward</a>
+            <button id="pay-it-forward-btn" class="btn btn-success">Pay it forward</button>
         </div>
-    </div>
 
-    <!-- Emoji selection modal -->
-    <div class="modal fade" id="emoji-selection-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel"> <strong> Select and send emoji </strong> </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <fieldset class="w-100">
-                        <!-- Smile emoji -->
-                        <input type="radio" class="btn-check" id="128522" name="emoji-selection" checked>
-                        <label class="btn btn-outline-primary" for="128522"> <span> &#128522; </span> </label>
-                        <!-- Heart emoji -->
-                        <input type="radio" class="btn-check" id="128147" name="emoji-selection">
-                        <label class="btn btn-outline-primary" for="128147"> <span> &#128147; </span> </label>
-                        <!-- Big smile emoji -->
-                        <input type="radio" class="btn-check" id="128516" name="emoji-selection">
-                        <label class="btn btn-outline-primary" for="128516"> <span> &#128516; </span> </label>
-                        <!-- Laughter emoji -->
-                        <input type="radio" class="btn-check" id="128518" name="emoji-selection">
-                        <label class="btn btn-outline-primary" for="128518"> <span> &#128518; </span> </label>
-                        <!-- Heart eyes emoji -->
-                        <input type="radio" class="btn-check" id="128525" name="emoji-selection">
-                        <label class="btn btn-outline-primary" for="128525"> <span> &#128525; </span> </label>
-                        <!-- Tongue out emoji -->
-                        <input type="radio" class="btn-check" id="128523" name="emoji-selection">
-                        <label class="btn btn-outline-primary" for="128523"> <span> &#128523; </span> </label>
-                        <!-- Satisfied emoji -->
-                        <input type="radio" class="btn-check" id="128524" name="emoji-selection">
-                        <label class="btn btn-outline-primary" for="128524"> <span> &#128524; </span> </label>
-                        <!-- Sunglasses emoji -->
-                        <input type="radio" class="btn-check" id="128526" name="emoji-selection">
-                        <label class="btn btn-outline-primary" for="128526"> <span> &#128526; </span> </label>
-                        <!-- Clapping emoji -->
-                        <input type="radio" class="btn-check" id="128079" name="emoji-selection">
-                        <label class="btn btn-outline-primary" for="128079"> <span> &#128079; </span> </label>
-                    </fieldset>
-                </div>
-                <div class="modal-footer">
-                    <button id="send-emoji-btn" type="button" class="btn btn-success">Send</button>
+        <!-- Emoji selection modal -->
+        <div class="modal fade" id="emoji-selection-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel"> <strong> Select and send emoji </strong>
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <fieldset class="w-100">
+                            <!-- Smile emoji -->
+                            <input type="radio" class="btn-check" id="128522" name="emoji-selection" checked>
+                            <label class="btn btn-outline-primary" for="128522"> <span> &#128522; </span> </label>
+                            <!-- Heart emoji -->
+                            <input type="radio" class="btn-check" id="128147" name="emoji-selection">
+                            <label class="btn btn-outline-primary" for="128147"> <span> &#128147; </span> </label>
+                            <!-- Big smile emoji -->
+                            <input type="radio" class="btn-check" id="128516" name="emoji-selection">
+                            <label class="btn btn-outline-primary" for="128516"> <span> &#128516; </span> </label>
+                            <!-- Laughter emoji -->
+                            <input type="radio" class="btn-check" id="128518" name="emoji-selection">
+                            <label class="btn btn-outline-primary" for="128518"> <span> &#128518; </span> </label>
+                            <!-- Heart eyes emoji -->
+                            <input type="radio" class="btn-check" id="128525" name="emoji-selection">
+                            <label class="btn btn-outline-primary" for="128525"> <span> &#128525; </span> </label>
+                            <!-- Tongue out emoji -->
+                            <input type="radio" class="btn-check" id="128523" name="emoji-selection">
+                            <label class="btn btn-outline-primary" for="128523"> <span> &#128523; </span> </label>
+                            <!-- Satisfied emoji -->
+                            <input type="radio" class="btn-check" id="128524" name="emoji-selection">
+                            <label class="btn btn-outline-primary" for="128524"> <span> &#128524; </span> </label>
+                            <!-- Sunglasses emoji -->
+                            <input type="radio" class="btn-check" id="128526" name="emoji-selection">
+                            <label class="btn btn-outline-primary" for="128526"> <span> &#128526; </span> </label>
+                            <!-- Clapping emoji -->
+                            <input type="radio" class="btn-check" id="128079" name="emoji-selection">
+                            <label class="btn btn-outline-primary" for="128079"> <span> &#128079; </span> </label>
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="send-emoji-btn" type="button" class="btn reply-btn">Send</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Sticky Bottom Nav -->
-    <nav id="footerPlaceholder"></nav>
+        <!-- Sticky Bottom Nav -->
+        <nav id="footerPlaceholder"></nav>
 
-    <!-- Link to JavaScript functions -->
-    <script src="./scripts/firebaseAPI_COMP1800_DTC-01.js"></script>
-    <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/message-details.js"></script>
+        <!-- Link to JavaScript functions -->
+        <script src="./scripts/firebaseAPI_COMP1800_DTC-01.js"></script>
+        <script src="./scripts/skeleton.js"></script>
+        <script src="./scripts/message-details.js"></script>
 
 </body>
 

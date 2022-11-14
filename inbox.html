@@ -35,6 +35,13 @@
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
 
+    <style>
+        .mail {
+            color: #1d6fea;
+            background-color: whitesmoke;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -49,8 +56,7 @@
     <!--Homepage Content-->
     <!-- <header style="padding-top:40%"></header> -->
     <div class="container">
-        <p style="text-align:center">Inbox</p>
-
+        <!-- <p style="text-align:center">Inbox</p> -->
         <div id="inbox-card-list" class="card-list">
         </div>
     </div>
@@ -58,19 +64,19 @@
     <!-- Inbox card template -->
     <template id="inbox-card-template">
         <a href="" id="inbox-card">
-        <div class="card p-4 mb-3">
-            <div class="compliment-container mx-auto">
-                <p class="lead" id="inbox-compliment-text"></p>
-            </div>
-            <hr>
-            <div>
-                <div class="float-left test">
-                    <span class="d-inline-block md-18 h5 m-1 mb-2">Sent at:
-                        <span class="d-inline-block md-18 h5 m-1 mb-2" id="inbox-send-at"></span></span>
-                    <button class="btn btn-primary float-end">Reply</button>
+            <div class="card p-4 mb-3">
+                <div class="compliment-container mx-auto">
+                    <p class="lead" id="inbox-compliment-text"></p>
+                </div>
+                <hr>
+                <div>
+                    <div class="float-left test">
+                        <span class="d-inline-block md-18 h5 m-1 mb-2">Sent at:
+                            <span class="d-inline-block md-18 h5 m-1 mb-2" id="inbox-send-at"></span></span>
+                        <button class="btn btn-primary float-end reply-btn">Reply</button>
+                    </div>
                 </div>
             </div>
-        </div>
         </a>
     </template>
 

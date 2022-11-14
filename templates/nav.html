@@ -1,14 +1,39 @@
-<nav id="top-nav" class="navbar navbar-expand-lg navbar-light bg-info">
+<nav id="top-nav" class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
 
-        <a class="navbar-brand">
-            <img src="https://i.pinimg.com/originals/cb/7d/48/cb7d48c589412612f5fd4a554e36a325.png" height="36">
-            Say it Forward
+        <a class="navbar-brand" href="main.html">
+            <img src="../images/logo.png" height="30">
         </a>
 
-        <button class="btn">
-            <i class="material-icons md-48">account_circle</i>
-        </button>
+        <div class="btn-group-nav">
+            <button type="button" class="btn dropdown-toggle" onclick="dropDownnav()">
+                <i class="material-icons md-48" style="color: #1d6fea">account_circle</i>
+            </button>
+            <div id="dropdownContentnav" class="dropdown-content">
+                <a href="../profile.html">Profile</a>
+                <a href="../settings.html">Settings</a>
+            </div>
+        </div>
 
     </div>
 </nav>
+
+<script>
+    function dropDownnav() {
+        document.getElementById("dropdownContentnav").classList.toggle("show");
+    }
+
+    //close dropdown menu
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropdown-toggle')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains("show")) {
+                    openDropdown.classList.remove("show")
+                }
+            }
+        }
+    }
+</script>
