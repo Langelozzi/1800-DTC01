@@ -60,41 +60,25 @@ function sendEmoji() {
 function populateInboxData(complimentId) {
     db.collection('compliments').doc(complimentId).get().then((data) => {
         const complimentData = data.data();
+        const urlParams = new URLSearchParams(window.location.search);
+        const chainId = urlParams.get('chainId');
+
+        var payItForwardBtn =  document.getElementById('pay-it-forward-btn');
+        payItForwardBtn.href += '?chainId=' + chainId
+        
 
         $('#compliment-text').html(`"${complimentData.compliment}"`);
         $('#compliment-type').html(complimentData.type);
-        clone.querySelector('#pay-it-forward-btn').setAttribute('href', `../pif-browse.html?complimentId=${complimentId}`);
-
-        $('#browse-card-list').append(clone)
+        
     })
-}
-
-function payItForward() {
-    var template = document.getElementById('browse-card-template');
-
-    db.collection('compliments').get().then((data) => {
-        data.forEach(element => {
-            let complimentData = element.data();
-            let complimentId = element.id;
-            let complimentText = complimentData.compliment;
-            let complimentType = complimentData.type;
-
-            var clone = template.content.cloneNode(true);
-
-            clone.querySelector('.compliment-text').innerHTML = `"${complimentText}"`;
-            clone.querySelector('.compliment-type').innerHTML = complimentType;
-            clone.querySelector('.select-btn').setAttribute('href', `../compliment-details.html?complimentId=${complimentId}`);
-
-            $('#browse-card-list').append(clone);
-        });
-    });
 }
 
 function setUp() {
     const urlParams = new URLSearchParams(window.location.search);
     const complimentId = urlParams.get('complimentId');
+    const chainId = urlParams.get('chainId')
+    console.log(chainId);
 
-    payItForward();
     populateInboxData(complimentId);
 
     $('#send-emoji-btn').click(sendEmoji);
