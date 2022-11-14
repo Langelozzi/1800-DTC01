@@ -25,9 +25,9 @@ function chooseReceiver(userId) {
     })
 }
 
-function ongoingChainDocument(chainId) {
+function ongoingChainDocument(complimentId, chainId) {
     db.collection('chains').doc(chainId).update({
-        messages: firebase.firestore.FieldValue.increment(1)
+        messages: firebase.firestore.FieldValue.arrayUnion(complimentId)
     });
 }
 
@@ -64,7 +64,7 @@ function sendMessage(complimentId, chainId) {
                             amountSent: firebase.firestore.FieldValue.increment(1)
                         });
                         db.collection("chains").doc(chainId).update({
-                            messages: firebase.firestore.FieldValue.increment(1)
+                            messages: firebase.firestore.FieldValue.arrayUnion(complimentId)
                         });
                     })
                     .catch((error) => {
@@ -92,13 +92,14 @@ function setUp() {
     // get compliment id from html or query param
     const urlParams = new URLSearchParams(window.location.search);
     const complimentId = urlParams.get('complimentId');
-    const chainId = urlParams.get('chainId');
+    const chainId = urlParams.get('?chainId');
 
     populateComplimentData(complimentId);
 
     $('#send-btn').click(() => {
-        sendMessage(complimentId);
+        sendMessage(complimentId, chainId);
     });
+    console.log(chainId);
 }
 
 $(document).ready(setUp);
