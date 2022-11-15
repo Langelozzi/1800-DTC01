@@ -60,16 +60,25 @@ function sendEmoji() {
 function populateInboxData(complimentId) {
     db.collection('compliments').doc(complimentId).get().then((data) => {
         const complimentData = data.data();
+        const urlParams = new URLSearchParams(window.location.search);
+        const chainId = urlParams.get('chainId');
+
+        var payItForwardBtn =  document.getElementById('pay-it-forward-btn');
+        payItForwardBtn.href += '?chainId=' + chainId
+        
 
         $('#compliment-text').html(`"${complimentData.compliment}"`);
         $('#compliment-type').html(complimentData.type);
+        
     })
 }
 
 function setUp() {
     const urlParams = new URLSearchParams(window.location.search);
     const complimentId = urlParams.get('complimentId');
-    
+    const chainId = urlParams.get('chainId')
+    console.log(chainId);
+
     populateInboxData(complimentId);
 
     $('#send-emoji-btn').click(sendEmoji);

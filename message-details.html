@@ -63,7 +63,7 @@
         <br>
         <br>
         <!--Detail Card-->
-        <div class="card p-4 mb-3">
+        <div class="browse-card-template card p-4 mb-3">
             <div class="compliment-container mx-auto">
                 <p id="compliment-text" class="lead">
                 </p>
@@ -83,11 +83,14 @@
                 <button id="reply-emoji-btn" class="btn message-reply-btn" data-bs-toggle="modal"
                     data-bs-target="#emoji-selection-modal">Reply
                     with emoji</button>
-                <button id="pay-it-forward-btn" class="btn message-select-btn">Pay it
-                    forward</button>
+                <a href="sif-browse.html" id="pay-it-forward-btn" class="btn message-select-btn">Pay it
+                    forward</a>
             </div>
         </div>
         <div>
+            <button id="reply-emoji-btn" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#emoji-selection-modal">Reply with emoji</button>
+            <button id="pay-it-forward-btn" class="btn btn-success">Pay it forward</button>
         </div>
 
         <!-- Emoji selection modal -->

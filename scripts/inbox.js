@@ -11,7 +11,8 @@ function populateInboxData() {
             messagesRef.get().then((data) => {
                 data.forEach(message => {
                     let messageData = message.data();
-                    let complimentType = messageData.complimentId
+                    let complimentType = messageData.complimentId;
+                    let chainId = messageData.chainId;
                     if (messageData.receiverId == userId) {
                         complimentRef.doc(messageData.complimentId).get().then((compliment) => {
                             let messageText = compliment.data().compliment;
@@ -19,10 +20,10 @@ function populateInboxData() {
 
                             var template = document.getElementById('inbox-card-template');
                             var clone = template.content.cloneNode(true);
-
+                            console.log(chainId);
                             clone.querySelector('#inbox-compliment-text').innerHTML = `"${messageText}"`;
                             clone.querySelector('#inbox-send-at').innerHTML = messageSentAtDate;
-                            clone.querySelector('#inbox-card').setAttribute('href', `../message-details.html?complimentId=${complimentType}`);
+                            clone.querySelector('#inbox-card').setAttribute('href', `../message-details.html?complimentId=${complimentType}&chainId=${chainId}`);
 
                             $('#inbox-card-list').append(clone);
                         })

@@ -35,7 +35,7 @@
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="./styles/style.css">
     <style>
-        .home {
+        .circle {
             color: #1d6fea;
             background-color: whitesmoke;
         }
@@ -44,54 +44,52 @@
 
 <body>
 
+    <!------------------------------>
+    <!-- Your HTML Layout go here -->
+    <!------------------------------>
+
     <!--Top Navbar-->
-    <nav id="navbarPlaceholder"></nav>
+    <nav id="navbar-back-btnPlaceholder"></nav>
+    <!-- <nav id="navbarPlaceholder"></nav> -->
+
+
 
     <!--Homepage Content-->
+    <!-- <header style="padding-top:40%"></header> -->
+
     <div class="container">
+        <!-- New compliment chain message -->
+        <div class="m-2 mt-3">
+            <h2> <strong> New Compliment Chain </strong> </h2>
+            <p>You are about to contribute to an ongoing compliment chain! The following message will be sent to a random "Say It
+            Forward" user:</p>
+        </div>
         <br>
-        <div class="card">
-            <div class="card-body">
-                <p class="lead">
-                <h1 class="display-6">Good morning, <span id="name-goes-here" style="vertical-align:top;"></span></h1>
-                <hr>
-                <i>
-                    <b>Quote of the day:</b>
-                    <span id="quote-of-the-day">
-                        <i>loading...</i>
-                    </span>
-                </i>
-                </p>
-                <p class="mb-0">
-                    <i>
-                        <span id="quote-author">
-                            <i>loading...</i>
-                        </span>
-                    </i>
+        <!--Detail Card-->
+        <div class="card p-4 mb-3">
+            <div class="compliment-container mx-auto">
+                <p id="compliment-text" class="lead">
                 </p>
             </div>
-        </div>
-        <div class="card">
-            <p class="lead mb-4" style="text-align:center">
-                <b style="font-size:110%">Send a compliment by clicking the <b> New Compliment </b> button: </b>
-            </p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <button onclick="window.location.href='browse.html'" type="button"
-                    class="btn btn-lg px-14 gap-3 new-comp-btn">New Compliment</button>
-            </div>
-            <br>
-            <p class="lead mb-4" style="text-align:center">
-                <b style="font-size:110%">or via the <i class="material-icons md-36"
-                        style="color: black;">add_circle</i>
-                    button below!</b>
-            </p>
-        </div>
-        <div class="center-card">
-            <div class="centered-card">
-                <i class="material-icons md-36">south</i>
+            <hr>
+            <div>
+                <div class="float-left test">
+                    <span class="d-inline-block md-36 h5 m-1 mb-2"> <b>Category:</b> </span>
+                    <span id="compliment-type" class="d-inline-block md-36 h5 m-1 mb-2"></span><br>
+                </div>
             </div>
         </div>
-    </div>
+
+        <br>
+
+        <div id="send-section" class="">
+            <div class="m-auto text-center">
+                <h3>Ready to send?</h3>
+                <button id="send-btn" class="btn btn-success align-self-center text-center"> Brighten someone's day! <i
+                        class="material-icons m-2">send</i>
+                </button>
+            </div>
+        </div>
     </div>
 
     <!-- Sticky Bottom Nav -->
@@ -100,9 +98,7 @@
     <!-- Link to JavaScript functions -->
     <script src="./scripts/firebaseAPI_COMP1800_DTC-01.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/main.js"></script>
-    <!-- <script src="./scripts/write-compliments.js"></script> -->
-    <!-- <script src="./scripts/script.js"></script> -->
+    <script src="./scripts/sif-compliment-details.js"></script>
 
 </body>
 
