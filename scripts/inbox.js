@@ -23,7 +23,8 @@ function populateInboxData() {
                             console.log(chainId);
                             clone.querySelector('#inbox-compliment-text').innerHTML = `"${messageText}"`;
                             clone.querySelector('#inbox-send-at').innerHTML = messageSentAtDate;
-                            clone.querySelector('#inbox-card').setAttribute('href', `../message-details.html?complimentId=${complimentType}&chainId=${chainId}`);
+                            clone.querySelector('#inbox-card')
+                                .setAttribute('href', `../message-details.html?complimentId=${complimentType}&chainId=${chainId}&receiverId=${messageData.receiverId}`);
 
                             $('#inbox-card-list').append(clone);
                         })
