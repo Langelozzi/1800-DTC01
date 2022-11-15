@@ -21,12 +21,8 @@ function addMessageToChain(chainId, messageId) {
     })
 }
 
-function sendEmoji() {
+function sendEmoji(receiverId, chainId) {
     const selectedEmojiId = $('input[name="emoji-selection"]:checked').attr('id');
-    // will change this to grabbing from the senderId of the message being responded to
-    const receiverId = 'fillerRecieverId';
-    // will change this to grabbing from the chainId of the message being responded to
-    const chainId = 'tueFnMNio3QtfKpx3xzW';
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -63,13 +59,13 @@ function populateInboxData(complimentId) {
         const urlParams = new URLSearchParams(window.location.search);
         const chainId = urlParams.get('chainId');
 
-        var payItForwardBtn =  document.getElementById('pay-it-forward-btn');
+        var payItForwardBtn = document.getElementById('pay-it-forward-btn');
         payItForwardBtn.href += '?chainId=' + chainId
-        
+
 
         $('#compliment-text').html(`"${complimentData.compliment}"`);
         $('#compliment-type').html(complimentData.type);
-        
+
     })
 }
 
@@ -77,11 +73,16 @@ function setUp() {
     const urlParams = new URLSearchParams(window.location.search);
     const complimentId = urlParams.get('complimentId');
     const chainId = urlParams.get('chainId')
+    const receiverId = urlParams.get('receiverId');
     console.log(chainId);
 
     populateInboxData(complimentId);
 
-    $('#send-emoji-btn').click(sendEmoji);
+    $('#send-emoji-btn').click(() => {
+        sendEmoji(receiverId, chainId);
+
+        $("#emoji-selection-modal").modal('hide') // hide modal
+    });
 }
 
 $(document).ready(setUp);
