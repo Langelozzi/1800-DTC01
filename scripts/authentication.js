@@ -15,7 +15,9 @@ var uiConfig = {
                     chainsStarted: 0,
                     complimentsSent: 0,
                     emojisSent: 0,
-                    complimentsReceived: 0
+                    complimentsReceived: 0,
+                    city: null,
+                    country: null,
                 }).then(function () {
                     console.log("New user added to firestore");
                     window.location.assign("main.html");       //re-direct to main.html after signup
