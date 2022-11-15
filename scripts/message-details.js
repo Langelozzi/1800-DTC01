@@ -80,6 +80,8 @@ function setUp() {
 
     $('#send-emoji-btn').click(() => {
         sendEmoji(receiverId, chainId);
+
+        $("#emoji-selection-modal").modal('hide') // hide modal
     });
 }
 
