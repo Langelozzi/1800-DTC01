@@ -39,13 +39,36 @@ function sendEmoji(receiverId, chainId) {
                             db.collection("messages").doc(newMessageRef.id).update({
                                 chainId: chainId
                             });
+
+                            // open success modal and disable reply button
+                            $("#emoji-selection-modal").modal('hide') // hide modal
+                            $('#success-modal').modal('show');
+                            setTimeout(() => {
+                                $('#success-modal').modal('hide');
+                            }, 4000);
+
+                            $('#reply-emoji-btn').attr('disabled', true);
                         })
                         .catch((error) => {
                             console.log("Error adding new emoji message (emoji) to chain array: ", error);
+
+                            // open error modal
+                            $("#emoji-selection-modal").modal('hide') // hide modal
+                            $('#error-modal').modal('show');
+                            setTimeout(() => {
+                                $('#error-modal').modal('hide');
+                            }, 4000);
                         });
                 })
                 .catch((error) => {
                     console.error("Error adding new message (emoji) document: ", error);
+
+                    // open error modal
+                    $("#emoji-selection-modal").modal('hide') // hide modal
+                    $('#error-modal').modal('show');
+                    setTimeout(() => {
+                        $('#error-modal').modal('hide');
+                    }, 4000);
                 });
         } else {
             console.log("no user");
@@ -71,19 +94,22 @@ function populateInboxData(complimentId) {
 
 function setUp() {
     const urlParams = new URLSearchParams(window.location.search);
-    const complimentId = urlParams.get('complimentId');
-    const chainId = urlParams.get('chainId')
-    const receiverId = urlParams.get('receiverId');
-    console.log(chainId);
-    console.log(receiverId);
+    const messageId = urlParams.get('messageId');
 
-    populateInboxData(complimentId);
+    db.collection('messages').doc(messageId).get().then((data) => {
+        const messageData = data.data();
+        const senderId = messageData.senderId;
+        const chainId = messageData.chainId;
+        const complimentId = messageData.complimentId;
 
-    $('#send-emoji-btn').click(() => {
-        sendEmoji(receiverId, chainId);
+        populateInboxData(complimentId);
 
-        $("#emoji-selection-modal").modal('hide') // hide modal
+        $('#send-emoji-btn').click(() => {
+            // NOTE: sender of message is the receiver of the emoji
+            sendEmoji(senderId, chainId);
+        });
     });
+
 }
 
 $(document).ready(setUp);
