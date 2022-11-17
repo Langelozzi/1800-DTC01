@@ -15,7 +15,9 @@ var uiConfig = {
                     chainsStarted: 0,
                     complimentsSent: 0,
                     emojisSent: 0,
-                    complimentsReceived: 0
+                    complimentsReceived: 0,
+                    city: null,
+                    country: null,
                 }).then(function () {
                     console.log("New user added to firestore");
                     window.location.assign("main.html");       //re-direct to main.html after signup
@@ -47,9 +49,9 @@ var uiConfig = {
         // firebase.auth.PhoneAuthProvider.PROVIDER_ID
     ],
     // Terms of service url.
-    tosUrl: '<your-tos-url>',
+    // tosUrl: '<your-tos-url>',
     // Privacy policy url.
-    privacyPolicyUrl: '<your-privacy-policy-url>'
+    // privacyPolicyUrl: '<your-privacy-policy-url>'
 };
 
 ui.start('#firebaseui-auth-container', uiConfig);
