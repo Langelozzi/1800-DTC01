@@ -75,6 +75,7 @@ function setUp() {
     const chainId = urlParams.get('chainId')
     const receiverId = urlParams.get('receiverId');
     console.log(chainId);
+    console.log(receiverId);
 
     populateInboxData(complimentId);
 
