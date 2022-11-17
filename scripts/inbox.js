@@ -9,28 +9,34 @@ function populateInboxData() {
             userId = user.uid;
 
             messagesRef.get().then((data) => {
-                data.forEach(message => {
-                    let messageData = message.data();
-                    let complimentType = messageData.complimentId;
-                    let chainId = messageData.chainId;
-                    if (messageData.receiverId == userId) {
-                        complimentRef.doc(messageData.complimentId).get().then((compliment) => {
-                            let messageText = compliment.data().compliment;
-                            let messageSentAtDate = messageData.sendAt.toDate().toDateString();
+                if (data.empty) {
+                    $('#inbox-card-list').append(`
+                        <h2>No messages yet :(</h2>
+                    `)
+                }
+                else {
+                    data.forEach(message => {
+                        let messageData = message.data();
+                        let complimentType = messageData.complimentId;
+                        let chainId = messageData.chainId;
+                        if (messageData.receiverId == userId) {
+                            complimentRef.doc(messageData.complimentId).get().then((compliment) => {
+                                let messageText = compliment.data().compliment;
+                                let messageSentAtDate = messageData.sendAt.toDate().toDateString();
 
-                            var template = document.getElementById('inbox-card-template');
-                            var clone = template.content.cloneNode(true);
-                            console.log(chainId);
-                            clone.querySelector('#inbox-compliment-text').innerHTML = `"${messageText}"`;
-                            clone.querySelector('#inbox-send-at').innerHTML = messageSentAtDate;
-                            clone.querySelector('#inbox-card')
-                                .setAttribute('href', `../message-details.html?complimentId=${complimentType}&chainId=${chainId}&receiverId=${messageData.senderId}`);
+                                var template = document.getElementById('inbox-card-template');
+                                var clone = template.content.cloneNode(true);
+                                clone.querySelector('#inbox-compliment-text').innerHTML = `"${messageText}"`;
+                                clone.querySelector('#inbox-send-at').innerHTML = messageSentAtDate;
+                                clone.querySelector('#inbox-card')
+                                    .setAttribute('href', `../message-details.html?messageId=${message.id}`);
 
-                            $('#inbox-card-list').append(clone);
-                        })
+                                $('#inbox-card-list').append(clone);
+                            })
 
-                    }
-                });
+                        }
+                    });
+                }
             })
         } else {
             console.log("no user");
