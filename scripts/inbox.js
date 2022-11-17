@@ -24,7 +24,7 @@ function populateInboxData() {
                             clone.querySelector('#inbox-compliment-text').innerHTML = `"${messageText}"`;
                             clone.querySelector('#inbox-send-at').innerHTML = messageSentAtDate;
                             clone.querySelector('#inbox-card')
-                                .setAttribute('href', `../message-details.html?complimentId=${complimentType}&chainId=${chainId}&receiverId=${messageData.receiverId}`);
+                                .setAttribute('href', `../message-details.html?complimentId=${complimentType}&chainId=${chainId}&receiverId=${messageData.senderId}`);
 
                             $('#inbox-card-list').append(clone);
                         })
