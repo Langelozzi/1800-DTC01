@@ -82,13 +82,33 @@ function sendMessage(complimentId) {
                                 db.collection("messages").doc(newMessageRef.id).update({
                                     chainId: newChainRef.id
                                 });
+
+                                // open success modal and redirect to browse page
+                                $('#success-modal').modal('show');
+                                setTimeout(() => {
+                                    $('#success-modal').modal('hide');
+                                    window.location.href = "browse.html";
+                                }, 4000);
+
                             }).catch((error) => {
                                 console.error("Error adding new chain document: ", error);
+
+                                // open error modal
+                                $('#error-modal').modal('show');
+                                setTimeout(() => {
+                                    $('#error-modal').modal('hide');
+                                }, 4000);
                             });;
 
                     })
                     .catch((error) => {
                         console.error("Error adding new message (compliment) document: ", error);
+
+                        // open error modal
+                        $('#error-modal').modal('show');
+                        setTimeout(() => {
+                            $('#error-modal').modal('hide');
+                        }, 4000);
                     });
             })
 
