@@ -25,12 +25,6 @@ function chooseReceiver(userId) {
     })
 }
 
-function ongoingChainDocument(complimentId, chainId) {
-    db.collection('chains').doc(chainId).update({
-        messages: firebase.firestore.FieldValue.arrayUnion(complimentId)
-    });
-}
-
 function createNewMessageDocument(senderId, receiverId, complimentId) {
     const messagesRef = db.collection("messages");
 
