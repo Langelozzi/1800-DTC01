@@ -50,71 +50,72 @@
     <div class="container">
         <!-- New compliment chain message -->
         <div class="m-2 mt-3">
-            <h2> <strong> Say it Forward!</strong> </h2>
-            <p>You are about to contribute to an ongoing compliment chain! The following message will be sent to a random "Say It
+            <h2> <strong> Saying It Forward!</strong> </h2>
+            <p>You are about to contribute to an ongoing compliment chain! The following message will be sent to a
+                random "Say It
                 Forward" user:</p>
         </div>
         <br>
-    <!--Browse Content-->
-    <div class="container">
-        <div class="browse_content">
+        <!--Browse Content-->
+        <div class="container">
+            <div class="browse_content">
 
-            <!-- Search Bar -->
-            <div class="search">
-                <form class="d-flex">
-                    <i class="material-icons md-24 absolute_icon">search</i>
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    <div class="btn-group">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" onclick="dropDown()">
-                            Filter
-                        </button>
-                        <div id="dropdownContent" class="dropdown-content">
-                            <a href="#">Character</a>
-                            <a href="#">Appearance</a>
-                            <a href="#">Intellect</a>
-                            <a href="#">Encouragement</a>
-                            <a href="#">Affirmation</a>
+                <!-- Search Bar -->
+                <div class="search">
+                    <form class="d-flex">
+                        <i class="material-icons md-24 absolute_icon">search</i>
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <div class="btn-group">
+                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" onclick="dropDown()">
+                                Filter
+                            </button>
+                            <div id="dropdownContent" class="dropdown-content">
+                                <a href="#">Character</a>
+                                <a href="#">Appearance</a>
+                                <a href="#">Intellect</a>
+                                <a href="#">Encouragement</a>
+                                <a href="#">Affirmation</a>
+                            </div>
+
                         </div>
+                </div>
+                </form>
+            </div>
 
+            <!-- Cards -->
+            <div id="browse-card-list" class="card-list">
+
+            </div>
+        </div>
+
+        <!-- Card template -->
+        <template id="browse-card-template">
+            <div class="card p-4 mb-3">
+                <div class="compliment-container mx-auto">
+                    <p class="compliment-text lead">"Lorem ipsum dolor sit amet consect adipisicing elit. Numquam sit
+                        quidem."</p>
+                </div>
+                <hr>
+                <div>
+                    <div class="float-left test">
+                        <span class="d-inline-block h6 m-1 mb-2"> <b>Category:</b> </span>
+                        <span class="compliment-type d-inline-block h6 m-1 mb-2"> Lorem Ipsum </span>
+                        <a class="select-btn btn btn-primary float-end" href="">Select</a>
                     </div>
-            </div>
-            </form>
-        </div>
-
-        <!-- Cards -->
-        <div id="browse-card-list" class="card-list">
-
-        </div>
-    </div>
-
-    <!-- Card template -->
-    <template id="browse-card-template">
-        <div class="card p-4 mb-3">
-            <div class="compliment-container mx-auto">
-                <p class="compliment-text lead">"Lorem ipsum dolor sit amet consect adipisicing elit. Numquam sit
-                    quidem."</p>
-            </div>
-            <hr>
-            <div>
-                <div class="float-left test">
-                    <span class="d-inline-block h6 m-1 mb-2"> <b>Category:</b> </span>
-                    <span class="compliment-type d-inline-block h6 m-1 mb-2"> Lorem Ipsum </span>
-                    <a class="select-btn btn btn-primary float-end" href="">Select</a>
                 </div>
             </div>
-        </div>
-    </template>
+        </template>
 
-    <!-- Sticky Bottom Nav -->
-    <nav id="footerPlaceholder"></nav>
+        <!-- Sticky Bottom Nav -->
+        <nav id="footerPlaceholder"></nav>
 
-    <!-- Link to JavaScript functions -->
-    <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/firebaseAPI_COMP1800_DTC-01.js"></script>
-    <script src="./scripts/message-details.js"></script>
-    <script src="./scripts/sif-browse.js"></script>
-    <!-- <script src="./scripts/script.js"></script> -->
+        <!-- Link to JavaScript functions -->
+        <script src="./scripts/skeleton.js"></script>
+        <script src="./scripts/firebaseAPI_COMP1800_DTC-01.js"></script>
+        <script src="./scripts/message-details.js"></script>
+        <script src="./scripts/sif-browse.js"></script>
+        <!-- <script src="./scripts/script.js"></script> -->
 
 </body>
 
