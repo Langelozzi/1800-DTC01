@@ -37,7 +37,9 @@ function createNewMessageDocument(senderId, receiverId, complimentId) {
         complimentId: complimentId,
         emojiId: null,
         sendAt: currentDate,
-        openedAt: null
+        openedAt: null,
+        reactedTo: false,
+        paidForward: false
     })
 }
 
