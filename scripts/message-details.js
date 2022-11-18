@@ -106,9 +106,24 @@ function checkMessageStatus(messageId) {
     });
 }
 
+function setMessageOpenedIfUnopened(messageId) {
+    db.collection('messages').doc(messageId).get().then((data) => {
+        const messageData = data.data();
+        const openedAt = messageData.openedAt;
+
+        if (!openedAt) {
+            db.collection('messages').doc(messageId).update({
+                openedAt: firebase.firestore.Timestamp.now()
+            });
+        }
+    });
+}
+
 function setUp() {
     const urlParams = new URLSearchParams(window.location.search);
     const messageId = urlParams.get('messageId');
+
+    setMessageOpenedIfUnopened(messageId);
 
     db.collection('messages').doc(messageId).get().then((data) => {
         const messageData = data.data();
