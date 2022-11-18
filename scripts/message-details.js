@@ -1,4 +1,4 @@
-function createNewMessageDocument(senderId, receiverId, emojiId, chainId) {
+function createNewMessageDocument(senderId, receiverId, emojiId, chainId, originalMessageId) {
     const messagesRef = db.collection("messages");
 
     // get current date
@@ -11,7 +11,8 @@ function createNewMessageDocument(senderId, receiverId, emojiId, chainId) {
         complimentId: null,
         emojiId: emojiId,
         sendAt: currentDate,
-        openedAt: null
+        openedAt: null,
+        originalMessageId: originalMessageId
     })
 }
 
@@ -22,18 +23,23 @@ function addMessageToChain(chainId, messageId) {
     })
 }
 
-function sendEmoji(receiverId, chainId) {
+function sendEmoji(receiverId, chainId, originalMessageId) {
     const selectedEmojiId = $('input[name="emoji-selection"]:checked').attr('id');
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            createNewMessageDocument(user.uid, receiverId, selectedEmojiId, chainId)
+            createNewMessageDocument(user.uid, receiverId, selectedEmojiId, chainId, originalMessageId)
                 .then((newMessageRef) => {
                     addMessageToChain(chainId, newMessageRef.id)
                         .then(() => {
                             // add one to emojis amountSent field
                             db.collection("emojis").doc(selectedEmojiId).update({
                                 amountSent: firebase.firestore.FieldValue.increment(1)
+                            });
+
+                            // set original message reactedTo to true
+                            db.collection("messages").doc(originalMessageId).update({
+                                reactedTo: true
                             });
 
                             // open success modal and disable reply button
@@ -82,8 +88,22 @@ function populateInboxData(complimentId, messageId) {
 
         $('#compliment-text').html(`"${complimentData.compliment}"`);
         $('#compliment-type').html(complimentData.type);
-
     })
+}
+
+function checkMessageStatus(messageId) {
+    db.collection('messages').doc(messageId).get().then((data) => {
+        const messageData = data.data();
+        const reactedTo = messageData.reactedTo;
+        const paidForward = messageData.paidForward;
+
+        if (reactedTo) {
+            $('#reply-emoji-btn').attr('disabled', true);
+        }
+        if (paidForward) {
+            $('#pay-it-forward-btn').attr('disabled', true);
+        }
+    });
 }
 
 function setUp() {
@@ -97,10 +117,11 @@ function setUp() {
         const complimentId = messageData.complimentId;
 
         populateInboxData(complimentId, messageId);
+        checkMessageStatus(messageId);
 
         $('#send-emoji-btn').click(() => {
             // NOTE: sender of message is the receiver of the emoji
-            sendEmoji(senderId, chainId);
+            sendEmoji(senderId, chainId, messageId);
         });
     });
 

@@ -44,7 +44,7 @@ function createNewMessageDocument(senderId, receiverId, complimentId, chainId) {
     })
 }
 
-function sendMessage(complimentId, chainId) {
+function sendMessage(complimentId, chainId, originalMessageId) {
     // get current user from firebase auth
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -62,6 +62,11 @@ function sendMessage(complimentId, chainId) {
                         });
                         db.collection("chains").doc(chainId).update({
                             messages: firebase.firestore.FieldValue.arrayUnion(complimentId)
+                        });
+
+                        // update original message to paid forward
+                        db.collection("messages").doc(originalMessageId).update({
+                            paidForward: true
                         });
 
                         // open success modal and redirect to browse page
@@ -112,7 +117,7 @@ function setUp() {
             const messageData = data.data();
             const chainId = messageData.chainId;
 
-            sendMessage(complimentId, chainId);
+            sendMessage(complimentId, chainId, messageId);
         });
     });
 }
