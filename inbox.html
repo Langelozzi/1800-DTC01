@@ -54,15 +54,13 @@
     <nav id="navbar-back-btnPlaceholder"></nav>
 
     <!--Homepage Content-->
-    <!-- <header style="padding-top:40%"></header> -->
     <div class="container">
-        <!-- <p style="text-align:center">Inbox</p> -->
-        <div id="inbox-card-list" class="card-list text-center">
+        <div id="inbox-card-list" class="card-list">
         </div>
     </div>
 
-    <!-- Inbox card template -->
-    <template id="inbox-card-template">
+    <!-- Inbox compliment card template -->
+    <template id="inbox-compliment-card-template">
         <a href="" id="inbox-card">
             <div class="card p-4 mb-3">
                 <div class="compliment-container mx-auto">
@@ -78,6 +76,21 @@
                 </div>
             </div>
         </a>
+    </template>
+
+    <!-- Inbox emoji card template -->
+    <template id="inbox-emoji-card-template">
+        <div id="inbox-emoji-card" class="card p-2 mb-3">
+            <div id="message-date" class="card-subtitle font-monospace text-muted"></div>
+            <div>
+                <div>
+                    <span id="inbox-emoji" class="d-inline-block">
+                    </span>
+                </div>
+                <div class="d-inline-block pt-2" id="original-message">
+                </div>
+            </div>
+        </div>
     </template>
 
     <!-- Sticky Bottom Nav -->

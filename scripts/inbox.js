@@ -8,7 +8,7 @@ function generateComplimentMessage(message) {
         let messageText = compliment.data().compliment;
         let messageSentAtDate = messageData.sendAt.toDate().toDateString();
 
-        var template = document.getElementById('inbox-card-template');
+        var template = document.getElementById('inbox-compliment-card-template');
         var clone = template.content.cloneNode(true);
         clone.querySelector('#inbox-compliment-text').innerHTML = `"${messageText}"`;
         clone.querySelector('#inbox-send-at').innerHTML = messageSentAtDate;
@@ -23,15 +23,21 @@ function generateEmojiMessage(message) {
     let messageData = message.data();
     let messageSentAtDate = messageData.sendAt.toDate().toDateString();
 
-    var template = document.getElementById('inbox-card-template');
-    var clone = template.content.cloneNode(true);
+    db.collection('messages').doc(messageData.originalMessageId).get().then((originalMessage) => {
+        let originalComplimentId = originalMessage.data().complimentId;
 
-    clone.querySelector('#inbox-compliment-text').innerHTML = `&#${messageData.emojiId};`;
-    clone.querySelector('#inbox-send-at').innerHTML = messageSentAtDate;
-    clone.querySelector('#inbox-card')
-        .setAttribute('href', `../message-details.html?messageId=${message.id}`);
+        db.collection('compliments').doc(originalComplimentId).get().then((compliment) => {
+            let messageText = compliment.data().compliment;
+            var template = document.getElementById('inbox-emoji-card-template');
+            var clone = template.content.cloneNode(true);
 
-    $('#inbox-card-list').append(clone);
+            clone.querySelector('#inbox-emoji').innerHTML = `&#${messageData.emojiId};`;
+            clone.querySelector('#message-date').innerHTML = messageSentAtDate;
+            clone.querySelector('#original-message').innerHTML = `"${messageText}"`;
+
+            $('#inbox-card-list').append(clone);
+        })
+    })
 }
 
 function populateInboxData() {
