@@ -186,7 +186,7 @@ div span {
 .card-list {
     /* position: absolute; */
     overflow-y: scroll;
-    height: 740px;
+    height: 76vh;
     padding-top: 20px;
 }
 
