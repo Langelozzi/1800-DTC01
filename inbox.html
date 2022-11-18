@@ -56,24 +56,25 @@
     <!--Homepage Content-->
     <div class="container">
         <div id="inbox-card-list" class="card-list">
+
         </div>
     </div>
 
     <!-- Inbox compliment card template -->
     <template id="inbox-compliment-card-template">
         <a href="" id="inbox-card">
-            <div class="card p-4 mb-3">
-                <div class="compliment-container mx-auto">
-                    <p class="lead" id="inbox-compliment-text"></p>
-                </div>
-                <hr>
+            <div id="inbox-compliment-card" class="card p-2 mb-3 inbox-compliment-unopened">
                 <div>
-                    <div class="float-left test">
-                        <span class="d-inline-block md-18 h5 m-1 mb-2">Sent at:
-                            <span class="d-inline-block md-18 h5 m-1 mb-2" id="inbox-send-at"></span></span>
-                        <button class="btn btn-primary float-end reply-btn">Reply</button>
-                    </div>
+                    <span id="reacted-to" class="material-icons material-symbols-outlined">
+                        radio_button_unchecked
+                    </span>
+                    <span id="paid-forward" class="material-icons material-symbols-outlined">
+                        radio_button_unchecked
+                    </span>
+                    <span id="message-date" class="card-subtitle font-monospace text-muted"></span>
                 </div>
+
+                <div id="compliment-text" class="text-center m-2"></div>
             </div>
         </a>
     </template>
