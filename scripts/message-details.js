@@ -122,6 +122,10 @@ function setUp() {
 
     checkMessageStatus(messageId);
 
+    $('#pay-it-forward-btn').click(() => {
+        window.location = `sif-browse.html?messageId=${messageId}`;
+    })
+
     db.collection('messages').doc(messageId).get().then((data) => {
         const messageData = data.data();
         const senderId = messageData.senderId;

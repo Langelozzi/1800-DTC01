@@ -110,7 +110,6 @@ function setUp() {
     const messageId = urlParams.get('messageId');
 
     populateComplimentData(complimentId);
-    console.log(complimentId, messageId);
 
     $('#send-btn').click(() => {
         db.collection('messages').doc(messageId).get().then((data) => {
