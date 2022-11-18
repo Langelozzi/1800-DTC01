@@ -44,7 +44,7 @@ function populateInboxData() {
             messagesRef.get().then((data) => {
                 if (data.empty) {
                     $('#inbox-card-list').append(`
-                        <h2>No messages yet :(</h2>
+                        <h3><i>Your inbox is currently empty.</i></h3>
                     `)
                 }
                 else {
