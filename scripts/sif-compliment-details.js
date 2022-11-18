@@ -63,9 +63,22 @@ function sendMessage(complimentId, chainId) {
                         db.collection("chains").doc(chainId).update({
                             messages: firebase.firestore.FieldValue.arrayUnion(complimentId)
                         });
+
+                        // open success modal and redirect to browse page
+                        $('#success-modal').modal('show');
+                        setTimeout(() => {
+                            $('#success-modal').modal('hide');
+                            window.location.href = "inbox.html";
+                        }, 4000);
                     })
                     .catch((error) => {
                         console.error("Error adding new message (compliment) document: ", error);
+
+                        // open error modal
+                        $('#error-modal').modal('show');
+                        setTimeout(() => {
+                            $('#error-modal').modal('hide');
+                        }, 4000);
                     });
             })
 
