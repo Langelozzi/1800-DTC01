@@ -1,3 +1,11 @@
+:root {
+    --unopened-background: #ffffff;
+    --opened-background: #f0f0f0;
+    --unopened-border: #1d6feadc;
+    --opened-border: #1d6fea88;
+    --emoji-border: #fdbe0088;
+}
+
 * {
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
@@ -279,8 +287,37 @@ div span {
 
 #message-date {
     text-align: right;
+    float: right;
 }
 
 #inbox-emoji-card {
-    background-color: rgba(252, 250, 250, 0.829);
+    background-color: var(--opened-background);
+    border: solid 1px var(--emoji-border);
+}
+
+#inbox-compliment-card {
+    box-shadow: 2px 0px 3px grey;
+    font-style: italic;
+}
+
+.inbox-compliment-unopened {
+    background-color: var(--unopened-background);
+    border: solid 1px var(--unopened-border);
+}
+
+.inbox-compliment-unopened #compliment-text {
+    font-weight: bold;
+}
+
+.inbox-compliment-opened {
+    background-color: var(--opened-background);
+    border: solid 1px var(--opened-border);
+}
+
+#reacted-to {
+    color: #fdbe00;
+}
+
+#paid-forward {
+    color: #1d6fea;
 }

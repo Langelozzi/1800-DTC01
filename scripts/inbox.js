@@ -10,10 +10,23 @@ function generateComplimentMessage(message) {
 
         var template = document.getElementById('inbox-compliment-card-template');
         var clone = template.content.cloneNode(true);
-        clone.querySelector('#inbox-compliment-text').innerHTML = `"${messageText}"`;
-        clone.querySelector('#inbox-send-at').innerHTML = messageSentAtDate;
+        clone.querySelector('#compliment-text').innerHTML = `"${messageText}"`;
+        clone.querySelector('#message-date').innerHTML = messageSentAtDate;
         clone.querySelector('#inbox-card')
             .setAttribute('href', `../message-details.html?messageId=${message.id}`);
+
+        // if its been opened, then set css to be opened
+        if (messageData.openedAt != null) {
+            clone.querySelector('#inbox-compliment-card').classList.remove('inbox-compliment-unopened');
+            clone.querySelector('#inbox-compliment-card').classList.add('inbox-compliment-opened');
+        }
+        // if its been reacted to, then change icon to be check mark
+        if (messageData.reactedTo) {
+            clone.querySelector('#reacted-to').innerHTML = `check_circle`;
+        }
+        if (messageData.paidForward) {
+            clone.querySelector('#paid-forward').innerHTML = `check_circle`;
+        }
 
         $('#inbox-card-list').append(clone);
     })
