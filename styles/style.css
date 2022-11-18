@@ -326,3 +326,14 @@ div span {
 #paid-forward {
     color: #1d6fea;
 }
+
+#note-badge {
+    position: absolute;
+    top: 5px;
+    right: 40px;
+    padding: 0px 10px;
+    border-radius: 50%;
+    background: red;
+    color: red;
+    display: none;
+}

@@ -1,12 +1,25 @@
-// calculating the top of the bottom nav and placing right above
-function setSendSectionPosition() {
-    $('#send-section').css({
-        'bottom': $('#bottom-nav').outerHeight() + 30 + 'px'
-    })
+function checkForNotifications() {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            db.collection("messages").get().then((querySnapshot) => {
+                hasNotifications = false;
+                querySnapshot.forEach((doc) => {
+                    if (doc.data().receiverId == user.uid && doc.data().openedAt == null) {
+                        hasNotifications = true;
+                    }
+                });
+
+                if (hasNotifications) {
+                    $('#note-badge').show();
+                } else {
+                    $('#note-badge').hide();
+                }
+            });
+        } else {
+            console.log("no user");
+        }
+    });
+
 }
 
-function setUp() {
-    setSendSectionPosition();
-}
-
-$(document).ready(setUp);
+$(document).ready(checkForNotifications);
