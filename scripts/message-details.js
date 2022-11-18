@@ -96,6 +96,7 @@ function checkMessageStatus(messageId) {
         const messageData = data.data();
         const reactedTo = messageData.reactedTo;
         const paidForward = messageData.paidForward;
+        const openedAt = messageData.openedAt;
 
         if (reactedTo) {
             $('#reply-emoji-btn').attr('disabled', true);
@@ -103,19 +104,15 @@ function checkMessageStatus(messageId) {
         if (paidForward) {
             $('#pay-it-forward-btn').attr('disabled', true);
         }
+        if (!openedAt) {
+            setMessageOpened(messageId);
+        }
     });
 }
 
-function setMessageOpenedIfUnopened(messageId) {
-    db.collection('messages').doc(messageId).get().then((data) => {
-        const messageData = data.data();
-        const openedAt = messageData.openedAt;
-
-        if (!openedAt) {
-            db.collection('messages').doc(messageId).update({
-                openedAt: firebase.firestore.Timestamp.now()
-            });
-        }
+function setMessageOpened(messageId) {
+    db.collection('messages').doc(messageId).update({
+        openedAt: firebase.firestore.Timestamp.now()
     });
 }
 
@@ -123,7 +120,7 @@ function setUp() {
     const urlParams = new URLSearchParams(window.location.search);
     const messageId = urlParams.get('messageId');
 
-    setMessageOpenedIfUnopened(messageId);
+    checkMessageStatus(messageId);
 
     db.collection('messages').doc(messageId).get().then((data) => {
         const messageData = data.data();
@@ -132,7 +129,6 @@ function setUp() {
         const complimentId = messageData.complimentId;
 
         populateInboxData(complimentId, messageId);
-        checkMessageStatus(messageId);
 
         $('#send-emoji-btn').click(() => {
             // NOTE: sender of message is the receiver of the emoji
