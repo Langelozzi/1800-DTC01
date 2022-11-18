@@ -148,6 +148,11 @@ a {
     margin: auto;
 }
 
+.home-card {
+    padding: 5%;
+    margin-bottom: 3%;
+}
+
 .modal-content {
     border-radius: 1.5em;
 }
