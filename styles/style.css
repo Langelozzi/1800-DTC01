@@ -302,6 +302,9 @@ div span {
 
 #inbox-compliment-card {
     box-shadow: 2px 0px 3px grey;
+}
+
+#inbox-compliment-card #compliment-text {
     font-style: italic;
 }
 
