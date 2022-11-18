@@ -1,10 +1,11 @@
-function createNewMessageDocument(senderId, receiverId, emojiId) {
+function createNewMessageDocument(senderId, receiverId, emojiId, chainId) {
     const messagesRef = db.collection("messages");
 
     // get current date
     const currentDate = firebase.firestore.Timestamp.now();
 
     return messagesRef.add({
+        chainId: chainId,
         senderId: senderId,
         receiverId: receiverId,
         complimentId: null,
@@ -26,18 +27,13 @@ function sendEmoji(receiverId, chainId) {
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            createNewMessageDocument(user.uid, receiverId, selectedEmojiId)
+            createNewMessageDocument(user.uid, receiverId, selectedEmojiId, chainId)
                 .then((newMessageRef) => {
                     addMessageToChain(chainId, newMessageRef.id)
                         .then(() => {
                             // add one to emojis amountSent field
                             db.collection("emojis").doc(selectedEmojiId).update({
                                 amountSent: firebase.firestore.FieldValue.increment(1)
-                            });
-
-                            // add the chain id to the message
-                            db.collection("messages").doc(newMessageRef.id).update({
-                                chainId: chainId
                             });
 
                             // open success modal and disable reply button
@@ -76,14 +72,12 @@ function sendEmoji(receiverId, chainId) {
     });
 }
 
-function populateInboxData(complimentId) {
+function populateInboxData(complimentId, messageId) {
     db.collection('compliments').doc(complimentId).get().then((data) => {
         const complimentData = data.data();
-        const urlParams = new URLSearchParams(window.location.search);
-        const chainId = urlParams.get('chainId');
 
         var payItForwardBtn = document.getElementById('pay-it-forward-btn');
-        payItForwardBtn.href += '?chainId=' + chainId
+        payItForwardBtn.href += '?messageId=' + messageId
 
 
         $('#compliment-text').html(`"${complimentData.compliment}"`);
@@ -102,7 +96,7 @@ function setUp() {
         const chainId = messageData.chainId;
         const complimentId = messageData.complimentId;
 
-        populateInboxData(complimentId);
+        populateInboxData(complimentId, messageId);
 
         $('#send-emoji-btn').click(() => {
             // NOTE: sender of message is the receiver of the emoji

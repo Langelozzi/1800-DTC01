@@ -25,13 +25,14 @@ function chooseReceiver(userId) {
     })
 }
 
-function createNewMessageDocument(senderId, receiverId, complimentId) {
+function createNewMessageDocument(senderId, receiverId, complimentId, chainId) {
     const messagesRef = db.collection("messages");
 
     // get current date
     const currentDate = firebase.firestore.Timestamp.now();
 
     return messagesRef.add({
+        chainId: chainId,
         senderId: senderId,
         receiverId: receiverId,
         complimentId: complimentId,
@@ -49,7 +50,7 @@ function sendMessage(complimentId, chainId) {
         if (user) {
             // get random user id from firestore users collection
             chooseReceiver(user.uid).then((receiverId) => {
-                createNewMessageDocument(user.uid, receiverId, complimentId)
+                createNewMessageDocument(user.uid, receiverId, complimentId, chainId)
                     .then((newMessageRef) => {
                         // add one to users number of compliments sent
                         db.collection("users").doc(user.uid).update({
@@ -88,14 +89,19 @@ function setUp() {
     // get compliment id from html or query param
     const urlParams = new URLSearchParams(window.location.search);
     const complimentId = urlParams.get('complimentId');
-    const chainId = urlParams.get('?chainId');
+    const messageId = urlParams.get('messageId');
 
     populateComplimentData(complimentId);
+    console.log(complimentId, messageId);
 
     $('#send-btn').click(() => {
-        sendMessage(complimentId, chainId);
+        db.collection('messages').doc(messageId).get().then((data) => {
+            const messageData = data.data();
+            const chainId = messageData.chainId;
+
+            sendMessage(complimentId, chainId);
+        });
     });
-    console.log(chainId);
 }
 
 $(document).ready(setUp);

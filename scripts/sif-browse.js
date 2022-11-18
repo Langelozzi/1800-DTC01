@@ -1,6 +1,6 @@
 function loadComplimentCards() {
     const urlParams = new URLSearchParams(window.location.search);
-    const chainId = urlParams.get('chainId');
+    const messageId = urlParams.get('messageId');
     var template = document.getElementById('browse-card-template');
 
     db.collection('compliments').get().then((data) => {
@@ -14,7 +14,7 @@ function loadComplimentCards() {
 
             clone.querySelector('.compliment-text').innerHTML = `"${complimentText}"`;
             clone.querySelector('.compliment-type').innerHTML = complimentType;
-            clone.querySelector('.select-btn').setAttribute('href', `../sif-compliment-details.html?complimentId=${complimentId}&?chainId=${chainId}`);
+            clone.querySelector('.select-btn').setAttribute('href', `../sif-compliment-details.html?complimentId=${complimentId}&messageId=${messageId}`);
 
             $('#browse-card-list').append(clone);
         });
@@ -40,8 +40,6 @@ window.onclick = function (event) {
 }
 
 function setUp() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const chainId = urlParams.get('chainId');
     loadComplimentCards();
 }
 
