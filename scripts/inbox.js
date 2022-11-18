@@ -73,6 +73,11 @@ function populateInboxData() {
                                 generateComplimentMessage(message);
                             } else if (message.data().emojiId != null) {
                                 generateEmojiMessage(message);
+
+                                // set emoji to opened as soon as user sees it in inbox
+                                messagesRef.doc(message.id).update({
+                                    openedAt: firebase.firestore.Timestamp.now()
+                                })
                             }
                         }
                     });
