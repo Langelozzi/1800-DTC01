@@ -1,22 +1,45 @@
-function loadComplimentCards() {
-    var template = document.getElementById('browse-card-template');
+const COMPLIMENTS = [];
 
-    db.collection('compliments').get().then((data) => {
+function checkComplimentFilter(filterType) {
+    if (filterType) {
+        var filteredCompliments = [];
+        COMPLIMENTS.forEach((compliment) => {
+            if (compliment.data().type == filterType) {
+                filteredCompliments.push(compliment);
+            }
+        })
+        loadComplimentCards(filteredCompliments);
+    } else {
+        loadComplimentCards(COMPLIMENTS);
+    }
+}
+
+function getCompliments() {
+    return db.collection('compliments').get().then((data) => {
         data.forEach(element => {
-            let complimentData = element.data();
-            let complimentId = element.id;
-            let complimentText = complimentData.compliment;
-            let complimentType = complimentData.type;
-
-            var clone = template.content.cloneNode(true);
-
-            clone.querySelector('.compliment-text').innerHTML = `"${complimentText}"`;
-            clone.querySelector('.compliment-type').innerHTML = complimentType;
-            clone.querySelector('.select-btn').setAttribute('href', `../compliment-details.html?complimentId=${complimentId}`);
-
-            $('#browse-card-list').append(clone);
+            COMPLIMENTS.push(element);
         });
-    });
+    })
+}
+
+function loadComplimentCards(compliments) {
+    var template = document.getElementById('browse-card-template');
+    $('#browse-card-list').html('');
+    compliments.forEach((element) => {
+        let complimentData = element.data();
+        let complimentId = element.id;
+        let complimentText = complimentData.compliment;
+        let complimentType = complimentData.type;
+
+        var clone = template.content.cloneNode(true);
+
+        clone.querySelector('.compliment-text').innerHTML = `"${complimentText}"`;
+        clone.querySelector('.compliment-type').innerHTML = complimentType;
+        clone.querySelector('.select-btn').setAttribute('href', `../compliment-details.html?complimentId=${complimentId}`);
+
+        $('#browse-card-list').append(clone);
+
+    })
 }
 
 function dropDown() {
@@ -37,8 +60,26 @@ window.onclick = function (event) {
     }
 }
 
+function searchBarFilter() {
+    const searchInput = $('#search-bar').val();
+    var searchResult = []
+    COMPLIMENTS.forEach((compliment) => {
+        var complimentText = compliment.data().compliment;
+        if (complimentText.includes(searchInput)) {
+            searchResult.push(compliment);
+        }
+    })
+    loadComplimentCards(searchResult);
+
+}
+
 function setUp() {
-    loadComplimentCards();
+    getCompliments().then(() => {
+        loadComplimentCards(COMPLIMENTS);
+        $('#search-bar').keyup((event) => {
+            searchBarFilter();
+        });
+    })
 }
 
 $(document).ready(setUp);
