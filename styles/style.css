@@ -362,3 +362,16 @@ div span {
     color: red;
     display: none;
 }
+
+#inbox-card-list {
+    overflow-y: scroll;
+    height: 83vh;
+    padding-top: 20px;
+}
+
+#dropdownContent hr {
+    margin: 0px;
+    padding: 0px;
+    margin-right: 5%;
+    margin-left: 5%;
+}
