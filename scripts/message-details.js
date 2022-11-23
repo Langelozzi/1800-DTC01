@@ -18,52 +18,24 @@ function createNewMessageDocument(senderId, receiverId, emojiId, chainId, origin
 
 function addMessageToChain(chainId, messageId) {
     // Atomically add a new message to the "messages" array field
-    return db.collection("chains").doc(chainId).update({
+    db.collection("chains").doc(chainId).update({
         messages: firebase.firestore.FieldValue.arrayUnion(messageId)
     })
 }
 
-function sendEmoji(receiverId, chainId, originalMessageId) {
+async function sendEmoji(receiverId, chainId, originalMessageId) {
     const selectedEmojiId = $('input[name="emoji-selection"]:checked').attr('id');
 
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
-            createNewMessageDocument(user.uid, receiverId, selectedEmojiId, chainId, originalMessageId)
-                .then((newMessageRef) => {
-                    addMessageToChain(chainId, newMessageRef.id)
-                        .then(() => {
-                            // add one to emojis amountSent field
-                            db.collection("emojis").doc(selectedEmojiId).update({
-                                amountSent: firebase.firestore.FieldValue.increment(1)
-                            });
+            try {
+                const newMessageRef = await createNewMessageDocument(user.uid, receiverId, selectedEmojiId, chainId, originalMessageId);
 
-                            // set original message reactedTo to true
-                            db.collection("messages").doc(originalMessageId).update({
-                                reactedTo: true
-                            });
-
-                            // open success modal and disable reply button
-                            $("#emoji-selection-modal").modal('hide') // hide modal
-                            $('#success-modal').modal('show');
-                            setTimeout(() => {
-                                $('#success-modal').modal('hide');
-                            }, 4000);
-
-                            $('#reply-emoji-btn').attr('disabled', true);
-                        })
-                        .catch((error) => {
-                            console.log("Error adding new emoji message (emoji) to chain array: ", error);
-
-                            // open error modal
-                            $("#emoji-selection-modal").modal('hide') // hide modal
-                            $('#error-modal').modal('show');
-                            setTimeout(() => {
-                                $('#error-modal').modal('hide');
-                            }, 4000);
-                        });
-                })
-                .catch((error) => {
-                    console.error("Error adding new message (emoji) document: ", error);
+                try {
+                    await addMessageToChain(chainId, newMessageRef.id);
+                }
+                catch (error) {
+                    console.log("Error adding new emoji message (emoji) to chain array: ", error);
 
                     // open error modal
                     $("#emoji-selection-modal").modal('hide') // hide modal
@@ -71,43 +43,78 @@ function sendEmoji(receiverId, chainId, originalMessageId) {
                     setTimeout(() => {
                         $('#error-modal').modal('hide');
                     }, 4000);
-                });
-        } else {
+
+                    return;
+                }
+            }
+            catch (error) {
+                console.error("Error adding new message (emoji) document: ", error);
+
+                // open error modal
+                $("#emoji-selection-modal").modal('hide') // hide modal
+                $('#error-modal').modal('show');
+                setTimeout(() => {
+                    $('#error-modal').modal('hide');
+                }, 4000);
+
+                return;
+            }
+
+            // add one to emojis amountSent field
+            db.collection("emojis").doc(selectedEmojiId).update({
+                amountSent: firebase.firestore.FieldValue.increment(1)
+            });
+
+            // set original message reactedTo to true
+            db.collection("messages").doc(originalMessageId).update({
+                reactedTo: true
+            });
+
+            // hide emoji modal
+            $("#emoji-selection-modal").modal('hide')
+            // show success modal
+            $('#success-modal').modal('show');
+            setTimeout(() => {
+                $('#success-modal').modal('hide');
+            }, 4000);
+            // disable the reply with emoji button
+            $('#reply-emoji-btn').attr('disabled', true);
+
+        }
+        else {
             console.log("no user");
         }
     });
 }
 
-function populateInboxData(complimentId, messageId) {
-    db.collection('compliments').doc(complimentId).get().then((data) => {
-        const complimentData = data.data();
+async function populateInboxData(complimentId, messageId) {
+    const data = await db.collection('compliments').doc(complimentId).get();
+    const complimentData = data.data();
 
-        var payItForwardBtn = document.getElementById('pay-it-forward-btn');
-        payItForwardBtn.href += '?messageId=' + messageId
+    var payItForwardBtn = document.getElementById('pay-it-forward-btn');
 
-
-        $('#compliment-text').html(`"${complimentData.compliment}"`);
-        $('#compliment-type').html(complimentData.type);
-    })
+    payItForwardBtn.href += '?messageId=' + messageId
+    $('#compliment-text').html(`"${complimentData.compliment}"`);
+    $('#compliment-type').html(complimentData.type);
 }
 
-function checkMessageStatus(messageId) {
-    db.collection('messages').doc(messageId).get().then((data) => {
-        const messageData = data.data();
-        const reactedTo = messageData.reactedTo;
-        const paidForward = messageData.paidForward;
-        const openedAt = messageData.openedAt;
+async function checkMessageStatus(messageId) {
+    const data = await db.collection('messages').doc(messageId).get();
 
-        if (reactedTo) {
-            $('#reply-emoji-btn').attr('disabled', true);
-        }
-        if (paidForward) {
-            $('#pay-it-forward-btn').attr('disabled', true);
-        }
-        if (!openedAt) {
-            setMessageOpened(messageId);
-        }
-    });
+    const messageData = data.data();
+    const reactedTo = messageData.reactedTo;
+    const paidForward = messageData.paidForward;
+    const openedAt = messageData.openedAt;
+
+    if (reactedTo) {
+        $('#reply-emoji-btn').attr('disabled', true);
+    }
+    if (paidForward) {
+        $('#pay-it-forward-btn').attr('disabled', true);
+    }
+    if (!openedAt) {
+        setMessageOpened(messageId);
+    }
 }
 
 function setMessageOpened(messageId) {
@@ -116,7 +123,7 @@ function setMessageOpened(messageId) {
     });
 }
 
-function setUp() {
+async function setUp() {
     const urlParams = new URLSearchParams(window.location.search);
     const messageId = urlParams.get('messageId');
 
@@ -126,18 +133,18 @@ function setUp() {
         window.location = `sif-browse.html?messageId=${messageId}`;
     })
 
-    db.collection('messages').doc(messageId).get().then((data) => {
-        const messageData = data.data();
-        const senderId = messageData.senderId;
-        const chainId = messageData.chainId;
-        const complimentId = messageData.complimentId;
+    const data = await db.collection('messages').doc(messageId).get();
 
-        populateInboxData(complimentId, messageId);
+    const messageData = data.data();
+    const senderId = messageData.senderId;
+    const chainId = messageData.chainId;
+    const complimentId = messageData.complimentId;
 
-        $('#send-emoji-btn').click(() => {
-            // NOTE: sender of message is the receiver of the emoji
-            sendEmoji(senderId, chainId, messageId);
-        });
+    populateInboxData(complimentId, messageId);
+
+    $('#send-emoji-btn').click(() => {
+        // NOTE: sender of message is the receiver of the emoji
+        sendEmoji(senderId, chainId, messageId);
     });
 
 }
