@@ -1,23 +1,20 @@
 var currentUser
 
 function populateInfo() {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(async (user) => {
         // Check if user is signed in:
         if (user) {
 
             //go to the correct user document by referencing to the user uid
-            currentUser = db.collection("users").doc(user.uid)
-            //get the document for current user.
-            currentUser.get()
-                .then(userDoc => {
-                    //get the data fields of the user
-                    var userPreferredType = userDoc.data().preferredComplimentType;
+            const currentUserDoc = await db.collection("users").doc(user.uid).get();
 
-                    //if the data fields are not empty, then write them in to the form.
-                    if (userPreferredType != null) {
-                        $('#preferredComplimentType').val(userPreferredType);
-                    }
-                })
+            //get the data fields of the user
+            var userPreferredType = currentUserDoc.data().preferredComplimentType;
+
+            //if the data fields are not empty, then write them in to the form.
+            if (userPreferredType != null) {
+                $('#preferredComplimentType').val(userPreferredType);
+            }
         } else {
             // No user is signed in.
             console.log("No user is signed in");
@@ -35,10 +32,9 @@ function saveUserInfo() {
 
     currentUser.update({
         preferredComplimentType: userPreferredType
+    }).then(() => {
+        console.log("Document successfully updated!");
     })
-        .then(() => {
-            console.log("Document successfully updated!");
-        })
     $('#personalInfoFields').prop('disabled', true);
 }
 
