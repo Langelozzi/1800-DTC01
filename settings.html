@@ -51,22 +51,22 @@
         <br>
         <h1 style="text-align: center">User Settings</h1>
         <br>
+        <p>Set your preferred type of compliment you wish to receive below!<br> <b>Please note:</b> you may
+            still receive other types every so often</p>
         <div class="card home-card">
             <form>
-                <fieldset class="mb-3" id="settingsInfoFields" disabled>
-                    <div>
-                        <label for="preferredComplimentType">Preferred compliment type</label>
-                        <select name="preferredComplimentType" id="preferredComplimentType">
-                            <option value="affirmation">Affirmation</option>
-                            <option value="appearance">Appearance</option>
-                            <option value="character">Character</option>
-                            <option value="encouragement">Encouragement</option>
-                        </select>
-                    </div>
-                    <!-- <div>
+                <div>
+                    <label for="preferredComplimentType">Preferred type:</label>
+                    <select name="preferredComplimentType" id="preferredComplimentType" style="float: right">
+                        <option class="settings-option" value="affirmation">Affirmation</option>
+                        <option class="settings-option" value="appearance">Appearance</option>
+                        <option class="settings-option" value="character">Character</option>
+                        <option class="settings-option" value="encouragement">Encouragement</option>
+                    </select>
+                </div>
+                <!-- <div>
                         <label for="notificationSettings">Notifications</label>
                     </div> -->
-                </fieldset>
                 <div class="d-flex justify-content-end mt-5" style="margin-top: 1.5rem !important">
                     <button type="button" class="btn select-btn">Edit</button>
                     <span style="width: 10px"></span>
