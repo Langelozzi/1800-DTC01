@@ -69,7 +69,6 @@ function populateInboxData() {
                     }
                     else {
                         data.forEach(message => {
-                            console.log(message.data())
                             if (message.data().receiverId == userId) {
                                 if (message.data().complimentId != null) {
                                     generateComplimentMessage(message);
