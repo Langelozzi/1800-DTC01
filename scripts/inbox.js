@@ -60,29 +60,31 @@ function populateInboxData() {
         if (user) {
             userId = user.uid;
 
-            messagesRef.get().then((data) => {
-                if (data.empty) {
-                    $('#inbox-card-list').append(`
+            messagesRef.orderBy('sendAt', 'desc')
+                .get().then((data) => {
+                    if (data.empty) {
+                        $('#inbox-card-list').append(`
                         <h3 class="text-muted text-center"><i>Your inbox is currently empty</i></h3>
                     `)
-                }
-                else {
-                    data.forEach(message => {
-                        if (message.data().receiverId == userId) {
-                            if (message.data().complimentId != null) {
-                                generateComplimentMessage(message);
-                            } else if (message.data().emojiId != null) {
-                                generateEmojiMessage(message);
+                    }
+                    else {
+                        data.forEach(message => {
+                            console.log(message.data())
+                            if (message.data().receiverId == userId) {
+                                if (message.data().complimentId != null) {
+                                    generateComplimentMessage(message);
+                                } else if (message.data().emojiId != null) {
+                                    generateEmojiMessage(message);
 
-                                // set emoji to opened as soon as user sees it in inbox
-                                messagesRef.doc(message.id).update({
-                                    openedAt: firebase.firestore.Timestamp.now()
-                                })
+                                    // set emoji to opened as soon as user sees it in inbox
+                                    messagesRef.doc(message.id).update({
+                                        openedAt: firebase.firestore.Timestamp.now()
+                                    })
+                                }
                             }
-                        }
-                    });
-                }
-            })
+                        });
+                    }
+                })
         } else {
             console.log("no user");
         }
