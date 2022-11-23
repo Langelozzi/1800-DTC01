@@ -1,38 +1,35 @@
 var currentUser
 
 function populateInfo() {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(async (user) => {
         // Check if user is signed in:
         if (user) {
-
             //go to the correct user document by referencing to the user uid
-            currentUser = db.collection("users").doc(user.uid)
-            //get the document for current user.
-            currentUser.get()
-                .then(userDoc => {
-                    //get the data fields of the user
-                    var userName = userDoc.data().name;
-                    var userEmail = userDoc.data().email;
-                    var userCity = userDoc.data().city;
-                    var userCountry = userDoc.data().country;
+            const currentUserDoc = db.collection("users").doc(user.uid).get();
+            //get the data fields of the user
+            var userName = currentUserDoc.data().name;
+            var userEmail = currentUserDoc.data().email;
+            var userCity = currentUserDoc.data().city;
+            var userCountry = currentUserDoc.data().country;
 
-                    //if the data fields are not empty, then write them in to the form.
-                    if (userName != null) {
-                        $('#nameInput').val(userName);
-                    }
-                    if (userEmail != null) {
-                        $('#emailInput').val(userEmail);
-                    }
-                    if (userCity != null) {
-                        $('#cityInput').val(userCity);
-                    }
-                    if (userCountry != null) {
-                        $('#countryInput').val(userCountry);
-                    }
-                })
+            //if the data fields are not empty, then write them in to the form.
+            if (userName != null) {
+                $('#nameInput').val(userName);
+            }
+            if (userEmail != null) {
+                $('#emailInput').val(userEmail);
+            }
+            if (userCity != null) {
+                $('#cityInput').val(userCity);
+            }
+            if (userCountry != null) {
+                $('#countryInput').val(userCountry);
+            }
         } else {
-            // No user is signed in.
-            console.log("No user is signed in");
+            console.log("no user");
+
+            // redirect to login page if no user is logged in
+            window.location.href = "../html/login.html";
         }
     });
 }
@@ -53,10 +50,10 @@ function saveUserInfo() {
         school: userSchool,
         city: userCity,
         country: userCountry
+    }).then(() => {
+        console.log("Document successfully updated!");
     })
-        .then(() => {
-            console.log("Document successfully updated!");
-        })
+
     $('#personalInfoFields').prop('disabled', true);
 }
 
