@@ -13,6 +13,7 @@
 
 body {
     background-color: whitesmoke;
+    font-size: 1.2rem;
 }
 
 /* ------material icons------ */
@@ -152,6 +153,11 @@ a {
     margin: 0px;
 }
 
+.settings-option {
+
+    font-size: small;
+}
+
 .center-card {
     width: 100%;
 }
@@ -250,6 +256,9 @@ div span {
     display: inline-block;
 }
 
+.form-group.profile {
+    font-size: large;
+}
 
 .dropdown-content {
     display: none;

@@ -51,28 +51,31 @@
         <br>
         <h1 style="text-align: center">User Settings</h1>
         <br>
+        <p>Set your preferred type of compliment you wish to receive below!<br> <b>Please note:</b> you may
+            still receive other types every so often</p>
         <div class="card home-card">
-            <form>
-                <fieldset class="mb-3" id="settingsInfoFields" disabled>
+            <fieldset class="mb-3" id="personalInfoFields" disabled>
+                <form>
                     <div>
-                        <label for="preferredComplimentType">Preferred compliment type</label>
-                        <select name="preferredComplimentType" id="preferredComplimentType">
-                            <option value="affirmation">Affirmation</option>
-                            <option value="appearance">Appearance</option>
-                            <option value="character">Character</option>
-                            <option value="encouragement">Encouragement</option>
+                        <label for="preferredComplimentType">Preferred type:</label>
+                        <select name="preferredComplimentType" id="preferredComplimentType" style="float: right">
+                            <option class="settings-option" value="none">None</option>
+                            <option class="settings-option" value="affirmation">Affirmation</option>
+                            <option class="settings-option" value="appearance">Appearance</option>
+                            <option class="settings-option" value="character">Character</option>
+                            <option class="settings-option" value="encouragement">Encouragement</option>
                         </select>
                     </div>
                     <!-- <div>
                         <label for="notificationSettings">Notifications</label>
                     </div> -->
-                </fieldset>
-                <div class="d-flex justify-content-end mt-5" style="margin-top: 1.5rem !important">
-                    <button type="button" class="btn select-btn">Edit</button>
-                    <span style="width: 10px"></span>
-                    <button type="button" class="btn reply-btn">Save</button>
-                </div>
-            </form>
+                </form>
+            </fieldset>
+            <div class="d-flex justify-content-end mt-5" style="margin-top: 0.75rem !important">
+                <button type="button" class="btn select-btn" onclick="editUserInfo()">Edit</button>
+                <span style="width: 10px"></span>
+                <button type="button" class="btn reply-btn" onclick="saveUserInfo()">Save</button>
+            </div>
         </div>
     </div>
 
@@ -82,7 +85,7 @@
     <!-- Link to Javascript functions -->
     <script src="./scripts/firebaseAPI_COMP1800_DTC-01.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/profile.js"></script>
+    <script src="./scripts/settings.js"></script>
     <script src="./scripts/script.js"></script>
 
 </body>
