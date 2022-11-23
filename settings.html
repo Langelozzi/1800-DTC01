@@ -59,6 +59,7 @@
                     <div>
                         <label for="preferredComplimentType">Preferred type:</label>
                         <select name="preferredComplimentType" id="preferredComplimentType" style="float: right">
+                            <option class="settings-option" value="none">None</option>
                             <option class="settings-option" value="affirmation">Affirmation</option>
                             <option class="settings-option" value="appearance">Appearance</option>
                             <option class="settings-option" value="character">Character</option>
@@ -68,13 +69,13 @@
                     <!-- <div>
                         <label for="notificationSettings">Notifications</label>
                     </div> -->
-                    <div class="d-flex justify-content-end mt-5" style="margin-top: 1.5rem !important">
-                        <button type="button" class="btn select-btn">Edit</button>
-                        <span style="width: 10px"></span>
-                        <button type="button" class="btn reply-btn">Save</button>
-                    </div>
                 </form>
             </fieldset>
+            <div class="d-flex justify-content-end mt-5" style="margin-top: 0.75rem !important">
+                <button type="button" class="btn select-btn" onclick="editUserInfo()">Edit</button>
+                <span style="width: 10px"></span>
+                <button type="button" class="btn reply-btn" onclick="saveUserInfo()">Save</button>
+            </div>
         </div>
     </div>
 
