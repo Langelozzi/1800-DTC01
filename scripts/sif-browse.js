@@ -1,15 +1,18 @@
 const COMPLIMENTS = [];
 
 function checkComplimentFilter(filterType) {
-    if (filterType) { 
+    if (filterType) {
         var filteredCompliments = [];
+
         COMPLIMENTS.forEach((compliment) => {
             if (compliment.data().type == filterType) {
                 filteredCompliments.push(compliment);
             }
         })
+
         loadComplimentCards(filteredCompliments);
-    } else {
+    }
+    else {
         loadComplimentCards(COMPLIMENTS);
     }
 }
@@ -28,6 +31,7 @@ function loadComplimentCards(compliments) {
     const urlParams = new URLSearchParams(window.location.search);
     const messageId = urlParams.get('messageId');
     var template = document.getElementById('browse-card-template');
+
     $('#sif-browse-card-list').empty();
     compliments.forEach((element) => {
         let complimentData = element.data();
@@ -42,7 +46,6 @@ function loadComplimentCards(compliments) {
         clone.querySelector('.select-btn').setAttribute('href', `../html/sif-compliment-details.html?complimentId=${complimentId}&messageId=${messageId}`);
 
         $('#sif-browse-card-list').append(clone);
-
     })
 }
 
@@ -67,19 +70,21 @@ window.onclick = function (event) {
 function searchBarFilter() {
     const searchInput = $('#search-bar').val(); //grabs the value of what the user types in the search bar
     var searchResult = []
+
     COMPLIMENTS.forEach((compliment) => { //loops through each compliment and checks if a compliment contains the searchInput. If it does, then append that compliment to searchResult
         var complimentText = compliment.data().compliment;
         if (complimentText.includes(searchInput)) {
             searchResult.push(compliment);
         }
     })
-    loadComplimentCards(searchResult);
 
+    loadComplimentCards(searchResult);
 }
 
 function setUp() {
     getCompliments().then(() => {
         loadComplimentCards(COMPLIMENTS);
+
         $('#search-bar').keyup((event) => {
             searchBarFilter();
         });
