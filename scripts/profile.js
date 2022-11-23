@@ -5,7 +5,7 @@ function populateInfo() {
         // Check if user is signed in:
         if (user) {
             //go to the correct user document by referencing to the user uid
-            const currentUserDoc = db.collection("users").doc(user.uid).get();
+            const currentUserDoc = await db.collection("users").doc(user.uid).get();
             //get the data fields of the user
             var userName = currentUserDoc.data().name;
             var userEmail = currentUserDoc.data().email;
