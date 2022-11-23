@@ -88,7 +88,7 @@ async function sendEmoji(receiverId, chainId, originalMessageId) {
 }
 
 async function populateInboxData(complimentId, messageId) {
-    const data = await db.collection('compliments').doc(complimentId).get();
+    const data = await db.collection('compliments').doc(complimentId).get(); 
     const complimentData = data.data();
 
     var payItForwardBtn = document.getElementById('pay-it-forward-btn');
@@ -124,6 +124,7 @@ function setMessageOpened(messageId) {
 }
 
 async function setUp() {
+    // get message id from html or query param
     const urlParams = new URLSearchParams(window.location.search);
     const messageId = urlParams.get('messageId');
 
