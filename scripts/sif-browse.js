@@ -26,7 +26,7 @@ function loadComplimentCards(compliments) {
     const urlParams = new URLSearchParams(window.location.search);
     const messageId = urlParams.get('messageId');
     var template = document.getElementById('browse-card-template');
-    $('#browse-card-list').html('');
+    $('#sif-browse-card-list').empty();
     compliments.forEach((element) => {
         let complimentData = element.data();
         let complimentId = element.id;
@@ -39,7 +39,7 @@ function loadComplimentCards(compliments) {
         clone.querySelector('.compliment-type').innerHTML = complimentType;
         clone.querySelector('.select-btn').setAttribute('href', `../sif-compliment-details.html?complimentId=${complimentId}&messageId=${messageId}`);
 
-        $('#browse-card-list').append(clone);
+        $('#sif-browse-card-list').append(clone);
 
     })
 }

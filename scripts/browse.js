@@ -24,7 +24,8 @@ function getCompliments() {
 
 function loadComplimentCards(compliments) {
     var template = document.getElementById('browse-card-template');
-    $('#browse-card-list').html('');
+
+    $('#browse-card-list').empty();
     compliments.forEach((element) => {
         let complimentData = element.data();
         let complimentId = element.id;
@@ -50,8 +51,8 @@ function dropDown() {
 window.onclick = function (event) {
     if (!event.target.matches('.dropdown-toggle')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
+
+        for (let i = 0; i < dropdowns.length; i++) {
             var openDropdown = dropdowns[i];
             if (openDropdown.classList.contains("show")) {
                 openDropdown.classList.remove("show")
@@ -63,12 +64,15 @@ window.onclick = function (event) {
 function searchBarFilter() {
     const searchInput = $('#search-bar').val();
     var searchResult = []
+
     COMPLIMENTS.forEach((compliment) => {
         var complimentText = compliment.data().compliment;
+
         if (complimentText.includes(searchInput)) {
             searchResult.push(compliment);
         }
     })
+
     loadComplimentCards(searchResult);
 
 }
@@ -76,6 +80,7 @@ function searchBarFilter() {
 function setUp() {
     getCompliments().then(() => {
         loadComplimentCards(COMPLIMENTS);
+
         $('#search-bar').keyup((event) => {
             searchBarFilter();
         });

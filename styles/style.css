@@ -375,3 +375,9 @@ div span {
     margin-right: 5%;
     margin-left: 5%;
 }
+
+#sif-browse-card-list {
+    overflow-y: scroll;
+    height: 48vh;
+    padding-top: 20px;
+}
