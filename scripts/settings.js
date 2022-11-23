@@ -15,9 +15,12 @@ function populateInfo() {
             if (userPreferredType != null) {
                 $('#preferredComplimentType').val(userPreferredType);
             }
-        } else {
-            // No user is signed in.
-            console.log("No user is signed in");
+        }
+        else {
+            console.log("no user");
+
+            // redirect to login page if no user is logged in
+            window.location.href = "../html/login.html";
         }
     });
 }
