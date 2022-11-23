@@ -49,29 +49,34 @@
     <!--Homepage Content-->
     <div class="container">
         <br>
-        <h1>User Settings</h1>
+        <h1 style="text-align: center">User Settings</h1>
         <br>
-        <form>
-            <fieldset class="mb-3" id="settingsInfoFields" disabled>
-                <div>
-                    <label for="preferredComplimentType">Preferred compliment type</label>
-                    <select name="preferredComplimentType" id="preferredComplimentType">
-                        <option value="affirmation">Affirmation</option>
-                        <option value="appearance">Appearance</option>
-                        <option value="character">Character</option>
-                        <option value="encouragement">Encouragement</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="notificationSettings">Notifications</label>
-                </div>
+        <p>Set your preferred type of compliment you wish to receive below!<br> <b>Please note:</b> you may
+            still receive other types every so often</p>
+        <div class="card home-card">
+            <fieldset class="mb-3" id="personalInfoFields" disabled>
+                <form>
+                    <div>
+                        <label for="preferredComplimentType">Preferred type:</label>
+                        <select name="preferredComplimentType" id="preferredComplimentType" style="float: right">
+                            <option class="settings-option" value="None">None</option>
+                            <option class="settings-option" value="Affirmation">Affirmation</option>
+                            <option class="settings-option" value="Appearance">Appearance</option>
+                            <option class="settings-option" value="Encouragement">Encouragement</option>
+                            <option class="settings-option" value="Personality">Personality</option>
+                        </select>
+                    </div>
+                    <!-- <div>
+                        <label for="notificationSettings">Notifications</label>
+                    </div> -->
+                </form>
             </fieldset>
-            <div class="d-flex justify-content-end mt-5">
-                <button type="button" class="btn select-btn">Edit</button>
+            <div class="d-flex justify-content-end mt-5" style="margin-top: 0.75rem !important">
+                <button type="button" class="btn select-btn" onclick="editUserInfo()">Edit</button>
                 <span style="width: 10px"></span>
-                <button type="button" class="btn reply-btn">Save</button>
+                <button type="button" class="btn reply-btn" onclick="saveUserInfo()">Save</button>
             </div>
-        </form>
+        </div>
     </div>
 
     <!-- Sticky Bottom Nav -->
@@ -80,7 +85,7 @@
     <!-- Link to Javascript functions -->
     <script src="./scripts/firebaseAPI_COMP1800_DTC-01.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/profile.js"></script>
+    <script src="./scripts/settings.js"></script>
     <script src="./scripts/script.js"></script>
 
 </body>

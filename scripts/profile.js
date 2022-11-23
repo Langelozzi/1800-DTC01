@@ -13,19 +13,21 @@ function populateInfo() {
                     //get the data fields of the user
                     var userName = userDoc.data().name;
                     var userEmail = userDoc.data().email;
+                    var userCity = userDoc.data().city;
+                    var userCountry = userDoc.data().country;
 
                     //if the data fields are not empty, then write them in to the form.
                     if (userName != null) {
-                        document.getElementById("nameInput").value = userName;
+                        $('#nameInput').val(userName);
                     }
                     if (userEmail != null) {
-                        document.getElementById("emailInput").value = userEmail;
+                        $('#emailInput').val(userEmail);
                     }
                     if (userCity != null) {
-                        document.getElementById("cityInput").value = userCity;
+                        $('#cityInput').val(userCity);
                     }
                     if (userCountry != null) {
-                        document.getElementById("countryInput").value = userCountry;
+                        $('#countryInput').val(userCountry);
                     }
                 })
         } else {
@@ -35,10 +37,31 @@ function populateInfo() {
     });
 }
 
-//call the function to run it 
-populateInfo();
-
 function editUserInfo() {
     //Enable the form fields
-    document.getElementById('personalInfoFields').disabled = false;
+    $('#personalInfoFields').prop('disabled', false);
 }//event-listener that call the function editUserInfo after clicking on the button.
+
+function saveUserInfo() {
+    userName = $('#nameInput').val();
+    userSchool = $('#emailInput').val();
+    userCity = $('#cityInput').val();
+    userCountry = $('#countryInput').val();
+
+    currentUser.update({
+        name: userName,
+        school: userSchool,
+        city: userCity,
+        country: userCountry
+    })
+        .then(() => {
+            console.log("Document successfully updated!");
+        })
+    $('#personalInfoFields').prop('disabled', true);
+}
+
+function setUp() {
+    populateInfo();
+}
+
+$(document).ready(setUp);
