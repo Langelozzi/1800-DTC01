@@ -2,20 +2,47 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-function chooseReceiver(userId) {
+function chooseReceiver(userId, type) {
     const usersRef = db.collection("users");
 
     return usersRef.get().then((querySnapshot) => {
         let allUserIds = [];
+        let backupUserIds = [];
         querySnapshot.forEach((doc) => {
-            allUserIds.push(doc.id);
+            allUserIds.push([doc.id, doc.data().preferredComplimentType]);
+            backupUserIds.push([doc.id, doc.data().preferredComplimentType]);
         });
-
+        console.log("Type is:" + type);
         if (allUserIds.length == 1) {
             return allUserIds[0];
         } else {
             // remove sender's id from list
-            const possibleReceiverIds = allUserIds.filter(id => id != userId);
+            let possibleReceiverIds = allUserIds;
+
+            for (let i = 0; i < allUserIds.length; i++) {
+                if (possibleReceiverIds[i][1] != type && possibleReceiverIds[i][1] != null && possibleReceiverIds[i][1] != "none") {
+                    console.log(possibleReceiverIds[i][1]);
+                    possibleReceiverIds.splice(i, 1);
+                    console.log("Removed " + allUserIds[i][0] + " from possible receivers");
+                }
+            }
+
+            if (possibleReceiverIds.length <= 1) {
+                console.log("Using backup Ids");
+                possibleReceiverIds = backupUserIds;
+
+                for (let i = 0; i < backupUserIds.length; i++) {
+                    if (possibleReceiverIds[i][0] == userId) {
+                        possibleReceiverIds.splice(i, 1);
+                    }
+                }
+            } else {
+                for (let i = 0; i < allUserIds.length; i++) {
+                    if (possibleReceiverIds[i][0] == userId) {
+                        possibleReceiverIds.splice(i, 1);
+                    }
+                }
+            }
 
             // change this with better algorithm that looks at how many compliments user received so far
             let receiverIndex = getRandomInt(allUserIds.length - 1);
@@ -56,12 +83,12 @@ function createNewMessageDocument(senderId, receiverId, complimentId) {
     })
 }
 
-function sendMessage(complimentId) {
+function sendMessage(complimentId, type) {
     // get current user from firebase auth
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             // get random user id from firestore users collection
-            chooseReceiver(user.uid).then((receiverId) => {
+            chooseReceiver(user.uid, type).then((receiverId) => {
                 createNewMessageDocument(user.uid, receiverId, complimentId)
                     .then((newMessageRef) => {
                         // add one to users number of compliments sent
@@ -138,7 +165,11 @@ function setUp() {
     populateComplimentData(complimentId);
 
     $('#send-btn').click(() => {
-        sendMessage(complimentId);
+        db.collection('compliments').doc(complimentId).get().then((data) => {
+            const complimentData = data.data();
+
+            sendMessage(complimentId, complimentData.type);
+        });
     });
 }
 
