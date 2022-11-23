@@ -83,12 +83,15 @@ async function sendEmoji(receiverId, chainId, originalMessageId) {
         }
         else {
             console.log("no user");
+
+            // redirect to login page if no user is logged in
+            window.location.href = "../html/login.html";
         }
     });
 }
 
-async function populateInboxData(complimentId, messageId) {
-    const data = await db.collection('compliments').doc(complimentId).get(); 
+async function populateMessageData(complimentId, messageId) {
+    const data = await db.collection('compliments').doc(complimentId).get();
     const complimentData = data.data();
 
     var payItForwardBtn = document.getElementById('pay-it-forward-btn');
@@ -106,6 +109,7 @@ async function checkMessageStatus(messageId) {
     const paidForward = messageData.paidForward;
     const openedAt = messageData.openedAt;
 
+    // check if message has been reacted to, paid forward and/or opened
     if (reactedTo) {
         $('#reply-emoji-btn').attr('disabled', true);
     }
@@ -141,7 +145,7 @@ async function setUp() {
     const chainId = messageData.chainId;
     const complimentId = messageData.complimentId;
 
-    populateInboxData(complimentId, messageId);
+    populateMessageData(complimentId, messageId);
 
     $('#send-emoji-btn').click(() => {
         // NOTE: sender of message is the receiver of the emoji
