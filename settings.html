@@ -49,29 +49,31 @@
     <!--Homepage Content-->
     <div class="container">
         <br>
-        <h1>User Settings</h1>
+        <h1 style="text-align: center">User Settings</h1>
         <br>
-        <form>
-            <fieldset class="mb-3" id="settingsInfoFields" disabled>
-                <div>
-                    <label for="preferredComplimentType">Preferred compliment type</label>
-                    <select name="preferredComplimentType" id="preferredComplimentType">
-                        <option value="affirmation">Affirmation</option>
-                        <option value="appearance">Appearance</option>
-                        <option value="character">Character</option>
-                        <option value="encouragement">Encouragement</option>
-                    </select>
+        <div class="card home-card">
+            <form>
+                <fieldset class="mb-3" id="settingsInfoFields" disabled>
+                    <div>
+                        <label for="preferredComplimentType">Preferred compliment type</label>
+                        <select name="preferredComplimentType" id="preferredComplimentType">
+                            <option value="affirmation">Affirmation</option>
+                            <option value="appearance">Appearance</option>
+                            <option value="character">Character</option>
+                            <option value="encouragement">Encouragement</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="notificationSettings">Notifications</label>
+                    </div>
+                </fieldset>
+                <div class="d-flex justify-content-end mt-5">
+                    <button type="button" class="btn select-btn">Edit</button>
+                    <span style="width: 10px"></span>
+                    <button type="button" class="btn reply-btn">Save</button>
                 </div>
-                <div>
-                    <label for="notificationSettings">Notifications</label>
-                </div>
-            </fieldset>
-            <div class="d-flex justify-content-end mt-5">
-                <button type="button" class="btn select-btn">Edit</button>
-                <span style="width: 10px"></span>
-                <button type="button" class="btn reply-btn">Save</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
     <!-- Sticky Bottom Nav -->
