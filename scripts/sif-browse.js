@@ -1,7 +1,7 @@
 const COMPLIMENTS = [];
 
 function checkComplimentFilter(filterType) {
-    if (filterType) {
+    if (filterType) { 
         var filteredCompliments = [];
         COMPLIMENTS.forEach((compliment) => {
             if (compliment.data().type == filterType) {
@@ -15,6 +15,7 @@ function checkComplimentFilter(filterType) {
 }
 
 function getCompliments() {
+    // grab compliments from database and append them into the 'COMPLIMENTS' array
     return db.collection('compliments').get().then((data) => {
         data.forEach(element => {
             COMPLIMENTS.push(element);
@@ -23,6 +24,7 @@ function getCompliments() {
 }
 
 function loadComplimentCards(compliments) {
+    // get message id from html or query param
     const urlParams = new URLSearchParams(window.location.search);
     const messageId = urlParams.get('messageId');
     var template = document.getElementById('browse-card-template');
@@ -63,9 +65,9 @@ window.onclick = function (event) {
 }
 
 function searchBarFilter() {
-    const searchInput = $('#search-bar').val();
+    const searchInput = $('#search-bar').val(); //grabs the value of what the user types in the search bar
     var searchResult = []
-    COMPLIMENTS.forEach((compliment) => {
+    COMPLIMENTS.forEach((compliment) => { //loops through each compliment and checks if a compliment contains the searchInput. If it does, then append that compliment to searchResult
         var complimentText = compliment.data().compliment;
         if (complimentText.includes(searchInput)) {
             searchResult.push(compliment);

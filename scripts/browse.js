@@ -62,10 +62,10 @@ window.onclick = function (event) {
 }
 
 function searchBarFilter() {
-    const searchInput = $('#search-bar').val();
+    const searchInput = $('#search-bar').val(); //grabs the value of what the user types in the search bar
     var searchResult = []
 
-    COMPLIMENTS.forEach((compliment) => {
+    COMPLIMENTS.forEach((compliment) => { //loops through each compliment and checks if a compliment contains the searchInput. If it does, then append that compliment to searchResult
         var complimentText = compliment.data().compliment;
 
         if (complimentText.includes(searchInput)) {
