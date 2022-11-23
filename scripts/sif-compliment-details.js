@@ -46,52 +46,58 @@ function createNewMessageDocument(senderId, receiverId, complimentId, chainId) {
 
 function sendMessage(complimentId, chainId, originalMessageId) {
     // get current user from firebase auth
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
             // get random user id from firestore users collection
-            chooseReceiver(user.uid).then((receiverId) => {
-                createNewMessageDocument(user.uid, receiverId, complimentId, chainId)
-                    .then((newMessageRef) => {
-                        // add one to users number of compliments sent
-                        db.collection("users").doc(user.uid).update({
-                            complimentsSent: firebase.firestore.FieldValue.increment(1)
-                        });
-                        // add one to amountSent for that compliment
-                        db.collection("compliments").doc(complimentId).update({
-                            amountSent: firebase.firestore.FieldValue.increment(1)
-                        });
-                        db.collection("chains").doc(chainId).update({
-                            messages: firebase.firestore.FieldValue.arrayUnion(complimentId)
-                        });
+            const receiverId = await chooseReceiver(user.uid)
 
-                        // update original message to paid forward
-                        db.collection("messages").doc(originalMessageId).update({
-                            paidForward: true
-                        });
+            try {
+                var newMessageRef = await createNewMessageDocument(user.uid, receiverId, complimentId, chainId);
+            }
+            catch (error) {
+                console.error("Error adding new message (compliment) document: ", error);
 
-                        // open success modal and redirect to browse page
-                        $('#success-modal').modal('show');
-                        setTimeout(() => {
-                            $('#success-modal').modal('hide');
-                            window.location.href = "inbox.html";
-                        }, 4000);
-                    })
-                    .catch((error) => {
-                        console.error("Error adding new message (compliment) document: ", error);
+                // open error modal
+                $('#error-modal').modal('show');
+                setTimeout(() => {
+                    $('#error-modal').modal('hide');
+                }, 4000);
+            }
 
-                        // open error modal
-                        $('#error-modal').modal('show');
-                        setTimeout(() => {
-                            $('#error-modal').modal('hide');
-                        }, 4000);
-                    });
-            })
+            // add one to users number of compliments sent
+            db.collection("users").doc(user.uid).update({
+                complimentsSent: firebase.firestore.FieldValue.increment(1)
+            });
 
-        } else {
+            // add one to amountSent for that compliment
+            db.collection("compliments").doc(complimentId).update({
+                amountSent: firebase.firestore.FieldValue.increment(1)
+            });
+
+            // add the new message id to the chain
+            db.collection("chains").doc(chainId).update({
+                messages: firebase.firestore.FieldValue.arrayUnion(newMessageRef.id)
+            });
+
+            // update original message to paid forward
+            db.collection("messages").doc(originalMessageId).update({
+                paidForward: true
+            });
+
+            // open success modal and redirect to browse page
+            $('#success-modal').modal('show');
+            setTimeout(() => {
+                $('#success-modal').modal('hide');
+                window.location.href = "inbox.html";
+            }, 4000);
+        }
+        else {
             console.log("no user");
+
+            // redirect to login page if no user is logged in
+            window.location.href = "../html/login.html";
         }
     });
-
 }
 
 function populateComplimentData(complimentId) {
