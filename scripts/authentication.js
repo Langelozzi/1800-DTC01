@@ -15,7 +15,6 @@ var uiConfig = {
                     chainsStarted: 0,
                     complimentsSent: 0,
                     emojisSent: 0,
-                    complimentsReceived: 0,
                     city: null,
                     country: null,
                 }).then(function () {
