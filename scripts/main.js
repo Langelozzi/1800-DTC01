@@ -1,28 +1,22 @@
-//---------------------------------
-// Your own functions here
-//---------------------------------
+function chooseRandomNumberInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 function insertName() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) {
-            // Do something for the currently logged-in user here: 
             user_Name = user.displayName;
 
-            //method #1:  insert with html only
-            //document.getElementById("name-goes-here").innerText = user_Name;    //using javascript
-            //method #2:  insert using jquery
             $("#name-goes-here").text(user_Name); //using jquery
+        }
+        else {
+            console.log("no user");
 
-        } else {
-            // No user is signed in.
+            // redirect to login page if no user is logged in
+            window.location.href = "../html/login.html";
         }
     });
-}
-insertName(); //run the function
-
-function chooseRandomNumberInRange(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function addQuoteOfTheDay() {
@@ -61,4 +55,10 @@ function addQuoteOfTheDay() {
         });
     }
 }
-addQuoteOfTheDay();
+
+function setUp() {
+    insertName();
+    addQuoteOfTheDay();
+}
+
+document.ready(setUp);
