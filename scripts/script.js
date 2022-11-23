@@ -1,25 +1,29 @@
 function checkForNotifications() {
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
-            db.collection("messages").get().then((querySnapshot) => {
-                hasNotifications = false;
-                querySnapshot.forEach((doc) => {
-                    if (doc.data().receiverId == user.uid && doc.data().openedAt == null) {
-                        hasNotifications = true;
-                    }
-                });
+            hasNotifications = false;
 
-                if (hasNotifications) {
-                    $('#note-badge').show();
-                } else {
-                    $('#note-badge').hide();
+            const messages = await db.collection("messages").get();
+
+            messages.forEach((message) => {
+                if (message.data().receiverId == user.uid && message.data().openedAt == null) {
+                    hasNotifications = true;
                 }
             });
-        } else {
+
+            if (hasNotifications) {
+                $('#note-badge').show();
+            } else {
+                $('#note-badge').hide();
+            }
+        }
+        else {
             console.log("no user");
+
+            // redirect to login page if no user is logged in
+            window.location.href = "../html/login.html";
         }
     });
-
 }
 
 $(document).ready(checkForNotifications);

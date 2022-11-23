@@ -25,7 +25,8 @@ function populateInfo() {
             if (userCountry != null) {
                 $('#countryInput').val(userCountry);
             }
-        } else {
+        }
+        else {
             console.log("no user");
 
             // redirect to login page if no user is logged in
