@@ -33,7 +33,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Link to styles of your own -->
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="../styles/style.css">
+
+    <style>
+        .mail {
+            color: #1d6fea;
+            background-color: whitesmoke;
+        }
+    </style>
 
 </head>
 
@@ -48,36 +55,44 @@
 
     <!--Homepage Content-->
     <div class="container">
-        <br>
-        <h1 style="text-align: center">User Settings</h1>
-        <br>
-        <p>Set your preferred type of compliment you wish to receive below!<br> <b>Please note:</b> you may
-            still receive other types every so often</p>
-        <div class="card home-card">
-            <fieldset class="mb-3" id="personalInfoFields" disabled>
-                <form>
-                    <div>
-                        <label for="preferredComplimentType">Preferred type:</label>
-                        <select name="preferredComplimentType" id="preferredComplimentType" style="float: right">
-                            <option class="settings-option" value="None">None</option>
-                            <option class="settings-option" value="Affirmation">Affirmation</option>
-                            <option class="settings-option" value="Appearance">Appearance</option>
-                            <option class="settings-option" value="Encouragement">Encouragement</option>
-                            <option class="settings-option" value="Personality">Personality</option>
-                        </select>
-                    </div>
-                    <!-- <div>
-                        <label for="notificationSettings">Notifications</label>
-                    </div> -->
-                </form>
-            </fieldset>
-            <div class="d-flex justify-content-end mt-5" style="margin-top: 0.75rem !important">
-                <button type="button" class="btn select-btn" onclick="editUserInfo()">Edit</button>
-                <span style="width: 10px"></span>
-                <button type="button" class="btn reply-btn" onclick="saveUserInfo()">Save</button>
-            </div>
+        <div id="inbox-card-list" class="card-list">
+
         </div>
     </div>
+
+    <!-- Inbox compliment card template -->
+    <template id="inbox-compliment-card-template">
+        <a href="" id="inbox-card">
+            <div id="inbox-compliment-card" class="card p-2 mb-3 inbox-compliment-unopened">
+                <div>
+                    <span id="reacted-to" class="material-icons material-symbols-outlined">
+                        radio_button_unchecked
+                    </span>
+                    <span id="paid-forward" class="material-icons material-symbols-outlined">
+                        radio_button_unchecked
+                    </span>
+                    <span id="message-date" class="card-subtitle font-monospace text-muted"></span>
+                </div>
+
+                <div id="compliment-text" class="text-center m-2"></div>
+            </div>
+        </a>
+    </template>
+
+    <!-- Inbox emoji card template -->
+    <template id="inbox-emoji-card-template">
+        <div id="inbox-emoji-card" class="card p-2 mb-3">
+            <div id="message-date" class="card-subtitle font-monospace text-muted"></div>
+            <div>
+                <div>
+                    <span id="inbox-emoji" class="d-inline-block">
+                    </span>
+                </div>
+                <div class="d-inline-block pt-2" id="original-message">
+                </div>
+            </div>
+        </div>
+    </template>
 
     <!-- Sticky Bottom Nav -->
     <nav id="footerPlaceholder"></nav>
@@ -85,7 +100,7 @@
     <!-- Link to Javascript functions -->
     <script src="./scripts/firebaseAPI_COMP1800_DTC-01.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/settings.js"></script>
+    <script src="./scripts/inbox.js"></script>
     <script src="./scripts/script.js"></script>
 
 </body>
