@@ -1,7 +1,7 @@
 const COMPLIMENTS = [];
 
 function checkComplimentFilter(filterType) {
-    if (filterType) {
+    if (filterType) { 
         var filteredCompliments = [];
         COMPLIMENTS.forEach((compliment) => {
             if (compliment.data().type == filterType) {
@@ -15,6 +15,7 @@ function checkComplimentFilter(filterType) {
 }
 
 function getCompliments() {
+    // grab compliments from database and append them into the 'COMPLIMENTS' array
     return db.collection('compliments').get().then((data) => {
         data.forEach(element => {
             COMPLIMENTS.push(element);
