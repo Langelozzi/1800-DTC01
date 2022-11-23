@@ -37,7 +37,7 @@ function loadComplimentCards(compliments) {
 
         clone.querySelector('.compliment-text').innerHTML = `"${complimentText}"`;
         clone.querySelector('.compliment-type').innerHTML = complimentType;
-        clone.querySelector('.select-btn').setAttribute('href', `../sif-compliment-details.html?complimentId=${complimentId}&messageId=${messageId}`);
+        clone.querySelector('.select-btn').setAttribute('href', `../html/sif-compliment-details.html?complimentId=${complimentId}&messageId=${messageId}`);
 
         $('#sif-browse-card-list').append(clone);
 

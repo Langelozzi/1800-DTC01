@@ -13,7 +13,7 @@ function generateComplimentMessage(message) {
         clone.querySelector('#compliment-text').innerHTML = `"${messageText}"`;
         clone.querySelector('#message-date').innerHTML = messageSentAtDate;
         clone.querySelector('#inbox-card')
-            .setAttribute('href', `../message-details.html?messageId=${message.id}`);
+            .setAttribute('href', `../html/message-details.html?messageId=${message.id}`);
 
         // if its been opened, then set css to be opened
         if (messageData.openedAt != null) {
