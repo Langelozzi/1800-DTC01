@@ -85,7 +85,6 @@ button>.footer-btn {
 
 .brighten-btn {
     background-color: #fdbe00;
-    padding: .4em;
     color: black;
     font-weight: bold;
     font-size: 1.2em;
@@ -96,14 +95,6 @@ button>.footer-btn {
 .select-btn {
     background-color: #fdbe00;
     color: black;
-    font-weight: bold;
-    border-radius: 2em;
-    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
-}
-
-.reply-btn {
-    background-color: #1d6fea;
-    color: white;
     font-weight: bold;
     border-radius: 2em;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
