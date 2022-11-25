@@ -85,6 +85,7 @@ button>.footer-btn {
 
 .brighten-btn {
     background-color: #fdbe00;
+    padding: .4em;
     color: black;
     font-weight: bold;
     font-size: 1.2em;
