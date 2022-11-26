@@ -5,8 +5,7 @@
 * [Contents](#content)
 
 ## General Info
-
-This browser based web application to help mobile phone users who want to contribute to a positive movement combat and counteract daily negativity by performing random acts of kindness virtually via their devices.
+'Say it Forward' is a browser based web application to help mobile phone users who want to contribute to a positive movement combat and counteract daily negativity by performing random acts of kindness virtually via their devices.
 
 This is Josh and I am excited
 
