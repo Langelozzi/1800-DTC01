@@ -279,7 +279,8 @@ div span {
 }
 
 #emoji-selection-modal fieldset label {
-    margin: 1% !important;
+    margin-top: 1% !important;
+    margin-top: 1% !important;
     width: 30.3%;
     height: 12vh;
 }
@@ -373,4 +374,31 @@ div span {
     overflow-y: scroll;
     height: 48vh;
     padding-top: 20px;
+}
+
+@media only screen and (max-width: 400px) {
+    .w-100 {
+        width: 5%;
+    }
+
+
+}
+
+@media only screen and (max-width: 380px) {
+    /* *{
+        font-size: 0.8em;
+    } */
+
+
+    .message-select-btn {
+        font-size: 90%;
+    }
+
+    .message-reply-btn {
+        font-size: 90%;
+    }
+
+    .brighten-btn {
+        font-size: 1em;
+    }
 }
