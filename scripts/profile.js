@@ -36,9 +36,9 @@ function populateInfo() {
 }
 
 function editUserInfo() {
-    //Enable the form fields
+    // Enable the form fields
     $('#personalInfoFields').prop('disabled', false);
-}//event-listener that call the function editUserInfo after clicking on the button.
+}// event-listener that call the function editUserInfo after clicking on the button.
 
 function saveUserInfo() {
     userName = $('#nameInput').val();

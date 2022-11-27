@@ -3,23 +3,22 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var uiConfig = {
     callbacks: {
         signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-            // User successfully signed in.
-            // Return type determines whether we continue the redirect automatically
-            // or whether we leave that to developer to handle.
-            var user = authResult.user;                            // get the user object from the Firebase authentication database
-            if (authResult.additionalUserInfo.isNewUser) {         //if new user
-                db.collection("users").doc(user.uid).set({         //write to firestore. We are using the UID for the ID in users collection
-                    name: user.displayName,                    //"users" collection
-                    email: user.email,                         //with authenticated user's ID (user.uid)
+            var user = authResult.user;
+            // Write new user document to Firestore if user is new                         
+            if (authResult.additionalUserInfo.isNewUser) {
+                db.collection("users").doc(user.uid).set({
+                    name: user.displayName,
+                    email: user.email,
                     preferredComplimentType: null,
                     chainsStarted: 0,
                     complimentsSent: 0,
                     emojisSent: 0,
                     city: null,
                     country: null,
+                    // Redirect to main page after sign-in
                 }).then(() => {
                     console.log("New user added to firestore");
-                    window.location.assign("main.html");       //re-direct to main.html after signup
+                    window.location.assign("main.html");
                 }).catch((error) => {
                     console.log("Error adding new user: " + error);
                 });
@@ -30,12 +29,9 @@ var uiConfig = {
             return false;
         },
         uiShown: function () {
-            // The widget is rendered.
-            // Hide the loader.
             document.getElementById('loader').style.display = 'none';
         }
     },
-    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
     signInSuccessUrl: 'main.html',
     signInOptions: [

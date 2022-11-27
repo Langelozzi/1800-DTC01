@@ -2,6 +2,7 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
+
 function chooseReceiver(userId, type) {
     const usersRef = db.collection("users");
 
@@ -18,9 +19,10 @@ function chooseReceiver(userId, type) {
             return allUserIds[0];
         }
         else {
-            // remove sender's id from list
+
             let possibleReceiverIds = allUserIds;
 
+            // Remove user ids that have a different preferrec compliment type selected
             for (let i = 0; i < allUserIds.length; i++) {
                 if (possibleReceiverIds[i][1] != type && possibleReceiverIds[i][1] != null && possibleReceiverIds[i][1] != "none") {
                     possibleReceiverIds.splice(i, 1);
@@ -29,7 +31,7 @@ function chooseReceiver(userId, type) {
 
             if (possibleReceiverIds.length <= 1) {
                 possibleReceiverIds = backupUserIds;
-
+                // Remove current user from possible receiver ids
                 for (let i = 0; i < backupUserIds.length; i++) {
                     if (possibleReceiverIds[i][0] == userId) {
                         possibleReceiverIds.splice(i, 1);
@@ -37,6 +39,7 @@ function chooseReceiver(userId, type) {
                 }
             }
             else {
+                // Remove current user from possible receiver ids
                 for (let i = 0; i < allUserIds.length; i++) {
                     if (possibleReceiverIds[i][0] == userId) {
                         possibleReceiverIds.splice(i, 1);
@@ -44,7 +47,6 @@ function chooseReceiver(userId, type) {
                 }
             }
 
-            // change this with better algorithm that looks at how many compliments user received so far
             let receiverIndex = getRandomInt(allUserIds.length - 1);
 
             return possibleReceiverIds[receiverIndex];
@@ -52,10 +54,9 @@ function chooseReceiver(userId, type) {
     })
 }
 
+// Create new document to store and track message chains between users
 function createNewChainDocument(userId, messageId) {
     const chainsRef = db.collection("chains");
-
-    // get current date
     const currentDate = firebase.firestore.Timestamp.now();
 
     return chainsRef.add({
@@ -65,10 +66,10 @@ function createNewChainDocument(userId, messageId) {
     })
 }
 
+
 function createNewMessageDocument(senderId, receiverId, complimentId) {
     const messagesRef = db.collection("messages");
 
-    // get current date
     const currentDate = firebase.firestore.Timestamp.now();
 
     return messagesRef.add({
@@ -84,10 +85,10 @@ function createNewMessageDocument(senderId, receiverId, complimentId) {
 }
 
 async function sendMessage(complimentId, type) {
-    // get current user from firebase auth
+    // Get current user from firebase auth
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
-            // get random user id from firestore users collection
+            // Get random user id from firestore users collection
             const receiverId = await chooseReceiver(user.uid, type)
 
             try {
@@ -96,18 +97,18 @@ async function sendMessage(complimentId, type) {
             catch (error) {
                 console.error("Error adding new message (compliment) document: ", error);
 
-                // open error modal
+                // Open error modal
                 $('#error-modal').modal('show');
                 setTimeout(() => {
                     $('#error-modal').modal('hide');
                 }, 4000);
             }
 
-            // add one to users number of compliments sent
+            // Add one to users number of compliments sent
             db.collection("users").doc(user.uid).update({
                 complimentsSent: firebase.firestore.FieldValue.increment(1)
             });
-            // add one to amountSent for that compliment
+            // Add one to amountSent for that compliment
             db.collection("compliments").doc(complimentId).update({
                 amountSent: firebase.firestore.FieldValue.increment(1)
             });
@@ -118,24 +119,24 @@ async function sendMessage(complimentId, type) {
             catch (error) {
                 console.error("Error adding new chain document: ", error);
 
-                // open error modal
+                // Open error modal
                 $('#error-modal').modal('show');
                 setTimeout(() => {
                     $('#error-modal').modal('hide');
                 }, 4000);
             }
 
-            // add one to users number of chains started
+            // Add one to users number of chains started
             db.collection("users").doc(user.uid).update({
                 chainsStarted: firebase.firestore.FieldValue.increment(1)
             });
 
-            // add the chain id to the message
+            // Add the chain id to the message
             db.collection("messages").doc(newMessageRef.id).update({
                 chainId: newChainRef.id
             });
 
-            // open success modal and redirect to browse page
+            // Open success modal and redirect to browse page
             $('#success-modal').modal('show');
             setTimeout(() => {
                 $('#success-modal').modal('hide');
@@ -145,7 +146,7 @@ async function sendMessage(complimentId, type) {
         else {
             console.log("no user");
 
-            // redirect to login page if no user is logged in
+            // Redirect to login page if no user is logged in
             window.location.href = "../html/login.html";
         }
     });
@@ -161,7 +162,7 @@ async function populateComplimentData(complimentId) {
 }
 
 function setUp() {
-    // get compliment id from html or query param
+    // Cet compliment id from html or query param
     const urlParams = new URLSearchParams(window.location.search);
     const complimentId = urlParams.get('complimentId');
 
