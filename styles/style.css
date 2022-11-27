@@ -376,7 +376,15 @@ div span {
     padding-top: 20px;
 }
 
+.arrow {
+    height: calc(85vh - (600px));
+}
+
 @media only screen and (max-height: 760px) {
+    .arrow {
+        display: none;
+    }
+
     .card-body {
         padding-top: 0;
         padding-bottom: 0;
@@ -386,7 +394,12 @@ div span {
         padding-top: 0;
         padding-bottom: 0;
     }
+}
 
+@media only screen and (max-width: 600px) {
+    .arrow {
+        height: calc(90vh - (600px));
+    }
 }
 
 @media only screen and (max-width: 380px) {
