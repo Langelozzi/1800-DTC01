@@ -3,6 +3,6 @@ function loadSkeleton() {
     $('#navbar-back-btn-placeholder').load('../templates/nav-back-btn.html');
     $('#navbar-no-account-iconPlaceholder').load('../templates/nav-no-account-icon.html');
     $('#footerEmptyPlaceholder').load('../templates/footer-empty.html');
-    $('#footerPlaceholder').load('../templates/footer.html');
+    $('#footer-placeholder').load('../templates/footer.html');
 }
 loadSkeleton();
