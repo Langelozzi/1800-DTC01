@@ -61,4 +61,4 @@ function setUp() {
     addQuoteOfTheDay();
 }
 
-document.ready(setUp);
+$(document).ready(setUp);
