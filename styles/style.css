@@ -92,14 +92,6 @@ button>.footer-btn {
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
 }
 
-.select-btn {
-    background-color: #fdbe00;
-    color: black;
-    font-weight: bold;
-    border-radius: 2em;
-    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
-}
-
 .sign-in-btn {
     background-color: #1d6fea;
     color: white;
@@ -108,6 +100,30 @@ button>.footer-btn {
     padding: 0.5em;
     padding-right: 1em;
     padding-left: 1em;
+    border-radius: 2em;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+}
+
+.select-btn {
+    background-color: #fdbe00;
+    color: black;
+    font-weight: bold;
+    border-radius: 2em;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+}
+
+.edit-btn {
+    background-color: #fdbe00;
+    color: black;
+    font-weight: bold;
+    border-radius: 2em;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+}
+
+.save-btn {
+    background-color: #1d6fea;
+    color: white;
+    font-weight: bold;
     border-radius: 2em;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
 }
