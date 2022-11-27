@@ -383,12 +383,13 @@ div span {
     padding-top: 20px;
 }
 
-#dropdownContent hr {
+/* 
+#dropdown-content hr {
     margin: 0px;
     padding: 0px;
     margin-right: 5%;
     margin-left: 5%;
-}
+} */
 
 #sif-browse-card-list {
     overflow-y: scroll;

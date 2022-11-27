@@ -44,7 +44,7 @@ function loadComplimentCards(compliments) {
 }
 
 function dropDown() {
-    document.getElementById("dropdownContent").classList.toggle("show");
+    document.getElementById("dropdown-content").classList.toggle("show");
 }
 
 //close dropdown menu
