@@ -58,20 +58,24 @@
                     <i class="material-icons md-24 absolute_icon">search</i>
                     <input id="search-bar" class="form-control" placeholder="Search" aria-label="Search" data-search>
                     <div class="btn-group">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" onclick="dropDown()">
+                        <button id="filter-dropdown" type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
                             Filter
                         </button>
                         <div id="dropdown-content" class="dropdown-content">
-                            <a id="clear" onclick="checkComplimentFilter(undefined)">Clear</a>
+                            <a id="clear">Clear</a>
                             <hr>
-                            <a id="affirmation" onclick="checkComplimentFilter(this.id)">Affirmation</a>
+
+                            <a class="filter-type-btn" id="affirmation">Affirmation</a>
                             <hr>
-                            <a id="appearance" onclick="checkComplimentFilter(this.id)">Appearance</a>
+
+                            <a class="filter-type-btn" id="appearance">Appearance</a>
                             <hr>
-                            <a id="personality" onclick="checkComplimentFilter(this.id)">Personality</a>
+
+                            <a class="filter-type-btn" id="personality">Personality</a>
                             <hr>
-                            <a id="encouragement" onclick="checkComplimentFilter(this.id)">Encouragement</a>
+
+                            <a class="filter-type-btn" id="encouragement">Encouragement</a>
                         </div>
 
                     </div>
