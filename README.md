@@ -33,49 +33,49 @@ Content of the project folder:
 └── README.md
 
 It has the following sub folders and files:
-├── .git                     # Folder for git repo
-├── helpers                  # Folder for helpers
-    /createEmojiData.js      # Creates data for each emoji
-    /write-compliments.js    # Adds compliment data to firebase
+├── .git                     # folder for git repo
+├── helpers                  # folder for helpers
+    /createEmojiData.js      # creates data for each emoji
+    /write-compliments.js    # adds compliment data to firebase
 
-├── html                     # Folder for html
-    /browse.html             # Browse page containing all compliments
-    /compliment-details.html # Details page for the compliment
-    /inbox.html              # A page containing all compliments the user has received
-    /main.html               # Homepage containing the quote og the day and a button to send a new compliment
-    /message-details.html    # Details page for the compliments that were sent to the user in the inbox
-    /profile.html            # Contains information about the user, contains functionality to change the information fields
-    /setting.html            # Contains an option for the user to set a preferred compliment
+├── html                     # folder for html
+    /browse.html             # browse page containing all compliments
+    /compliment-details.html # details page for the compliment
+    /inbox.html              # a page containing all compliments the user has received
+    /main.html               # homepage containing the quote og the day and a button to send a new compliment
+    /message-details.html    # details page for the compliments that were sent to the user in the inbox
+    /profile.html            # contains information about the user, contains functionality to change the information fields
+    /setting.html            # contains an option for the user to set a preferred compliment
     /sif-browse.html         # a separate browse page exclusive for the 'pay it forward' part of the app
     /sif-compliment-details.html # a separate compliment details page exclusive for the 'pay it forward' part of the app
 
-├── images                   # Folder for images
+├── images                   # folder for images
     /logo.png                
 
-├── scripts                  # Folder for scripts
-    /authentication.js       # Checks if the user is a current user or if they are new. 
+├── scripts                  # folder for scripts
+    /authentication.js       # checks if the user is a current user or if they are new. 
     /browse.js               # JS for browse.html
     /compliment-details.js   # JS for compliment-details.html
     /firebaseAPI_COMP1800_DTC01.js # firebase API stuff, shared across all pages
     /inbox.js                #  JS for inbox.html
-    /main.js                 # Homepage containing the quote of the day, and a button to send a new compliment
+    /main.js                 # homepage containing the quote of the day, and a button to send a new compliment
     /message-details.js      # JS for message-details.html
     /profile.js              # JS for profile.html
-    /script.js               # Check if the user has any new messages. If they do, display notification badge on inbox icon.
+    /script.js               # check if the user has any new messages. If they do, display notification badge on inbox icon.
     /settings.js             # JS for settings.html
     /sif-browse.js           # JS for sif-browse.html
     /sif-compliment-details.js # JS for sif-compliment-details.html
-    /skeleton.js             # Contains functionality for navbar placeholders
+    /skeleton.js             # contains functionality for navbar placeholders
 
-├── styles                   # Folder for styles
-    /style.css               # Style for every html file
+├── styles                   # folder for styles
+    /style.css               # style for every html file
 
-├── templates                # Folder for templates
-    /footer-empty.html       # Empty footer, applied on index.html and login.html
-    /footer.html             # Footer, shared across pages
-    /nav-back-btn.html       # Top nav with no back button, applied on pages that don't require a back button
-    /nav-no-account-icon.html# Top nav with no account icon, applied on index.html and login.html
-    /nav.html                # Top nav bar complete with a logo, company name, and a profile icon that serves as a dropdown menu.
+├── templates                # folder for templates
+    /footer-empty.html       # empty footer, applied on index.html and login.html
+    /footer.html             # footer, shared across pages
+    /nav-back-btn.html       # top nav with no back button, applied on pages that don't require a back button
+    /nav-no-account-icon.html# top nav with no account icon, applied on index.html and login.html
+    /nav.html                # top nav bar complete with a logo, company name, and a profile icon that serves as a dropdown menu.
 
 Firebase hosting files: 
 ├── .firebaserc...
