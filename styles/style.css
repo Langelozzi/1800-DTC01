@@ -68,12 +68,12 @@ p.lead {
     font-weight: bolder;
 }
 
-#bottom-nav {
-    padding: 0px !important;
-}
-
 #top-nav {
     box-shadow: 1px 1px 3px rgb(139, 139, 139);
+}
+
+.account>i {
+    color: #1d6fea;
 }
 
 /*----------------------Footer Styling------------------------*/
@@ -93,8 +93,8 @@ button>.footer-btn {
     height: 70px;
 }
 
-.account>i {
-    color: #1d6fea;
+#bottom-nav {
+    padding: 0px !important;
 }
 
 /*----------------------Button Styling------------------------*/
@@ -389,16 +389,12 @@ a {
     display: none;
 }
 
-
-
-/* #dropdown-content hr {
+#dropdown-content hr {
     margin: 0px;
     padding: 0px;
     margin-right: 5%;
     margin-left: 5%;
-} */
-
-
+}
 
 /*--------------------Responsive Styling----------------------*/
 @media only screen and (max-height: 760px) {
