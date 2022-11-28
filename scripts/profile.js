@@ -1,5 +1,6 @@
-var currentUser
-
+/**
+ * Populate the form with the info in the logged in users document from firestore.
+ */
 function populateInfo() {
     firebase.auth().onAuthStateChanged(async (user) => {
         // Check if user is signed in:
@@ -35,11 +36,17 @@ function populateInfo() {
     });
 }
 
+/**
+ * Enable form fields for editing.
+ */
 function editUserInfo() {
     // Enable the form fields
     $('#personalInfoFields').prop('disabled', false);
 }// event-listener that call the function editUserInfo after clicking on the button.
 
+/**
+ * Update user info in firestore with values from form.
+ */
 function saveUserInfo() {
     userName = $('#nameInput').val();
     userSchool = $('#emailInput').val();
@@ -58,8 +65,12 @@ function saveUserInfo() {
     $('#personalInfoFields').prop('disabled', true);
 }
 
+/**
+ * Run functions that will be called on page load.
+ */
 function setUp() {
     populateInfo();
 }
 
+// Call set up function once the document has loaded
 $(document).ready(setUp);

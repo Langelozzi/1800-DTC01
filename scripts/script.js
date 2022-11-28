@@ -1,3 +1,6 @@
+/**
+ * Check the database for unread messages and display notification badge if there is at least one
+ */
 function checkForNotifications() {
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
@@ -26,4 +29,5 @@ function checkForNotifications() {
     });
 }
 
+// Call checkForNotifications function once the document has loaded
 $(document).ready(checkForNotifications);
