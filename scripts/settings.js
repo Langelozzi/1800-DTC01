@@ -1,5 +1,3 @@
-var currentUser
-
 function populateInfo() {
     firebase.auth().onAuthStateChanged(async (user) => {
         // Check if user is signed in:
@@ -33,16 +31,38 @@ function editUserInfo() {
 function saveUserInfo() {
     userPreferredType = $('#preferredComplimentType').val();
 
-    currentUser.update({
-        preferredComplimentType: userPreferredType
-    }).then(() => {
-        console.log("Document successfully updated!");
+    firebase.auth().onAuthStateChanged(async (user) => {
+        if (user) {
+            const currentUserDoc = await db.collection("users").doc(user.uid);
+
+            currentUserDoc.update({
+                preferredComplimentType: userPreferredType
+            }).then(() => {
+                console.log("Document successfully updated!");
+            })
+            $('#personalInfoFields').prop('disabled', true);
+        }
+        else {
+            console.log("no user");
+
+            // redirect to login page if no user is logged in
+            window.location.href = "../html/login.html";
+        }
     })
-    $('#personalInfoFields').prop('disabled', true);
+
+
 }
 
 function setUp() {
     populateInfo();
+
+    $('#edit-btn').click(() => {
+        editUserInfo()
+    });
+
+    $('#save-btn').click(() => {
+        saveUserInfo()
+    });
 }
 
 $(document).ready(setUp);
