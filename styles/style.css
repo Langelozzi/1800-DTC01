@@ -196,6 +196,14 @@ button>.footer-btn {
 }
 
 /*-----------Dropdowns, Popups, and Forms Styling-------------*/
+
+#dropdown-content hr {
+    margin: 0px;
+    padding: 0px;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
 .dropdown-content,
 a {
     border-radius: 1em;
@@ -213,7 +221,6 @@ a {
 }
 
 .settings-option {
-
     font-size: small;
 }
 
