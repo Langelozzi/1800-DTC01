@@ -65,7 +65,15 @@ function chooseReceiver(userId, type) {
     })
 }
 
-
+/**
+ * Create a new message document in firestore.
+ * 
+ * @param {number} senderId The id of the message sender.
+ * @param {number} receiverId The id of the message receiver.
+ * @param {number} complimentId The id of the compliment being sent in this message.
+ * @param {number} chainId The id of the chain to which the message belongs.
+ * @returns {Promise<any>} A reference to the new message document in firestore.
+ */
 function createNewMessageDocument(senderId, receiverId, complimentId, chainId) {
     const messagesRef = db.collection("messages");
 
@@ -85,6 +93,12 @@ function createNewMessageDocument(senderId, receiverId, complimentId, chainId) {
     })
 }
 
+/**
+ * Choose receiver, create proper message document, and modify attribute values to properly send the message.
+ * 
+ * @param {number} complimentId The id of the compliment being sent.
+ * @param {string} type The type of compliment that was chosen to send.
+ */
 function sendMessage(complimentId, chainId, originalMessageId, type) {
     // get current user from firebase auth
     firebase.auth().onAuthStateChanged(async (user) => {
@@ -141,6 +155,11 @@ function sendMessage(complimentId, chainId, originalMessageId, type) {
     });
 }
 
+/**
+ * Find the compliment data of chosen compliment from firestore and display as card in html.
+ * 
+ * @param {number} complimentId The id of the compliment being sent.
+ */
 function populateComplimentData(complimentId) {
     db.collection('compliments').doc(complimentId).get().then((data) => {
         const complimentData = data.data();
@@ -150,6 +169,9 @@ function populateComplimentData(complimentId) {
     })
 }
 
+/**
+ * Retrieve url param values, populate compliment data and set event listeners.
+ */
 function setUp() {
     // get compliment id from html or query param
     const urlParams = new URLSearchParams(window.location.search);
@@ -171,4 +193,5 @@ function setUp() {
     });
 }
 
+// Call set up function once the document has loaded
 $(document).ready(setUp);
