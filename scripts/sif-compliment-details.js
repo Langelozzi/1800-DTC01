@@ -1,29 +1,70 @@
+/**
+ * Generate a random integer from 0 to max.
+ * 
+ * @param {number} max The maximum integer able to be chosen.
+ */
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-function chooseReceiver(userId) {
+/**
+ * Return the id of a user in the database to use as a receiver based on preferred compliment type or randomized.
+ * 
+ * @param {number} userId The id of the currently logged in user.
+ * @param {string} type The type of compliment that was chosen to send.
+ * @return {Promise<string>} The id of the user who has been chosen as the receiver.
+ */
+function chooseReceiver(userId, type) {
     const usersRef = db.collection("users");
 
     return usersRef.get().then((querySnapshot) => {
         let allUserIds = [];
+        let backupUserIds = [];
+
         querySnapshot.forEach((doc) => {
-            allUserIds.push(doc.id);
+            allUserIds.push([doc.id, doc.data().preferredComplimentType]);
+            backupUserIds.push([doc.id, doc.data().preferredComplimentType]);
         });
 
         if (allUserIds.length == 1) {
             return allUserIds[0];
-        } else {
-            // remove sender's id from list
-            const possibleReceiverIds = allUserIds.filter(id => id != userId);
+        }
+        else {
 
-            // change this with better algorithm that looks at how many compliments user received so far
+            let possibleReceiverIds = allUserIds;
+
+            // Remove user ids that have a different preferrec compliment type selected
+            for (let i = 0; i < allUserIds.length; i++) {
+                if (possibleReceiverIds[i][1] != type && possibleReceiverIds[i][1] != null && possibleReceiverIds[i][1] != "none") {
+                    possibleReceiverIds.splice(i, 1);
+                }
+            }
+
+            if (possibleReceiverIds.length <= 1) {
+                possibleReceiverIds = backupUserIds;
+                // Remove current user from possible receiver ids
+                for (let i = 0; i < backupUserIds.length; i++) {
+                    if (possibleReceiverIds[i][0] == userId) {
+                        possibleReceiverIds.splice(i, 1);
+                    }
+                }
+            }
+            else {
+                // Remove current user from possible receiver ids
+                for (let i = 0; i < allUserIds.length; i++) {
+                    if (possibleReceiverIds[i][0] == userId) {
+                        possibleReceiverIds.splice(i, 1);
+                    }
+                }
+            }
+
             let receiverIndex = getRandomInt(allUserIds.length - 1);
 
             return possibleReceiverIds[receiverIndex];
         }
     })
 }
+
 
 function createNewMessageDocument(senderId, receiverId, complimentId, chainId) {
     const messagesRef = db.collection("messages");
@@ -44,12 +85,12 @@ function createNewMessageDocument(senderId, receiverId, complimentId, chainId) {
     })
 }
 
-function sendMessage(complimentId, chainId, originalMessageId) {
+function sendMessage(complimentId, chainId, originalMessageId, type) {
     // get current user from firebase auth
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
             // get random user id from firestore users collection
-            const receiverId = await chooseReceiver(user.uid)
+            const receiverId = await chooseReceiver(user.uid, type)
 
             try {
                 var newMessageRef = await createNewMessageDocument(user.uid, receiverId, complimentId, chainId);
@@ -117,13 +158,16 @@ function setUp() {
 
     populateComplimentData(complimentId);
 
-    $('#send-btn').click(() => {
-        db.collection('messages').doc(messageId).get().then((data) => {
-            const messageData = data.data();
-            const chainId = messageData.chainId;
+    $('#send-btn').click(async () => {
+        const messageRef = await db.collection('messages').doc(messageId).get();
+        const messageData = messageRef.data();
 
-            sendMessage(complimentId, chainId, messageId);
-        });
+        const chainId = messageData.chainId;
+
+        const complimentRef = await db.collection('compliments').doc(complimentId).get()
+        const complimentData = complimentRef.data();
+
+        sendMessage(complimentId, chainId, messageId, complimentData.type);
     });
 }
 
