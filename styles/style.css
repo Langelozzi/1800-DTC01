@@ -16,6 +16,10 @@ body {
     font-size: 1.2rem;
 }
 
+h1 {
+    text-align: center;
+}
+
 /* ------material icons------ */
 .material-icons.md-36 {
     font-size: 36px;
@@ -92,14 +96,6 @@ button>.footer-btn {
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
 }
 
-.select-btn {
-    background-color: #fdbe00;
-    color: black;
-    font-weight: bold;
-    border-radius: 2em;
-    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
-}
-
 .sign-in-btn {
     background-color: #1d6fea;
     color: white;
@@ -108,6 +104,30 @@ button>.footer-btn {
     padding: 0.5em;
     padding-right: 1em;
     padding-left: 1em;
+    border-radius: 2em;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+}
+
+.select-btn {
+    background-color: #fdbe00;
+    color: black;
+    font-weight: bold;
+    border-radius: 2em;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+}
+
+.edit-btn {
+    background-color: #fdbe00;
+    color: black;
+    font-weight: bold;
+    border-radius: 2em;
+    box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+}
+
+.save-btn {
+    background-color: #1d6fea;
+    color: white;
+    font-weight: bold;
     border-radius: 2em;
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
 }
@@ -279,7 +299,8 @@ div span {
 }
 
 #emoji-selection-modal fieldset label {
-    margin: 1% !important;
+    margin-top: 1% !important;
+    margin-top: 1% !important;
     width: 30.3%;
     height: 12vh;
 }
@@ -362,15 +383,43 @@ div span {
     padding-top: 20px;
 }
 
-#dropdownContent hr {
+/* 
+#dropdown-content hr {
     margin: 0px;
     padding: 0px;
     margin-right: 5%;
     margin-left: 5%;
-}
+} */
 
 #sif-browse-card-list {
     overflow-y: scroll;
-    height: 48vh;
+    height: 83vh;
     padding-top: 20px;
+}
+
+@media only screen and (max-height: 760px) {
+
+    .card-body {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .new-comp-body {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .message-select-btn {
+        font-size: 90%;
+    }
+
+    .message-reply-btn {
+        font-size: 90%;
+    }
+
+    .brighten-btn {
+        font-size: 1em;
+    }
 }

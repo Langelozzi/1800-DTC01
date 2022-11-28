@@ -6,9 +6,9 @@ function insertName() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
         if (user) {
-            user_Name = user.displayName;
+            userName = user.displayName;
 
-            $("#name-goes-here").text(user_Name); //using jquery
+            $("#name-goes-here").text(userName);
         }
         else {
             console.log("no user");
@@ -61,4 +61,4 @@ function setUp() {
     addQuoteOfTheDay();
 }
 
-document.ready(setUp);
+$(document).ready(setUp);

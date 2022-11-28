@@ -34,23 +34,20 @@
 
     <!-- Link to styles of your own -->
     <link rel="stylesheet" href="../styles/style.css">
-
 </head>
 
 <body>
-
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
 
     <!-- our own navbar goes here -->
-    <nav id="navbar-back-btnPlaceholder"></nav>
+    <nav id="navbar-back-btn-placeholder"></nav>
 
     <!--Homepage Content-->
     <div class="container">
         <br>
-        <h1 style="text-align: center">User Settings</h1>
-        <br>
+        <h1> User Settings </h1>
         <p>Set your preferred type of compliment you wish to receive below!<br> <b>Please note:</b> you may
             still receive other types every so often</p>
         <div class="card home-card">
@@ -72,22 +69,21 @@
                 </form>
             </fieldset>
             <div class="d-flex justify-content-end mt-5" style="margin-top: 0.75rem !important">
-                <button type="button" class="btn select-btn" onclick="editUserInfo()">Edit</button>
+                <button type="button" class="btn edit-btn" onclick="editUserInfo()">Edit</button>
                 <span style="width: 10px"></span>
-                <button type="button" class="btn reply-btn" onclick="saveUserInfo()">Save</button>
+                <button type="button" class="btn save-btn" onclick="saveUserInfo()">Save</button>
             </div>
         </div>
     </div>
 
     <!-- Sticky Bottom Nav -->
-    <nav id="footerPlaceholder"></nav>
+    <nav id="footer-placeholder"></nav>
 
     <!-- Link to Javascript functions -->
     <script src="../scripts/firebaseAPI_COMP1800_DTC-01.js"></script>
     <script src="../scripts/skeleton.js"></script>
     <script src="../scripts/settings.js"></script>
     <script src="../scripts/script.js"></script>
-
 </body>
 
 </html>
