@@ -1,3 +1,4 @@
+/*-----------------------General Styling----------------------*/
 :root {
     --unopened-background: #ffffff;
     --opened-background: #f0f0f0;
@@ -16,11 +17,27 @@ body {
     font-size: 1.2rem;
 }
 
+div span {
+    vertical-align: middle;
+}
+
 h1 {
     text-align: center;
 }
 
-/* ------material icons------ */
+hr {
+    display: block;
+}
+
+p.lead {
+    margin-bottom: 0px;
+}
+
+/*----------------------Material Icons------------------------*/
+.material-icons {
+    vertical-align: middle !important;
+}
+
 .material-icons.md-36 {
     font-size: 36px;
 }
@@ -37,7 +54,7 @@ h1 {
     font-size: 24px;
 }
 
-/* ------Navbar----- */
+/*----------------------Navbar Styling------------------------*/
 .navbar {
     background-color: white;
 }
@@ -51,6 +68,15 @@ h1 {
     font-weight: bolder;
 }
 
+#bottom-nav {
+    padding: 0px !important;
+}
+
+#top-nav {
+    box-shadow: 1px 1px 3px rgb(139, 139, 139);
+}
+
+/*----------------------Footer Styling------------------------*/
 .footer-btn {
     color: whitesmoke;
     width: 33%;
@@ -67,16 +93,16 @@ button>.footer-btn {
     height: 70px;
 }
 
+.account>i {
+    color: #1d6fea;
+}
+
+/*----------------------Button Styling------------------------*/
 .mdl-button--raised.mdl-button--colored {
     background-color: #1d6fea;
     border-radius: 2em;
 }
 
-.account>i {
-    color: #1d6fea;
-}
-
-/* ------Buttons------ */
 .new-comp-btn {
     background-color: #fdbe00;
     padding: .2em;
@@ -151,7 +177,17 @@ button>.footer-btn {
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
 }
 
-/* ------dropdowns & popups------ */
+.btn-group>.dropdown-toggle:hover,
+.btn-group>.dropdown-toggle:focus {
+    background-color: gainsboro;
+}
+
+.btn-group {
+    position: relative;
+    display: inline-block;
+}
+
+/*-----------Dropdowns, Popups, and Forms Styling-------------*/
 
 .dropdown-content,
 a {
@@ -167,10 +203,10 @@ a {
 }
 
 .settings-option {
-
     font-size: small;
 }
 
+/*------------------------Card Styling------------------------*/
 .center-card {
     width: 100%;
 }
@@ -189,30 +225,24 @@ a {
     border-radius: 1.5em;
 }
 
-#bottom-nav {
-    /* box-shadow: 0px 0px 7px rgb(139, 139, 139); */
-    padding: 0px !important;
+#sif-browse-card-list {
+    overflow-y: scroll;
+    height: 83vh;
+    padding-top: 20px;
 }
 
-#top-nav {
-    box-shadow: 1px 1px 3px rgb(139, 139, 139);
+#inbox-card-list {
+    overflow-y: scroll;
+    height: 83vh;
+    padding-top: 20px;
 }
 
-p.lead {
-    margin-bottom: 0px;
+#inbox-compliment-card {
+    box-shadow: 2px 0px 3px grey;
 }
 
-.material-icons {
-    vertical-align: middle !important;
-}
-
-hr {
-    display: block;
-}
-
-div span {
-    vertical-align: middle;
-    /* padding-bottom: 5px; */
+#inbox-compliment-card #compliment-text {
+    font-style: italic;
 }
 
 .card-list {
@@ -220,6 +250,11 @@ div span {
     overflow-y: scroll;
     height: 76vh;
     padding-top: 20px;
+}
+
+#inbox-card {
+    text-decoration: none;
+    color: inherit;
 }
 
 #send-section {
@@ -257,16 +292,6 @@ div span {
 .dropdown-toggle {
     border: none;
     cursor: pointer;
-}
-
-.btn-group>.dropdown-toggle:hover,
-.btn-group>.dropdown-toggle:focus {
-    background-color: gainsboro;
-}
-
-.btn-group {
-    position: relative;
-    display: inline-block;
 }
 
 .form-group.profile {
@@ -309,10 +334,7 @@ div span {
     font-size: 50px;
 }
 
-#inbox-card {
-    text-decoration: none;
-    color: inherit;
-}
+
 
 #inbox-emoji {
     font-size: 2.5em;
@@ -334,14 +356,6 @@ div span {
 #inbox-emoji-card {
     background-color: var(--opened-background);
     border: solid 1px var(--emoji-border);
-}
-
-#inbox-compliment-card {
-    box-shadow: 2px 0px 3px grey;
-}
-
-#inbox-compliment-card #compliment-text {
-    font-style: italic;
 }
 
 .inbox-compliment-unopened {
@@ -377,26 +391,18 @@ div span {
     display: none;
 }
 
-#inbox-card-list {
-    overflow-y: scroll;
-    height: 83vh;
-    padding-top: 20px;
-}
 
-/* 
-#dropdown-content hr {
+
+/* #dropdown-content hr {
     margin: 0px;
     padding: 0px;
     margin-right: 5%;
     margin-left: 5%;
 } */
 
-#sif-browse-card-list {
-    overflow-y: scroll;
-    height: 83vh;
-    padding-top: 20px;
-}
 
+
+/*--------------------Responsive Styling----------------------*/
 @media only screen and (max-height: 760px) {
 
     .card-body {
@@ -435,9 +441,5 @@ div span {
     .navbar>.container-xl,
     .navbar>.container-xxl {
         max-width: none !important;
-    }
-
-    #note-badge {
-        right: calc(33vw / 2 - 24px);
     }
 }
