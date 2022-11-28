@@ -15,7 +15,6 @@ async function generateComplimentMessage(message) {
     let clone = template.content.cloneNode(true);
 
     clone.querySelector('#compliment-text').innerHTML = `"${messageText}"`;
-    clone.querySelector('#message-date').innerHTML = messageSentAtDate;
     clone.querySelector('#inbox-card')
         .setAttribute('href', `../html/message-details.html?messageId=${message.id}`);
 
@@ -57,7 +56,6 @@ async function generateEmojiMessage(message) {
     let clone = template.content.cloneNode(true);
 
     clone.querySelector('#inbox-emoji').innerHTML = `&#${messageData.emojiId};`;
-    clone.querySelector('#message-date').innerHTML = messageSentAtDate;
     clone.querySelector('#original-message').innerHTML = `"${messageText}"`;
 
     $('#inbox-card-list').append(clone);
