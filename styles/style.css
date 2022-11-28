@@ -369,7 +369,7 @@ div span {
 #note-badge {
     position: absolute;
     top: 5px;
-    right: 40px;
+    right: calc(33vw / 2 - 24px);
     padding: 0px 10px;
     border-radius: 50%;
     background: red;
@@ -421,5 +421,23 @@ div span {
 
     .brighten-btn {
         font-size: 1em;
+    }
+}
+
+@media only screen and (min-width: 576px) {
+
+    .navbar>.container,
+    .container-sm,
+    .container-fluid,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+        max-width: none !important;
+    }
+
+    #note-badge {
+        right: calc(33vw / 2 - 24px);
     }
 }
