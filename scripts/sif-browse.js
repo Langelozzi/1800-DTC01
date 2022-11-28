@@ -2,8 +2,9 @@ const COMPLIMENTS = [];
 
 function checkComplimentFilter(filterType) {
     if (filterType) {
-        var filteredCompliments = [];
+        filterType = filterType[0].toUpperCase() + filterType.slice(1);
 
+        var filteredCompliments = [];
         COMPLIMENTS.forEach((compliment) => {
             if (compliment.data().type == filterType) {
                 filteredCompliments.push(compliment);
@@ -11,8 +12,7 @@ function checkComplimentFilter(filterType) {
         })
 
         loadComplimentCards(filteredCompliments);
-    }
-    else {
+    } else {
         loadComplimentCards(COMPLIMENTS);
     }
 }
