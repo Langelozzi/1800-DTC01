@@ -1,7 +1,17 @@
+/**
+ * Randomly select a number in range min-max.
+ * 
+ * @param {number} min The minimum value able to be chosen.
+ * @param {number} max The maximum value able to be chosen.
+ * @return {number} The randomly selected integer.
+ */
 function chooseRandomNumberInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+/**
+ * Insert the current user's name onto main jumbotron.
+ */
 function insertName() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
@@ -19,6 +29,9 @@ function insertName() {
     });
 }
 
+/**
+ * Randomly set a quote from https://type.fit/api/quotes api as the quote of the day and display in html.
+ */
 function addQuoteOfTheDay() {
     const today = new Date().toLocaleDateString("en-US");
     // NOTE: if any of these values in localStorage don't exist then they will be null
@@ -56,9 +69,13 @@ function addQuoteOfTheDay() {
     }
 }
 
+/**
+ * Run functions that will be called on page load.
+ */
 function setUp() {
     insertName();
     addQuoteOfTheDay();
 }
 
+// Call set up function once the document has loaded
 $(document).ready(setUp);

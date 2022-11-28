@@ -1,31 +1,43 @@
-const COMPLIMENTS = [];
+/**
+ * Filter the compliments list by compliment type and reload the filtered list on the browse page.
+ *
+ * @param {string} filterType The compliment type the user wants to filter by, or undefined.
+ */
+function filterCompliments(compliments, filterType) {
+    filterType = filterType[0].toUpperCase() + filterType.slice(1);
 
-function checkComplimentFilter(filterType) {
-    if (filterType) {
-        filterType = filterType[0].toUpperCase() + filterType.slice(1);
+    var filteredCompliments = [];
+    compliments.forEach((compliment) => {
+        if (compliment.data().type == filterType) {
+            filteredCompliments.push(compliment);
+        }
+    })
 
-        var filteredCompliments = [];
-        COMPLIMENTS.forEach((compliment) => {
-            if (compliment.data().type == filterType) {
-                filteredCompliments.push(compliment);
-            }
-        })
-
-        loadComplimentCards(filteredCompliments);
-    } else {
-        loadComplimentCards(COMPLIMENTS);
-    }
+    loadComplimentCards(filteredCompliments);
 }
 
+/**
+ * Return all of the compliments in firestore as an array.
+ *
+ * @return {Promise<Array<object>>} An array of all of the compliment objects in firestore.
+ */
 function getCompliments() {
-    // grab compliments from database and append them into the 'COMPLIMENTS' array
     return db.collection('compliments').get().then((data) => {
+        const compliments = [];
+
         data.forEach(element => {
-            COMPLIMENTS.push(element);
+            compliments.push(element);
         });
+
+        return compliments;
     })
 }
 
+/**
+ * Render all of the compliments onto the browse page as a list of compliment cards.
+ *
+ * @param {Array[object]} compliments An array of all of the compliment objects in firestore.
+ */
 function loadComplimentCards(compliments) {
     // get message id from html or query param
     const urlParams = new URLSearchParams(window.location.search);
@@ -49,16 +61,23 @@ function loadComplimentCards(compliments) {
     })
 }
 
-function dropDown() {
+/**
+ * Open the filter dropdown menu
+ */
+function openFilterDropDown() {
     document.getElementById("dropdown-content").classList.toggle("show");
 }
 
-//close dropdown menu
-window.onclick = function (event) {
+/**
+ * Close the filter dropdown menu
+ * 
+ * @param {Event} event The event triggered one window click.
+ */
+function closeFilterDropdown(event) {
     if (!event.target.matches('.dropdown-toggle')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
+
+        for (let i = 0; i < dropdowns.length; i++) {
             var openDropdown = dropdowns[i];
             if (openDropdown.classList.contains("show")) {
                 openDropdown.classList.remove("show")
@@ -67,28 +86,52 @@ window.onclick = function (event) {
     }
 }
 
-function searchBarFilter() {
+/**
+ * Filter the compliments by matching user input the the compliment text, then load the filtered compliments onto the browse page.
+ * 
+ * @param {Array[object]} compliments An array of all of the compliment objects in firestore.
+ */
+function searchBarFilter(compliments) {
     const searchInput = $('#search-bar').val(); //grabs the value of what the user types in the search bar
     var searchResult = []
 
-    COMPLIMENTS.forEach((compliment) => { //loops through each compliment and checks if a compliment contains the searchInput. If it does, then append that compliment to searchResult
+    // Loops through each compliment and checks if a compliment contains the searchInput. If it does, then append that compliment to searchResult
+    compliments.forEach((compliment) => {
         var complimentText = compliment.data().compliment;
+
         if (complimentText.includes(searchInput)) {
             searchResult.push(compliment);
         }
     })
 
     loadComplimentCards(searchResult);
+
 }
 
-function setUp() {
-    getCompliments().then(() => {
-        loadComplimentCards(COMPLIMENTS);
+/**
+ * Loads the compliments from firestore, displays them on the page, and sets event listeners.
+ */
+async function setUp() {
+    const compliments = await getCompliments();
 
-        $('#search-bar').keyup((event) => {
-            searchBarFilter();
-        });
+    loadComplimentCards(compliments);
+
+    window.onclick = closeFilterDropdown;
+
+    $('.dropdown-toggle').click(openFilterDropDown);
+
+    $('#search-bar').keyup((event) => {
+        searchBarFilter(compliments);
+    });
+
+    $('.filter-type-btn').click(function () {
+        filterCompliments(compliments, this.id);
+    })
+
+    $('#clear').click(() => {
+        loadComplimentCards(compliments)
     })
 }
 
+// Call set up function once the document has loaded
 $(document).ready(setUp);
