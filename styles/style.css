@@ -1,11 +1,4 @@
-:root {
-    --unopened-background: #ffffff;
-    --opened-background: #f0f0f0;
-    --unopened-border: #1d6feadc;
-    --opened-border: #1d6fea88;
-    --emoji-border: #fdbe0088;
-}
-
+/*-----------------------General Styling----------------------*/
 * {
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
@@ -16,11 +9,42 @@ body {
     font-size: 1.2rem;
 }
 
+.show {
+    display: block;
+}
+
+hr {
+    display: block;
+}
+
 h1 {
     text-align: center;
 }
 
-/* ------material icons------ */
+p.lead {
+    margin-bottom: 0px;
+}
+
+div span {
+    vertical-align: middle;
+}
+
+.browse_content {
+    margin: 10px;
+}
+
+#send-section {
+    width: 100%;
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+/*----------------------Material Icons------------------------*/
+.material-icons {
+    vertical-align: middle !important;
+}
+
 .material-icons.md-36 {
     font-size: 36px;
 }
@@ -37,18 +61,28 @@ h1 {
     font-size: 24px;
 }
 
-/* ------Navbar----- */
+/*----------------------Navbar Styling------------------------*/
 .navbar {
     background-color: white;
 }
 
+.navbar-brand {
+    font-weight: bolder;
+}
+
+#bottom-nav {
+    /* box-shadow: 0px 0px 7px rgb(139, 139, 139); */
+    padding: 0px !important;
+}
+
+#top-nav {
+    box-shadow: 1px 1px 3px rgb(139, 139, 139);
+}
+
+/*----------------------Footer Styling------------------------*/
 .fixed-bottom {
     background-color: #1d6fea;
     height: 80px;
-}
-
-.navbar-brand {
-    font-weight: bolder;
 }
 
 .footer-btn {
@@ -67,16 +101,21 @@ button>.footer-btn {
     height: 70px;
 }
 
+.account>i {
+    color: #1d6fea;
+}
+
+/*----------------------Button Styling------------------------*/
+.btn-group {
+    position: relative;
+    display: inline-block;
+}
+
 .mdl-button--raised.mdl-button--colored {
     background-color: #1d6fea;
     border-radius: 2em;
 }
 
-.account>i {
-    color: #1d6fea;
-}
-
-/* ------Buttons------ */
 .new-comp-btn {
     background-color: #fdbe00;
     padding: .2em;
@@ -151,107 +190,16 @@ button>.footer-btn {
     box-shadow: 0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 20%), 0 1px 5px 0 rgb(0 0 0 / 12%);
 }
 
-/* ------dropdowns & popups------ */
-
-.dropdown-content,
-a {
-    border-radius: 1em;
-    background-color: white;
-}
-
-.icon-button-label {
-    display: block;
-    font-size: small;
-    font-weight: bold;
-    margin: 0px;
-}
-
-.settings-option {
-
-    font-size: small;
-}
-
-.center-card {
-    width: 100%;
-}
-
-.centered-card {
-    width: fit-content;
-    margin: auto;
-}
-
-.home-card {
-    padding: 5%;
-    margin-bottom: 3%;
-}
-
-.modal-content {
-    border-radius: 1.5em;
-}
-
-#bottom-nav {
-    /* box-shadow: 0px 0px 7px rgb(139, 139, 139); */
-    padding: 0px !important;
-}
-
-#top-nav {
-    box-shadow: 1px 1px 3px rgb(139, 139, 139);
-}
-
-p.lead {
-    margin-bottom: 0px;
-}
-
-.material-icons {
-    vertical-align: middle !important;
-}
-
-hr {
-    display: block;
-}
-
-div span {
-    vertical-align: middle;
-    /* padding-bottom: 5px; */
-}
-
-.card-list {
-    /* position: absolute; */
-    overflow-y: scroll;
-    height: 76vh;
-    padding-top: 20px;
-}
-
-#send-section {
-    width: 100%;
-    left: 0;
-    right: 0;
-    position: absolute;
-}
-
 #send-section button {
     box-shadow: 1px 1px 1px grey;
     width: 80%;
 }
 
-.browse_content {
-    margin: 10px;
-}
-
-.search .form-control {
-    padding-left: 2.375rem;
-}
-
-.search .absolute_icon {
-    position: absolute;
-    z-index: 2;
-    display: block;
-    width: 2.375rem;
-    height: 2.375rem;
-    line-height: 2.375rem;
-    text-align: center;
-    pointer-events: none;
-    color: #aaa;
+/*-----------Dropdowns, Popups, and Forms Styling-------------*/
+.dropdown-content,
+a {
+    border-radius: 1em;
+    background-color: white;
 }
 
 .dropdown-toggle {
@@ -264,13 +212,17 @@ div span {
     background-color: gainsboro;
 }
 
-.btn-group {
-    position: relative;
-    display: inline-block;
+.settings-option {
+
+    font-size: small;
 }
 
-.form-group.profile {
-    font-size: large;
+.modal-content {
+    border-radius: 1.5em;
+}
+
+.search .form-control {
+    padding-left: 2.375rem;
 }
 
 .dropdown-content {
@@ -294,32 +246,52 @@ div span {
     background-color: #ddd;
 }
 
-.show {
-    display: block;
+.form-group.profile {
+    font-size: large;
 }
 
-#emoji-selection-modal fieldset label {
-    margin-top: 1% !important;
-    margin-top: 1% !important;
-    width: 30.3%;
-    height: 12vh;
+/*-----------------------Card Styling-------------------------*/
+:root {
+    --unopened-background: #ffffff;
+    --opened-background: #f0f0f0;
+    --unopened-border: #1d6feadc;
+    --opened-border: #1d6fea88;
+    --emoji-border: #fdbe0088;
 }
 
-#emoji-selection-modal fieldset label span {
-    font-size: 50px;
+.center-card {
+    width: 100%;
 }
 
-#inbox-card {
-    text-decoration: none;
-    color: inherit;
+.centered-card {
+    width: fit-content;
+    margin: auto;
 }
 
-#inbox-emoji {
-    font-size: 2.5em;
-    float: left;
-    width: 17%;
+.home-card {
+    padding: 5%;
+    margin-bottom: 3%;
 }
 
+#inbox-card-list {
+    overflow-y: scroll;
+    height: 83vh;
+    padding-top: 20px;
+}
+
+#sif-browse-card-list {
+    overflow-y: scroll;
+    height: 83vh;
+    padding-top: 20px;
+}
+
+.card-list {
+    overflow-y: scroll;
+    height: 76vh;
+    padding-top: 20px;
+}
+
+/*---------------------Inbox Card Styling---------------------*/
 #original-message {
     float: left;
     width: 83%;
@@ -334,6 +306,11 @@ div span {
 #inbox-emoji-card {
     background-color: var(--opened-background);
     border: solid 1px var(--emoji-border);
+}
+
+#inbox-card {
+    text-decoration: none;
+    color: inherit;
 }
 
 #inbox-compliment-card {
@@ -358,6 +335,26 @@ div span {
     border: solid 1px var(--opened-border);
 }
 
+/*----------------------Icons and Badges----------------------*/
+.icon-button-label {
+    display: block;
+    font-size: small;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.search .absolute_icon {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+
 #reacted-to {
     color: #fdbe00;
 }
@@ -377,26 +374,24 @@ div span {
     display: none;
 }
 
-#inbox-card-list {
-    overflow-y: scroll;
-    height: 83vh;
-    padding-top: 20px;
+#emoji-selection-modal fieldset label {
+    margin-top: 1% !important;
+    margin-top: 1% !important;
+    width: 30.3%;
+    height: 12vh;
 }
 
-/* 
-#dropdown-content hr {
-    margin: 0px;
-    padding: 0px;
-    margin-right: 5%;
-    margin-left: 5%;
-} */
-
-#sif-browse-card-list {
-    overflow-y: scroll;
-    height: 83vh;
-    padding-top: 20px;
+#emoji-selection-modal fieldset label span {
+    font-size: 50px;
 }
 
+#inbox-emoji {
+    font-size: 2.5em;
+    float: left;
+    width: 17%;
+}
+
+/*--------------------Responsive Styling----------------------*/
 @media only screen and (max-height: 760px) {
 
     .card-body {
@@ -424,6 +419,7 @@ div span {
     }
 }
 
+/* Overrwrite Bootstrap styling to allow notification badge to follow email icon smoothly*/
 @media only screen and (min-width: 576px) {
 
     .navbar>.container,
@@ -435,9 +431,5 @@ div span {
     .container-xl,
     .container-xxl {
         max-width: none !important;
-    }
-
-    #note-badge {
-        right: calc(33vw / 2 - 24px);
     }
 }
