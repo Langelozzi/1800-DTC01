@@ -1,3 +1,6 @@
+/**
+ * Populate the current user info into form.
+ */
 function populateInfo() {
     firebase.auth().onAuthStateChanged(async (user) => {
         // Check if user is signed in:
@@ -23,11 +26,17 @@ function populateInfo() {
     });
 }
 
+/**
+ * Enable the form for editing.
+ */
 function editUserInfo() {
     //Enable the form fields
     $('#personalInfoFields').prop('disabled', false);
 }//event-listener that call the function editUserInfo after clicking on the button.
 
+/**
+ * Save the form data into the user's firestore document.
+ */
 function saveUserInfo() {
     userPreferredType = $('#preferredComplimentType').val();
 
@@ -49,10 +58,11 @@ function saveUserInfo() {
             window.location.href = "../html/login.html";
         }
     })
-
-
 }
 
+/**
+ * Load the current user data and set event listeners.
+ */
 function setUp() {
     populateInfo();
 
@@ -65,4 +75,5 @@ function setUp() {
     });
 }
 
+// Call set up function once the document has loaded
 $(document).ready(setUp);
