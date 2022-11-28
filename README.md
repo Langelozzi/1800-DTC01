@@ -32,45 +32,50 @@ Content of the project folder:
 ├── index.html               # landing HTML file, this is what users see when you come to url
 └── README.md
 
-It has the following subfolders and files:
+It has the following sub folders and files:
 ├── .git                     # Folder for git repo
 ├── helpers                  # Folder for helpers
-    /createEmojiData.js      #
-    /write-compliments.js    #  
+    /createEmojiData.js      # Creates data for each emoji
+    /write-compliments.js    # Adds compliment data to firebase
+
 ├── html                     # Folder for html
-    /browse.html             # 
-    /compliment-details.html #
-    /inbox.html              #
-    /main.html               #
-    /message-details.html    #
-    /profile.html            #
-    /setting.html            #
-    /sif-browse.html         #
-    /sif-compliment-details.html
+    /browse.html             # Browse page containing all compliments
+    /compliment-details.html # Details page for the compliment
+    /inbox.html              # A page containing all compliments the user has received
+    /main.html               # Homepage containing the quote og the day and a button to send a new compliment
+    /message-details.html    # Details page for the compliments that were sent to the user in the inbox
+    /profile.html            # Contains information about the user, contains functionality to change the information fields
+    /setting.html            # Contains an option for the user to set a preferred compliment
+    /sif-browse.html         # a separate browse page exclusive for the 'pay it forward' part of the app
+    /sif-compliment-details.html # a separate compliment details page exclusive for the 'pay it forward' part of the app
+
 ├── images                   # Folder for images
-    /logo.png                # 
+    /logo.png                
+
 ├── scripts                  # Folder for scripts
-    /authentication.js       # 
-    /browse.js               #
-    /compliment-details.js   #
-    /firebaseAPI_COMP1800_DTC01.js
-    /inbox.js                #
-    /main.js                 #
-    /message-details.js      #
-    /profile.js              #
-    /script.js               #
-    /settings.js             #
-    /sif-browse.js           #
-    /sif-compliment-details.js
-    /skeleton.js             #
+    /authentication.js       # Checks if the user is a current user or if they are new. 
+    /browse.js               # JS for browse.html
+    /compliment-details.js   # JS for compliment-details.html
+    /firebaseAPI_COMP1800_DTC01.js # firebase API stuff, shared across all pages
+    /inbox.js                #  JS for inbox.html
+    /main.js                 # Homepage containing the quote of the day, and a button to send a new compliment
+    /message-details.js      # JS for message-details.html
+    /profile.js              # JS for profile.html
+    /script.js               # Check if the user has any new messages. If they do, display notification badge on inbox icon.
+    /settings.js             # JS for settings.html
+    /sif-browse.js           # JS for sif-browse.html
+    /sif-compliment-details.js # JS for sif-compliment-details.html
+    /skeleton.js             # Contains functionality for navbar placeholders
+
 ├── styles                   # Folder for styles
-    /style.css               # 
+    /style.css               # Style for every html file
+
 ├── templates                # Folder for templates
-    /footer-empty.html       #
-    /footer.html             #
-    /nav-back-btn.html       #
-    /nav-no-account-icon.html#
-    /nav.html                # 
+    /footer-empty.html       # Empty footer, applied on index.html and login.html
+    /footer.html             # Footer, shared across pages
+    /nav-back-btn.html       # Top nav with no back button, applied on pages that don't require a back button
+    /nav-no-account-icon.html# Top nav with no account icon, applied on index.html and login.html
+    /nav.html                # Top nav bar complete with a logo, company name, and a profile icon that serves as a dropdown menu.
 
 Firebase hosting files: 
 ├── .firebaserc...
