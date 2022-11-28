@@ -1,5 +1,8 @@
-var userId;
-
+/**
+ * Create a message card of a compliment and render in inbox list in html.
+ * 
+ * @param {any} message A reference to the message in firestore.
+ */
 async function generateComplimentMessage(message) {
     let messageData = message.data();
 
@@ -33,6 +36,11 @@ async function generateComplimentMessage(message) {
     $('#inbox-card-list').append(clone);
 }
 
+/**
+ * Create a message card of an emoji and render in inbox list in html.
+ * 
+ * @param {any} message A reference to the message in firestore.
+ */
 async function generateEmojiMessage(message) {
     let messageData = message.data();
     let messageSentAtDate = messageData.sendAt.toDate().toLocaleString('en-CA', { timeZone: 'America/Vancouver' });
@@ -55,6 +63,9 @@ async function generateEmojiMessage(message) {
     $('#inbox-card-list').append(clone);
 }
 
+/**
+ * Iterate through the messages that the user received and populate them into the inbox.
+ */
 function populateInboxData() {
     const messagesRef = db.collection('messages');
 
@@ -100,10 +111,14 @@ function populateInboxData() {
     });
 }
 
+/**
+ * Run functions that will be called on page load.
+ */
 function setUp() {
     populateInboxData();
 }
 
+// Call set up function once the document has loaded
 $(document).ready(setUp);
 
 

@@ -19,7 +19,7 @@ function filterCompliments(compliments, filterType) {
 /**
  * Return all of the compliments in firestore as an array.
  *
- * @return {Promise<Array<object>>} An array of all of the compliment objects in firestore.
+ * @return {Promise<Array<object>>} An array of all of the compliment references in firestore.
  */
 function getCompliments() {
     return db.collection('compliments').get().then((data) => {
@@ -36,7 +36,7 @@ function getCompliments() {
 /**
  * Render all of the compliments onto the browse page as a list of compliment cards.
  *
- * @param {Array[object]} compliments An array of all of the compliment objects in firestore.
+ * @param {Array[any]} compliments An array of all of the compliment references in firestore.
  */
 function loadComplimentCards(compliments) {
     var template = document.getElementById('browse-card-template');
@@ -86,7 +86,7 @@ function closeFilterDropdown(event) {
 /**
  * Filter the compliments by matching user input the the compliment text, then load the filtered compliments onto the browse page.
  * 
- * @param {Array[object]} compliments An array of all of the compliment objects in firestore.
+ * @param {Array[any]} compliments An array of all of the compliment references in firestore.
  */
 function searchBarFilter(compliments) {
     const searchInput = $('#search-bar').val(); //grabs the value of what the user types in the search bar
