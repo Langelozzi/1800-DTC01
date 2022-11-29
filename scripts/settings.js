@@ -14,7 +14,7 @@ function populateInfo() {
 
             //if the data fields are not empty, then write them in to the form.
             if (userPreferredType != null) {
-                $('#preferredComplimentType').val(userPreferredType);
+                $('#preferred-compliment-type').val(userPreferredType);
             }
         }
         else {
@@ -38,7 +38,7 @@ function editUserInfo() {
  * Save the form data into the user's firestore document.
  */
 function saveUserInfo() {
-    userPreferredType = $('#preferredComplimentType').val();
+    userPreferredType = $('#preferred-compliment-type').val();
 
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
