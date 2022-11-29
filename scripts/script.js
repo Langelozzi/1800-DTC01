@@ -1,3 +1,6 @@
+/**
+ * Check the database for unread messages and display notification badge if there is at least one
+ */
 function checkForNotifications() {
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
@@ -11,6 +14,7 @@ function checkForNotifications() {
                 }
             });
 
+            // Toggle the notification badge
             if (hasNotifications) {
                 $('#note-badge').show();
             } else {
@@ -20,10 +24,11 @@ function checkForNotifications() {
         else {
             console.log("no user");
 
-            // redirect to login page if no user is logged in
+            // Redirect to login page if no user is logged in
             window.location.href = "../html/login.html";
         }
     });
 }
 
+// Call checkForNotifications function once the document has loaded
 $(document).ready(checkForNotifications);

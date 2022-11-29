@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>My BCIT Project</title>
+    <title>Say it Forward</title>
     <meta name="comp1800 template" content="My 1800 App">
 
     <!-- Required meta tags -->
@@ -25,21 +25,18 @@
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
 
-    <!-- Jquery -->
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Other libraries go here -->
     <!-- Google Icons (Material Design)-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- Link to styles of your own -->
+    <!-- Link to stylesheet -->
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 
 <body>
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
 
     <!-- our own navbar goes here -->
     <nav id="navbar-back-btn-placeholder"></nav>
@@ -51,11 +48,11 @@
         <p>Set your preferred type of compliment you wish to receive below!<br> <b>Please note:</b> you may
             still receive other types every so often</p>
         <div class="card home-card">
-            <fieldset class="mb-3" id="personalInfoFields" disabled>
+            <fieldset class="mb-3" id="personal-info-fields" disabled>
                 <form>
                     <div>
-                        <label for="preferredComplimentType">Preferred type:</label>
-                        <select name="preferredComplimentType" id="preferredComplimentType" style="float: right">
+                        <label for="preferred-compliment-type">Preferred type:</label>
+                        <select name="preferred-compliment-type" id="preferred-compliment-type" style="float: right">
                             <option class="settings-option" value="None">None</option>
                             <option class="settings-option" value="Affirmation">Affirmation</option>
                             <option class="settings-option" value="Appearance">Appearance</option>
@@ -63,15 +60,12 @@
                             <option class="settings-option" value="Personality">Personality</option>
                         </select>
                     </div>
-                    <!-- <div>
-                        <label for="notificationSettings">Notifications</label>
-                    </div> -->
                 </form>
             </fieldset>
             <div class="d-flex justify-content-end mt-5" style="margin-top: 0.75rem !important">
-                <button type="button" class="btn edit-btn" onclick="editUserInfo()">Edit</button>
+                <button id="edit-btn" type="button" class="btn">Edit</button>
                 <span style="width: 10px"></span>
-                <button type="button" class="btn save-btn" onclick="saveUserInfo()">Save</button>
+                <button id="save-btn" type="button" class="btn">Save</button>
             </div>
         </div>
     </div>

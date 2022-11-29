@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>My BCIT Project</title>
+    <title>Say it Forward</title>
     <meta name="comp1800 template" content="My 1800 App">
 
     <!-- Required meta tags -->
@@ -19,7 +19,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
-    <!-- Jquery -->
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Firebase 8 Library -->
@@ -33,26 +33,14 @@
     <!-- Google Icons (Material Design)-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- Link to styles of your own -->
+    <!-- Link to main stylesheet and browse stylesheet to highlight the add tab in bottom nav -->
     <link rel="stylesheet" href="../styles/style.css">
-    <style>
-        .circle {
-            color: #1d6fea;
-            background-color: whitesmoke;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/browse.css">
 </head>
 
 <body>
-
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
-
     <!--Top Navbar-->
     <nav id="navbar-back-btn-placeholder"></nav>
-
-
 
     <!--Browse Content-->
     <div class="container">
@@ -64,20 +52,26 @@
                     <i class="material-icons md-24 absolute_icon">search</i>
                     <input id="search-bar" class="form-control" placeholder="Search" aria-label="Search" data-search>
                     <div class="btn-group">
-                        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" onclick="dropDown()">
+
+                        <!-- Dropdown Filter -->
+                        <button id="filter-dropdown" type="button" class="btn dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
                             Filter
                         </button>
                         <div id="dropdown-content" class="dropdown-content">
-                            <a id="Clear" onclick="checkComplimentFilter(undefined)">Clear</a>
+                            <a id="clear">Clear</a>
                             <hr>
-                            <a id="Affirmation" onclick="checkComplimentFilter(this.id)">Affirmation</a>
+
+                            <a class="filter-type-btn" id="affirmation">Affirmation</a>
                             <hr>
-                            <a id="Appearance" onclick="checkComplimentFilter(this.id)">Appearance</a>
+
+                            <a class="filter-type-btn" id="appearance">Appearance</a>
                             <hr>
-                            <a id="Personality" onclick="checkComplimentFilter(this.id)">Personality</a>
+
+                            <a class="filter-type-btn" id="personality">Personality</a>
                             <hr>
-                            <a id="Encouragement" onclick="checkComplimentFilter(this.id)">Encouragement</a>
+
+                            <a class="filter-type-btn" id="encouragement">Encouragement</a>
                         </div>
 
                     </div>
@@ -87,7 +81,6 @@
 
         <!-- Cards -->
         <div id="browse-card-list" class="card-list">
-
         </div>
     </div>
 

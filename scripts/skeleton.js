@@ -1,3 +1,6 @@
+/**
+ * Inject templates into proper placeholders.
+ */
 function loadSkeleton() {
     $('#navbar-placeholder').load('../templates/nav.html');
     $('#navbar-back-btn-placeholder').load('../templates/nav-back-btn.html');

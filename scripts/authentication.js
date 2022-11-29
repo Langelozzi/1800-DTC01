@@ -2,6 +2,7 @@ var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
 var uiConfig = {
     callbacks: {
+        // Create a new user doc in firestore if it is a new user
         signInSuccessWithAuthResult: function (authResult, redirectUrl) {
             var user = authResult.user;
             // Write new user document to Firestore if user is new                         
@@ -19,6 +20,7 @@ var uiConfig = {
                 }).then(() => {
                     console.log("New user added to firestore");
                     window.location.assign("main.html");
+                    // If there is an error, log it
                 }).catch((error) => {
                     console.log("Error adding new user: " + error);
                 });
@@ -28,6 +30,7 @@ var uiConfig = {
             }
             return false;
         },
+        // Remove loader once auth component loads
         uiShown: function () {
             document.getElementById('loader').style.display = 'none';
         }
@@ -39,4 +42,5 @@ var uiConfig = {
     ],
 };
 
+// Render the firebase auth ui
 ui.start('#firebaseui-auth-container', uiConfig);

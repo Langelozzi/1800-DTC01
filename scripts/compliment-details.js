@@ -1,8 +1,20 @@
+/**
+ * Generate a random integer from 0 to max.
+ * 
+ * @param {number} max The maximum integer able to be chosen.
+ */
 function getRandomInt(max) {
+    // Math.random() will return random number from 0 to 1, then multiply by our max and floor gives a random integer.
     return Math.floor(Math.random() * max);
 }
 
-
+/**
+ * Return the id of a user in the database to use as a receiver based on preferred compliment type or randomized.
+ * 
+ * @param {number} userId The id of the currently logged in user.
+ * @param {string} type The type of compliment that was chosen to send.
+ * @return {Promise<string>} The id of the user who has been chosen as the receiver.
+ */
 function chooseReceiver(userId, type) {
     const usersRef = db.collection("users");
 
@@ -22,15 +34,17 @@ function chooseReceiver(userId, type) {
 
             let possibleReceiverIds = allUserIds;
 
-            // Remove user ids that have a different preferrec compliment type selected
+            // Remove user ids that have a different preferred compliment type selected
             for (let i = 0; i < allUserIds.length; i++) {
                 if (possibleReceiverIds[i][1] != type && possibleReceiverIds[i][1] != null && possibleReceiverIds[i][1] != "none") {
                     possibleReceiverIds.splice(i, 1);
                 }
             }
 
+            // If there are no users with the same preferred compliment type, choose a random user using backup ids
             if (possibleReceiverIds.length <= 1) {
                 possibleReceiverIds = backupUserIds;
+
                 // Remove current user from possible receiver ids
                 for (let i = 0; i < backupUserIds.length; i++) {
                     if (possibleReceiverIds[i][0] == userId) {
@@ -47,6 +61,7 @@ function chooseReceiver(userId, type) {
                 }
             }
 
+            // Choose a random user from the possible receiver ids
             let receiverIndex = getRandomInt(allUserIds.length - 1);
 
             return possibleReceiverIds[receiverIndex];
@@ -54,7 +69,13 @@ function chooseReceiver(userId, type) {
     })
 }
 
-// Create new document to store and track message chains between users
+/**
+ * Create a new chain document in firestore.
+ * 
+ * @param {number} userId The id of the currently logged in user.
+ * @param {number} messageId The id of the newly send message document.
+ * @returns {Promise<any>} A reference to the new chain document in firestore.
+ */
 function createNewChainDocument(userId, messageId) {
     const chainsRef = db.collection("chains");
     const currentDate = firebase.firestore.Timestamp.now();
@@ -66,10 +87,18 @@ function createNewChainDocument(userId, messageId) {
     })
 }
 
-
+/**
+ * Create a new message document in firestore.
+ * 
+ * @param {number} senderId The id of the message sender.
+ * @param {number} receiverId The id of the message receiver.
+ * @param {number} complimentId The id of the compliment being sent in this message.
+ * @returns {Promise<any>} A reference to the new message document in firestore.
+ */
 function createNewMessageDocument(senderId, receiverId, complimentId) {
     const messagesRef = db.collection("messages");
 
+    // Get a firestore timestamp of current time
     const currentDate = firebase.firestore.Timestamp.now();
 
     return messagesRef.add({
@@ -84,6 +113,12 @@ function createNewMessageDocument(senderId, receiverId, complimentId) {
     })
 }
 
+/**
+ * Choose receiver, create proper message and chain documents, and modify attribute values to properly send the message.
+ * 
+ * @param {number} complimentId The id of the compliment being sent.
+ * @param {string} type The type of compliment that was chosen to send.
+ */
 async function sendMessage(complimentId, type) {
     // Get current user from firebase auth
     firebase.auth().onAuthStateChanged(async (user) => {
@@ -153,6 +188,11 @@ async function sendMessage(complimentId, type) {
 
 }
 
+/**
+ * Find the compliment data of chosen compliment from firestore and display as card in html.
+ * 
+ * @param {number} complimentId The id of the compliment being sent.
+ */
 async function populateComplimentData(complimentId) {
     const data = await db.collection('compliments').doc(complimentId).get()
     const complimentData = data.data();
@@ -161,8 +201,11 @@ async function populateComplimentData(complimentId) {
     $('#compliment-type').html(complimentData.type);
 }
 
+/**
+ * Retrieve url param values, populate compliment data and set event listeners.
+ */
 function setUp() {
-    // Cet compliment id from html or query param
+    // Get compliment id from html or query param
     const urlParams = new URLSearchParams(window.location.search);
     const complimentId = urlParams.get('complimentId');
 
@@ -176,4 +219,5 @@ function setUp() {
     });
 }
 
+// Call set up function once the document has loaded
 $(document).ready(setUp);
