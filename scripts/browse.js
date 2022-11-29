@@ -67,7 +67,7 @@ function openFilterDropDown() {
 }
 
 /**
- * Close the filter dropdown menu
+ * close the filter dropdown menu
  * 
  * @param {Event} event The event triggered one window click.
  */
