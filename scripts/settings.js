@@ -31,7 +31,7 @@ function populateInfo() {
  */
 function editUserInfo() {
     //Enable the form fields
-    $('#personalInfoFields').prop('disabled', false);
+    $('#personal-info-fields').prop('disabled', false);
 }//event-listener that call the function editUserInfo after clicking on the button.
 
 /**
@@ -49,7 +49,7 @@ function saveUserInfo() {
             }).then(() => {
                 console.log("Document successfully updated!");
             })
-            $('#personalInfoFields').prop('disabled', true);
+            $('#personal-info-fields').prop('disabled', true);
         }
         else {
             console.log("no user");

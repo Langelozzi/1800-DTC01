@@ -15,16 +15,16 @@ function populateInfo() {
 
             //if the data fields are not empty, then write them in to the form.
             if (userName != null) {
-                $('#nameInput').val(userName);
+                $('#name-input').val(userName);
             }
             if (userEmail != null) {
-                $('#emailInput').val(userEmail);
+                $('#email-input').val(userEmail);
             }
             if (userCity != null) {
-                $('#cityInput').val(userCity);
+                $('#city-input').val(userCity);
             }
             if (userCountry != null) {
-                $('#countryInput').val(userCountry);
+                $('#country-input').val(userCountry);
             }
         }
         else {
@@ -41,17 +41,17 @@ function populateInfo() {
  */
 function editUserInfo() {
     // Enable the form fields
-    $('#personalInfoFields').prop('disabled', false);
+    $('#personal-info-fields').prop('disabled', false);
 }// event-listener that call the function editUserInfo after clicking on the button.
 
 /**
  * Update user info in firestore with values from form.
  */
 function saveUserInfo() {
-    userName = $('#nameInput').val();
-    userSchool = $('#emailInput').val();
-    userCity = $('#cityInput').val();
-    userCountry = $('#countryInput').val();
+    userName = $('#name-input').val();
+    userSchool = $('#email-input').val();
+    userCity = $('#city-input').val();
+    userCountry = $('#country-input').val();
 
     currentUser.update({
         name: userName,
@@ -62,7 +62,7 @@ function saveUserInfo() {
         console.log("Document successfully updated!");
     })
 
-    $('#personalInfoFields').prop('disabled', true);
+    $('#personal-info-fields').prop('disabled', true);
 }
 
 /**
