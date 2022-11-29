@@ -62,6 +62,7 @@ function loadComplimentCards(compliments) {
  * Open the filter dropdown menu
  */
 function openFilterDropDown() {
+    console.log('clicked')
     document.getElementById("dropdown-content").classList.toggle("show");
 }
 
@@ -115,7 +116,7 @@ async function setUp() {
 
     window.onclick = closeFilterDropdown;
 
-    $('.dropdown-toggle').click(openFilterDropDown);
+    $('#filter-dropdown').click(openFilterDropDown);
 
     $('#search-bar').keyup((event) => {
         searchBarFilter(compliments);
