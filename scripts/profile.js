@@ -5,15 +5,15 @@ function populateInfo() {
     firebase.auth().onAuthStateChanged(async (user) => {
         // Check if user is signed in:
         if (user) {
-            //go to the correct user document by referencing to the user uid
+            // Go to the correct user document by referencing to the user uid
             const currentUserDoc = await db.collection("users").doc(user.uid).get();
-            //get the data fields of the user
+            // Get the data fields of the user
             var userName = currentUserDoc.data().name;
             var userEmail = currentUserDoc.data().email;
             var userCity = currentUserDoc.data().city;
             var userCountry = currentUserDoc.data().country;
 
-            //if the data fields are not empty, then write them in to the form.
+            // If the data fields are not empty, then write them in to the form.
             if (userName != null) {
                 $('#name-input').val(userName);
             }
@@ -30,7 +30,7 @@ function populateInfo() {
         else {
             console.log("no user");
 
-            // redirect to login page if no user is logged in
+            // Redirect to login page if no user is logged in
             window.location.href = "../html/login.html";
         }
     });
@@ -42,7 +42,7 @@ function populateInfo() {
 function editUserInfo() {
     // Enable the form fields
     $('#personal-info-fields').prop('disabled', false);
-}// event-listener that call the function editUserInfo after clicking on the button.
+}// Event-listener that call the function editUserInfo after clicking on the button.
 
 /**
  * Update user info in firestore with values from form.

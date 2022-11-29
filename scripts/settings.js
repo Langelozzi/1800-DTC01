@@ -6,13 +6,13 @@ function populateInfo() {
         // Check if user is signed in:
         if (user) {
 
-            //go to the correct user document by referencing to the user uid
+            // Go to the correct user document by referencing to the user uid
             const currentUserDoc = await db.collection("users").doc(user.uid).get();
 
-            //get the data fields of the user
+            // Get the data fields of the user
             var userPreferredType = currentUserDoc.data().preferredComplimentType;
 
-            //if the data fields are not empty, then write them in to the form.
+            // If the data fields are not empty, then write them in to the form.
             if (userPreferredType != null) {
                 $('#preferred-compliment-type').val(userPreferredType);
             }
@@ -20,7 +20,7 @@ function populateInfo() {
         else {
             console.log("no user");
 
-            // redirect to login page if no user is logged in
+            // Redirect to login page if no user is logged in
             window.location.href = "../html/login.html";
         }
     });
@@ -30,7 +30,7 @@ function populateInfo() {
  * Enable the form for editing.
  */
 function editUserInfo() {
-    //Enable the form fields
+    // Enable the form fields
     $('#personal-info-fields').prop('disabled', false);
 }//event-listener that call the function editUserInfo after clicking on the button.
 
@@ -54,7 +54,7 @@ function saveUserInfo() {
         else {
             console.log("no user");
 
-            // redirect to login page if no user is logged in
+            // Redirect to login page if no user is logged in
             window.location.href = "../html/login.html";
         }
     })

@@ -34,15 +34,17 @@ function chooseReceiver(userId, type) {
 
             let possibleReceiverIds = allUserIds;
 
-            // Remove user ids that have a different preferrec compliment type selected
+            // Remove user ids that have a different preferred compliment type selected
             for (let i = 0; i < allUserIds.length; i++) {
                 if (possibleReceiverIds[i][1] != type && possibleReceiverIds[i][1] != null && possibleReceiverIds[i][1] != "none") {
                     possibleReceiverIds.splice(i, 1);
                 }
             }
 
+            // If there are no users with the same preferred compliment type, choose a random user using backup ids
             if (possibleReceiverIds.length <= 1) {
                 possibleReceiverIds = backupUserIds;
+
                 // Remove current user from possible receiver ids
                 for (let i = 0; i < backupUserIds.length; i++) {
                     if (possibleReceiverIds[i][0] == userId) {
@@ -59,6 +61,7 @@ function chooseReceiver(userId, type) {
                 }
             }
 
+            // Choose a random user from the possible receiver ids
             let receiverIndex = getRandomInt(allUserIds.length - 1);
 
             return possibleReceiverIds[receiverIndex];
@@ -202,7 +205,7 @@ async function populateComplimentData(complimentId) {
  * Retrieve url param values, populate compliment data and set event listeners.
  */
 function setUp() {
-    // Cet compliment id from html or query param
+    // Get compliment id from html or query param
     const urlParams = new URLSearchParams(window.location.search);
     const complimentId = urlParams.get('complimentId');
 
