@@ -1,3 +1,4 @@
+// Function to write emoji data to firestore
 function generateEmojiData() {
     const emojisRef = db.collection("emojis");
 

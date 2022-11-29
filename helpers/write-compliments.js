@@ -1,5 +1,5 @@
+// Function to write compliment data to firestore
 function writeCompliments() {
-    //define a variable for the collection you want to create in Firestore to populate data
     var complimentId = db.collection("compliments");
 
     // ---------------------------------- personality compliments (x12)-----------------------------------
