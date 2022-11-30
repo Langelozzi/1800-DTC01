@@ -28,7 +28,7 @@ function chooseReceiver(userId, type) {
         });
 
         if (allUserIds.length == 1) {
-            return allUserIds[0];
+            return allUserIds[0][0];
         }
         else {
 
@@ -64,7 +64,7 @@ function chooseReceiver(userId, type) {
             // Choose a random user from the possible receiver ids
             let receiverIndex = getRandomInt(allUserIds.length - 1);
 
-            return possibleReceiverIds[receiverIndex];
+            return possibleReceiverIds[receiverIndex][0];
         }
     })
 }
@@ -125,6 +125,7 @@ async function sendMessage(complimentId, type) {
         if (user) {
             // Get random user id from firestore users collection
             const receiverId = await chooseReceiver(user.uid, type)
+            console.log(receiverId);
 
             try {
                 var newMessageRef = await createNewMessageDocument(user.uid, receiverId, complimentId);

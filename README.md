@@ -79,6 +79,14 @@ It has the following sub folders and files:
 
 Firebase hosting files: 
 ├── .firebaserc...
+├── 404.html
+├── firebase.json
+├── firestore.indexes.json
+├── firestore.rules
+├── storage.rules
+├── .firebase
+    /hosting..cache
+
 
 
 ```
