@@ -62,7 +62,6 @@ function loadComplimentCards(compliments) {
  * Open the filter dropdown menu
  */
 function openFilterDropDown() {
-    console.log('clicked')
     document.getElementById("dropdown-content").classList.toggle("show");
 }
 

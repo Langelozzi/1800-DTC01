@@ -125,7 +125,6 @@ async function sendMessage(complimentId, type) {
         if (user) {
             // Get random user id from firestore users collection
             const receiverId = await chooseReceiver(user.uid, type)
-            console.log(receiverId);
 
             try {
                 var newMessageRef = await createNewMessageDocument(user.uid, receiverId, complimentId);
