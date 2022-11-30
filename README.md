@@ -7,18 +7,13 @@
 ## General Info
 'Say it Forward' is a browser based web application to help mobile phone users who want to contribute to a positive movement combat and counteract daily negativity by performing random acts of kindness virtually via their devices.
 
-This is Josh and I am excited
-
-Lucas is not excited for the merge conflicts :(
-
-Hi there, my name is Kelly and I like Christmas
-
 ## Technologies
 
 Technologies used for this project:
 
 * HTML, CSS
 * JavaScript
+* Jquery
 * Bootstrap
 * Firebase, Firestore
 
