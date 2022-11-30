@@ -77,7 +77,7 @@ function chooseReceiver(userId, type) {
 function createNewMessageDocument(senderId, receiverId, complimentId, chainId) {
     const messagesRef = db.collection("messages");
 
-    // get current date
+    // Get current date
     const currentDate = firebase.firestore.Timestamp.now();
 
     return messagesRef.add({
@@ -100,10 +100,10 @@ function createNewMessageDocument(senderId, receiverId, complimentId, chainId) {
  * @param {string} type The type of compliment that was chosen to send.
  */
 function sendMessage(complimentId, chainId, originalMessageId, type) {
-    // get current user from firebase auth
+    // Get current user from firebase auth
     firebase.auth().onAuthStateChanged(async (user) => {
         if (user) {
-            // get random user id from firestore users collection
+            // Get random user id from firestore users collection
             const receiverId = await chooseReceiver(user.uid, type)
 
             try {
@@ -112,34 +112,34 @@ function sendMessage(complimentId, chainId, originalMessageId, type) {
             catch (error) {
                 console.error("Error adding new message (compliment) document: ", error);
 
-                // open error modal
+                // Open error modal
                 $('#error-modal').modal('show');
                 setTimeout(() => {
                     $('#error-modal').modal('hide');
                 }, 4000);
             }
 
-            // add one to users number of compliments sent
+            // Add one to users number of compliments sent
             db.collection("users").doc(user.uid).update({
                 complimentsSent: firebase.firestore.FieldValue.increment(1)
             });
 
-            // add one to amountSent for that compliment
+            // Add one to amountSent for that compliment
             db.collection("compliments").doc(complimentId).update({
                 amountSent: firebase.firestore.FieldValue.increment(1)
             });
 
-            // add the new message id to the chain
+            // Add the new message id to the chain
             db.collection("chains").doc(chainId).update({
                 messages: firebase.firestore.FieldValue.arrayUnion(newMessageRef.id)
             });
 
-            // update original message to paid forward
+            // Update original message to paid forward
             db.collection("messages").doc(originalMessageId).update({
                 paidForward: true
             });
 
-            // open success modal and redirect to browse page
+            // Open success modal and redirect to browse page
             $('#success-modal').modal('show');
             setTimeout(() => {
                 $('#success-modal').modal('hide');
@@ -149,7 +149,7 @@ function sendMessage(complimentId, chainId, originalMessageId, type) {
         else {
             console.log("no user");
 
-            // redirect to login page if no user is logged in
+            // Redirect to login page if no user is logged in
             window.location.href = "../html/login.html";
         }
     });
@@ -173,7 +173,7 @@ function populateComplimentData(complimentId) {
  * Retrieve url param values, populate compliment data and set event listeners.
  */
 function setUp() {
-    // get compliment id from html or query param
+    // Get compliment id from html or query param
     const urlParams = new URLSearchParams(window.location.search);
     const complimentId = urlParams.get('complimentId');
     const messageId = urlParams.get('messageId');

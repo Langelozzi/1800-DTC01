@@ -93,7 +93,7 @@ function searchBarFilter(compliments) {
     const searchInput = $('#search-bar').val(); //grabs the value of what the user types in the search bar
     var searchResult = []
 
-    // Loops through each compliment and checks if a compliment contains the searchInput. If it does, then append that compliment to searchResult
+    // Loop through each compliment and checks if a compliment contains the searchInput. If it does, then append that compliment to searchResult
     compliments.forEach((compliment) => {
         var complimentText = compliment.data().compliment;
 
@@ -107,7 +107,7 @@ function searchBarFilter(compliments) {
 }
 
 /**
- * Loads the compliments from firestore, displays them on the page, and sets event listeners.
+ * Load the compliments from firestore, displays them on the page, and sets event listeners.
  */
 async function setUp() {
     const compliments = await getCompliments();

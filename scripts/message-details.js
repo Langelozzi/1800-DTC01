@@ -11,7 +11,7 @@
 function createNewMessageDocument(senderId, receiverId, emojiId, chainId, originalMessageId) {
     const messagesRef = db.collection("messages");
 
-    // get current date
+    // Get current date
     const currentDate = firebase.firestore.Timestamp.now();
 
     return messagesRef.add({
@@ -73,7 +73,7 @@ async function sendEmoji(receiverId, chainId, originalMessageId) {
             catch (error) {
                 console.error("Error adding new message (emoji) document: ", error);
 
-                // open error modal
+                // Open error modal
                 $("#emoji-selection-modal").modal('hide') // hide modal
                 $('#error-modal').modal('show');
                 setTimeout(() => {
@@ -83,31 +83,31 @@ async function sendEmoji(receiverId, chainId, originalMessageId) {
                 return;
             }
 
-            // add one to emojis amountSent field
+            // Add one to emojis amountSent field
             db.collection("emojis").doc(selectedEmojiId).update({
                 amountSent: firebase.firestore.FieldValue.increment(1)
             });
 
-            // set original message reactedTo to true
+            // Set original message reactedTo to true
             db.collection("messages").doc(originalMessageId).update({
                 reactedTo: true
             });
 
-            // hide emoji modal
+            // Hide emoji modal
             $("#emoji-selection-modal").modal('hide')
-            // show success modal
+            // Show success modal
             $('#success-modal').modal('show');
             setTimeout(() => {
                 $('#success-modal').modal('hide');
             }, 4000);
-            // disable the reply with emoji button
+            // Disable the reply with emoji button
             $('#reply-emoji-btn').attr('disabled', true);
 
         }
         else {
             console.log("no user");
 
-            // redirect to login page if no user is logged in
+            // Redirect to login page if no user is logged in
             window.location.href = "../html/login.html";
         }
     });
@@ -143,7 +143,7 @@ async function checkMessageStatus(messageId) {
     const paidForward = messageData.paidForward;
     const openedAt = messageData.openedAt;
 
-    // check if message has been reacted to, paid forward and/or opened
+    // Check if message has been reacted to, paid forward and/or opened
     if (reactedTo) {
         $('#reply-emoji-btn').attr('disabled', true);
     }
@@ -170,7 +170,7 @@ function setMessageOpened(messageId) {
  * Retrieve url param values and set up page elements and event listeners.
  */
 async function setUp() {
-    // get message id from html or query param
+    // Get message id from html or query param
     const urlParams = new URLSearchParams(window.location.search);
     const messageId = urlParams.get('messageId');
 

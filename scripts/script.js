@@ -14,6 +14,7 @@ function checkForNotifications() {
                 }
             });
 
+            // Toggle the notification badge
             if (hasNotifications) {
                 $('#note-badge').show();
             } else {
@@ -23,7 +24,7 @@ function checkForNotifications() {
         else {
             console.log("no user");
 
-            // redirect to login page if no user is logged in
+            // Redirect to login page if no user is logged in
             window.location.href = "../html/login.html";
         }
     });

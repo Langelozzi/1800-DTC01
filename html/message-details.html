@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>My BCIT Project</title>
+    <title>Say it Forward</title>
     <meta name="comp1800 template" content="My 1800 App">
 
     <!-- Required meta tags -->
@@ -18,7 +18,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
-    <!-- Jquery -->
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Firebase 8 Library -->
@@ -32,32 +32,17 @@
     <!-- Google Icons (Material Design)-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- Link to styles of your own -->
+    <!-- Link to main stylesheet and inbox stylesheet to highlight the mail tab in bottom nav -->
     <link rel="stylesheet" href="../styles/style.css">
-
-    <style>
-        .mail {
-            color: #1d6fea;
-            background-color: whitesmoke;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/inbox.css">
 </head>
 
 <body>
 
-    <!------------------------------>
-    <!-- Your HTML Layout go here -->
-    <!------------------------------>
-
     <!--Top Navbar-->
     <nav id="navbar-back-btn-placeholder"></nav>
 
-
-
     <!--Homepage Content-->
-    <!-- <header style="padding-top:40%"></header> -->
-
-
     <div class="container">
         <br>
         <br>
@@ -88,14 +73,14 @@
         </div>
 
         <!-- Emoji selection modal -->
-        <div class="modal fade" id="emoji-selection-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade" id="emoji-selection-modal" tabindex="-1" aria-labelledby="example-modal-label"
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"> <strong> Select and send emoji </strong>
+                        <h1 class="modal-title fs-5" id="example-modal-label"> <strong> Select and send emoji </strong>
                         </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
                     </div>
                     <div class="modal-body">
                         <fieldset class="w-100">
@@ -136,13 +121,14 @@
         </div>
 
         <!-- Message successful modal -->
-        <div class="modal fade" id="success-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="success-modal" tabindex="-1" aria-labelledby="example-modal-label"
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"> <strong> Emoji Sent! </strong>
+                        <h1 class="modal-title fs-5" id="example-modal-label"> <strong> Emoji Sent! </strong>
                         </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
                     </div>
                     <div class="modal-body">
                         <h4> Your reaction emoji was successfully sent!
@@ -156,13 +142,13 @@
         </div>
 
         <!-- Message error modal -->
-        <div class="modal fade" id="error-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="error-modal" tabindex="-1" aria-labelledby="example-modal-label" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel"> <strong> Error </strong>
+                        <h1 class="modal-title fs-5" id="example-modal-label"> <strong> Error </strong>
                         </h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
                     </div>
                     <div class="modal-body">
                         <h4> An unexpected error occurred while sending your emoji. Please try again later. </h4>

@@ -20,6 +20,7 @@ var uiConfig = {
                 }).then(() => {
                     console.log("New user added to firestore");
                     window.location.assign("main.html");
+                    // If there is an error, log it
                 }).catch((error) => {
                     console.log("Error adding new user: " + error);
                 });
@@ -29,7 +30,7 @@ var uiConfig = {
             }
             return false;
         },
-        // remove loader once auth component loads
+        // Remove loader once auth component loads
         uiShown: function () {
             document.getElementById('loader').style.display = 'none';
         }
@@ -41,5 +42,5 @@ var uiConfig = {
     ],
 };
 
-// render the firebase auth ui
+// Render the firebase auth ui
 ui.start('#firebaseui-auth-container', uiConfig);

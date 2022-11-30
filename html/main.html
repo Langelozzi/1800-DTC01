@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>My BCIT Project</title>
+    <title>Say it Forward</title>
     <meta name="comp1800 template" content="My 1800 App">
 
     <!-- Required meta tags -->
@@ -18,7 +18,7 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 
-    <!-- Jquery -->
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Firebase 8 Library -->
@@ -32,14 +32,9 @@
     <!-- Google Icons (Material Design)-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- Link to styles of your own -->
+    <!-- Link to main stylesheet and main stylesheet to highlight the home tab in bottom nav -->
     <link rel="stylesheet" href="../styles/style.css">
-    <style>
-        .home {
-            color: #1d6fea;
-            background-color: whitesmoke;
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/main.css">
 </head>
 
 <body>
@@ -47,7 +42,7 @@
     <!--Top Navbar-->
     <nav id="navbar-placeholder"></nav>
 
-    <!--Homepage Content-->
+    <!--Quote of the Day Card-->
     <div class="container">
         <br>
         <div class="card home-card">
@@ -71,6 +66,7 @@
                 </p>
             </div>
         </div>
+        <!--New Compliment Card-->
         <div class="card home-card new-comp-card">
             <p class="lead mb-4" style="text-align:center">
                 <b style="font-size:110%">Send a compliment by clicking the <b> New Compliment </b> button: </b>
@@ -97,7 +93,6 @@
     <script src="../scripts/firebaseAPI_COMP1800_DTC-01.js"></script>
     <script src="../scripts/skeleton.js"></script>
     <script src="../scripts/main.js"></script>
-    <!-- <script src="../scripts/write-compliments.js"></script> -->
     <script src="../scripts/script.js"></script>
 
 </body>
