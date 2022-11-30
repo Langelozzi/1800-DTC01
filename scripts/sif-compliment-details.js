@@ -27,7 +27,7 @@ function chooseReceiver(userId, type) {
         });
 
         if (allUserIds.length == 1) {
-            return allUserIds[0];
+            return allUserIds[0][0];
         }
         else {
 
@@ -60,7 +60,7 @@ function chooseReceiver(userId, type) {
 
             let receiverIndex = getRandomInt(allUserIds.length - 1);
 
-            return possibleReceiverIds[receiverIndex];
+            return possibleReceiverIds[receiverIndex][0];
         }
     })
 }
