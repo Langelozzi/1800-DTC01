@@ -53,23 +53,42 @@ function saveUserInfo() {
     userCity = $('#city-input').val();
     userCountry = $('#country-input').val();
 
-    currentUser.update({
-        name: userName,
-        school: userSchool,
-        city: userCity,
-        country: userCountry
-    }).then(() => {
-        console.log("Document successfully updated!");
-    })
+    firebase.auth().onAuthStateChanged(async (user) => {
+        if (user) {
+            const currentUserDoc = await db.collection("users").doc(user.uid);
 
-    $('#personal-info-fields').prop('disabled', true);
+            currentUserDoc.update({
+                name: userName,
+                school: userSchool,
+                city: userCity,
+                country: userCountry
+            }).then(() => {
+                console.log("Document successfully updated!");
+            })
+            $('#personal-info-fields').prop('disabled', true);
+        }
+        else {
+            console.log("no user");
+
+            // Redirect to login page if no user is logged in
+            window.location.href = "../html/login.html";
+        }
+    })
 }
 
 /**
- * Run functions that will be called on page load.
+ * Load the current user data and set event listeners.
  */
 function setUp() {
     populateInfo();
+
+    $('#edit-btn').click(() => {
+        editUserInfo()
+    });
+
+    $('#save-btn').click(() => {
+        saveUserInfo()
+    });
 }
 
 // Call set up function once the document has loaded
